@@ -17,13 +17,15 @@ const Exports = {
 
   matriceCSV(){
     const lignes = [["Référentiel","Domaine","Identifiant","Exigence","Niveaux","Source",
-                     "Sections officielles","Point de contrôle","Statut","Criticité","Constat",
+                     "Sections officielles","Énoncé officiel","Point de contrôle","Provenance",
+                     "Statut","Criticité","Constat",
                      "Commentaire","Recommandation","Responsable","Échéance","Preuves","Dernière modification"]];
     for(const x of Audit.planDeControle()){
       const r = Audit.etat.reponses[x.ex.id] || {};
       lignes.push([
         x.ref.code, x.dom.nom, x.ex.id, x.ex.t, (x.ex.n || x.ref.niveaux || []).join("/"),
-        x.ex.src || "", (x.ex.sec || []).join(" ; "), x.ex.ctrl || "",
+        x.ex.src || "", (x.ex.sec || []).join(" ; "), x.ex.enonce || "", x.ex.ctrl || "",
+        x.ex.redige ? "point de contrôle rédigé" : "source officielle",
         STATUTS[r.s || "ne"].libelle, CRITICITES[r.crit || ""].libelle,
         r.constat || "", r.com || "", r.reco || "", r.resp || "", r.ech || "", r.preuves || "",
         r.maj ? horodatageFr(r.maj) : "",
@@ -184,7 +186,10 @@ const Exports = {
       const r = Audit.etat.reponses[x.ex.id] || {s:"ne"};
       const sources = Corpus.sectionsDe(x.ref.id, x.ex.sec).map(s => s.titre).join(" ; ");
       corps += `<tr><td>${ech(x.ex.id)}</td>
-        <td><b>${ech(x.ex.t)}</b><br><span class="gris">${ech(x.ex.ctrl || "")}</span>
+        <td><b>${ech(x.ex.t)}</b>
+          ${x.ex.enonce ? `<br>${ech(x.ex.enonce)}` : ""}
+          ${x.ex.ctrl ? `<br><span class="gris">${ech(x.ex.ctrl)}${
+              x.ex.redige ? " (point de contrôle rédigé)" : ""}</span>` : ""}
           ${sources ? `<br><span class="gris"><i>Source : ${ech(sources)}</i></span>` : ""}</td>
         <td><span class="b ${r.s || "ne"}">${STATUTS[r.s || "ne"].abrege}</span>
           ${r.crit ? `<br><span class="gris">${ech(CRITICITES[r.crit].libelle)}</span>` : ""}</td>

@@ -192,6 +192,16 @@ function ouvrirAide(){
     <p>Fichier HTML unique, sans réseau ni dépendance externe. Toutes les données restent dans le
     navigateur qui l'ouvre.</p>
 
+    <h3>Provenance des exigences</h3>
+    <p>La plupart des exigences sont reprises telles quelles d'une source officielle et portent
+    son identifiant : les articles et les règles codées de l'annexe 1 pour l'II 901
+    (<code>ORG-RSSI</code>…), le listing des exigences SSI publié par l'ANSSI pour l'IGI 1300
+    (<code>HOMOL_01</code>…). Leur énoncé officiel est affiché en tête du panneau.</p>
+    <p>Les autres sont des points de contrôle rédigés pour cet outil, signalés par la mention
+    <i>reformulation</i> : les exigences IM 900, pour lesquelles aucune source d'exigences
+    officielle n'existe, et les domaines de l'IGI 1300 que le listing ANSSI ne couvre pas
+    (habilitation, locaux, contrats, supports papier).</p>
+
     <h3>Textes officiels</h3>
     <p>Le texte des trois instructions est intégré :</p><ul>${stats}</ul>
     <p>Chaque point de contrôle affiche les sections dont il découle ; l'onglet <i>Textes</i> permet

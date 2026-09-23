@@ -62,6 +62,7 @@ def corriger_ocr(t):
         (r"\bAt1icle\b", "Article"), (r"\bArtic le\b", "Article"), (r"\bartic le\b", "article"),
         (r"\bTitre Il\b", "Titre II"), (r"\bTitre Ill\b", "Titre III"),
         (r"\bArticle Il\b", "Article 11"), (r"\bclasse l\b", "classe 1"),
+        (r"\bExtemalisation\b", "Externalisation"), (r"\bextemalisation\b", "externalisation"),
         (r"\bsystè mes\b", "systèmes"), (r"\binformatio n\b", "information"),
         (r"\bap plication\b", "application"), (r"\bsensi bilité\b", "sensibilité"),
         (r"\bd’ ", "d’"), (r"\bl’ ", "l’"), (r"\bs’ ", "s’"), (r"\bn’ ", "n’"),

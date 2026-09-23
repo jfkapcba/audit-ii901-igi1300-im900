@@ -13,6 +13,10 @@ for f in ii901 igi1300 im900; do
   printf '   %-8s %s lignes\n' "$f" "$(wc -l < "refs/$f.txt")"
 done
 
+[ -f "refs/anssi-igi1300-exigences.xlsx" ] || {
+  echo "manquant : outils/refs/anssi-igi1300-exigences.xlsx — voir outils/README.md"; exit 1; }
+printf '   %-8s listing des exigences ANSSI\n' "igi1300"
+
 echo "== 1. Découpage en sections =="
 python3 extraire_igi1300.py
 python3 extraire_ii901.py
@@ -21,8 +25,9 @@ python3 extraire_im900.py | head -2
 echo "== 2. Recollage des intitulés coupés =="
 python3 recoller.py
 
-echo "== 3. Règles codées de l'annexe 1 de l'II 901 =="
+echo "== 3. Exigences officielles =="
 python3 regles901.py | head -1
+python3 extraire_anssi_igi1300.py
 
 echo "== 4. Construction des données =="
 python3 construire_donnees.py

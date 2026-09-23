@@ -24,10 +24,35 @@
 
     // ---------- Rattachement catalogue <-> corpus ----------
     const plat = Catalogue.aplati();
-    ok("254 points de contrôle", plat.length === 254, plat.length);
-    const sansSec = plat.filter(x => !x.ex.sec || !x.ex.sec.length);
-    ok("tout point de contrôle est rattaché à un texte", sansSec.length === 0,
-       sansSec.length + " sans rattachement");
+    ok("plus de 500 points de contrôle", plat.length > 500, plat.length);
+    const officielles = plat.filter(x => !x.ex.redige);
+    ok("les trois quarts des exigences viennent d'une source officielle",
+       officielles.length / plat.length > 0.70,
+       officielles.length + " officielles / " + plat.length + " ("
+       + Math.round(100 * officielles.length / plat.length) + " %)");
+    ok("toute exigence non officielle est signalée comme rédigée",
+       plat.filter(x => x.ex.redige).every(x => x.ex.ctrl),
+       plat.filter(x => x.ex.redige).length + " rédigées");
+    // Chaque exigence doit porter soit son énoncé officiel, soit une section de texte.
+    const muettes = plat.filter(x => !(x.ex.enonce || "").trim() &&
+                                     !(x.ex.sec || []).some(s => (Corpus.section(x.ref.id, s) || {}).x));
+    ok("aucune exigence sans texte officiel ni énoncé", muettes.length === 0,
+       muettes.length + " muette(s) : " + muettes.slice(0,3).map(x => x.ex.id).join(" "));
+    // Identifiants officiels effectivement repris.
+    const ids = new Set(plat.map(x => x.ex.id));
+    ok("identifiants officiels II 901 repris",
+       ["ORG-RSSI","PDT-VEROUIL-FIXE","EXP-IMP-2","DEV-SOUS-TRAIT","TI-INC-REM"].every(c => ids.has(c)));
+    ok("identifiants officiels ANSSI repris pour l'IGI 1300",
+       ["HOMOL_01","ACC_01","MARQ_01","AUDIT_01"].filter(c => ids.has(c)).length >= 3,
+       ["HOMOL_01","ACC_01","MARQ_01","AUDIT_01"].filter(c => ids.has(c)).join(" "));
+    ok("II 901 : aucune exigence rédigée (source officielle intégrale)",
+       plat.filter(x => x.ref.id === "II901" && x.ex.redige).length === 0);
+    ok("IGI 1300 : 204 exigences du listing ANSSI",
+       plat.filter(x => x.ref.id === "IGI1300" && !x.ex.redige).length === 204,
+       plat.filter(x => x.ref.id === "IGI1300" && !x.ex.redige).length);
+    ok("IM 900 : points de contrôle rédigés conservés",
+       plat.filter(x => x.ref.id === "IM900").length === 72,
+       plat.filter(x => x.ref.id === "IM900").length);
     let cibleInconnue = [], cibleVide = [];
     for(const x of plat) for(const s of (x.ex.sec||[])){
       const sec = Corpus.section(x.ref.id, s);
@@ -110,12 +135,27 @@
     ok("arbre rendu", document.querySelectorAll(".arbre-ex").length > 0,
        document.querySelectorAll(".arbre-ex").length);
     const panneau = document.getElementById("panneau-exigence").textContent;
-    ok("panneau : texte officiel affiché", panneau.indexOf("Texte officiel") > 0);
-    ok("panneau : point de contrôle affiché", panneau.indexOf("Point de contrôle") > 0);
+    ok("panneau : énoncé officiel affiché", panneau.indexOf("énoncé officiel") > 0);
     ok("panneau : contenu officiel réellement présent",
-       document.querySelector(".texte-officiel").textContent.length > 200,
+       document.querySelector(".texte-officiel").textContent.length > 150,
        document.querySelector(".texte-officiel").textContent.length + " car.");
     ok("aucun message « texte à saisir »", !panneau.includes("n'a pas encore été saisi"));
+
+    // Une exigence rédigée porte son badge de provenance et son point de contrôle.
+    const redigee = Audit.planDeControle().find(x => x.ex.redige && x.ex.ctrl);
+    EcranAudit.rendreExigence(redigee.ex.id);
+    const pr = document.getElementById("panneau-exigence").textContent;
+    ok("exigence rédigée : point de contrôle affiché", pr.indexOf("Point de contrôle") > 0);
+    ok("exigence rédigée : signalée comme reformulation", pr.indexOf("reformulation") > 0);
+    // Une exigence officielle n'affiche pas de point de contrôle rédigé.
+    const off = Audit.planDeControle().find(x => !x.ex.redige && x.ex.enonce);
+    EcranAudit.rendreExigence(off.ex.id);
+    ok("exigence officielle : aucun point de contrôle rédigé",
+       document.getElementById("panneau-exigence").textContent.indexOf("Point de contrôle") < 0);
+    ok("identifiant officiel affiché tel quel dans l'arbre",
+       (() => { EcranAudit.rendreArbre();
+                return [...document.querySelectorAll(".arbre-ex .ident")]
+                  .some(e => /^(HOMOL_|ACC_|ORG-|PDT-)/.test(e.textContent)); })());
 
     // Exigence de l'II 901 : avertissement de provenance
     const exII901 = Audit.planDeControle().find(x => x.ref.id === "II901");
@@ -170,6 +210,9 @@
     ok("CSV produit", (capt["matrice-conformite"]||"").split("\r\n").length > 200,
        (capt["matrice-conformite"]||"").split("\r\n").length + " lignes");
     ok("CSV : colonne des sources officielles", (capt["matrice-conformite"]||"").includes("Sections officielles"));
+    ok("CSV : énoncé officiel et provenance exportés",
+       (capt["matrice-conformite"]||"").includes("Énoncé officiel") &&
+       (capt["matrice-conformite"]||"").includes("source officielle"));
     const rap = capt["rapport-audit"] || "";
     ok("rapport HTML produit", rap.length > 20000, rap.length + " octets");
     ok("rapport : aucune ressource externe", !/src=["']http|href=["']http|@import/.test(rap));

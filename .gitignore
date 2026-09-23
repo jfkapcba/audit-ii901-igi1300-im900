@@ -1,6 +1,7 @@
 # Textes officiels et intermédiaires de fabrication : à reconstruire localement
 # (voir outils/README.md). Seul le fichier assemblé est versionné.
 outils/refs/*.pdf
+outils/refs/*.xlsx
 outils/refs/*.txt
 outils/refs/*.json
 outils/build/

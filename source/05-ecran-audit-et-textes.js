@@ -2,6 +2,12 @@
 /* ===========================================================================
    13. ÉCRAN D'AUDIT
    =========================================================================== */
+/** Identifiant affiché dans l'arborescence : on retire le préfixe du référentiel
+ *  lorsqu'il est présent (II901-art7 -> art7), sinon on garde le code officiel
+ *  tel quel (ORG-RSSI, HOMOL_01). */
+const identCourt = (id, idReferentiel) =>
+  id.startsWith(idReferentiel + "-") ? id.slice(idReferentiel.length + 1) : id;
+
 const EcranAudit = {
   selection: null,               /* identifiant de l'exigence affichée */
   domainesReplies: new Set(),    /* domaines repliés dans le plan de contrôle */
@@ -20,7 +26,7 @@ const EcranAudit = {
 
     if(recherche){
       const textes = Corpus.sectionsDe(x.ref.id, x.ex.sec).map(s => s.titre + " " + s.texte).join(" ");
-      const foin = [x.ex.id, x.ex.t, x.ex.ctrl, x.ex.src, x.dom.nom, x.ref.code,
+      const foin = [x.ex.id, x.ex.t, x.ex.ctrl, x.ex.enonce, x.ex.src, x.dom.nom, x.ref.code,
                     rep.constat, rep.com, rep.reco, textes].join(" ").toLowerCase();
       if(!foin.includes(recherche)) return false;
     }
@@ -68,7 +74,7 @@ const EcranAudit = {
           html += `<button class="arbre-ex" data-id="${ech(x.ex.id)}"${
               this.selection === x.ex.id ? ' aria-current="true"' : ""}>
             <span class="pastille" data-s="${statut}" title="${ech(STATUTS[statut].libelle)}"></span>
-            <span class="ident">${ech(x.ex.id.split("-").slice(1).join("-"))}</span>
+            <span class="ident">${ech(identCourt(x.ex.id, groupe.ref.id))}</span>
             <span class="lib">${ech(x.ex.t)}</span></button>`;
         }
       }
@@ -102,16 +108,21 @@ const EcranAudit = {
         ${(niveaux || []).map(n =>
           `<span class="etiq" data-n="${ech(n)}">${ech(NIVEAUX[n] ? NIVEAUX[n].libelle : n)}</span>`).join("")}
         ${x.ex.src ? `<span class="etiq">${ech(x.ex.src)}</span>` : ""}
+        ${x.ex.redige ? '<span class="etiq" title="Point de contrôle rédigé pour cet outil, hors source officielle">reformulation</span>' : ""}
       </div>
       <h1 style="margin-bottom:14px">${ech(x.ex.t)}</h1>
 
-      ${this.blocTexteOfficiel(corpus, sections)}
+      ${x.ex.enonce ? `<div class="bloc"><h3>Exigence — énoncé officiel</h3>
+        <div class="texte-officiel enonce">${ech(x.ex.enonce)}</div></div>` : ""}
 
-      <div class="bloc"><h3>Point de contrôle</h3>
-        <div class="controle">${ech(x.ex.ctrl || "—")}</div></div>
+      ${x.ex.ctrl ? `<div class="bloc"><h3>Point de contrôle${
+          x.ex.redige ? ' <span class="etiq">reformulation</span>' : ""}</h3>
+        <div class="controle">${ech(x.ex.ctrl)}</div></div>` : ""}
 
       ${x.ex.pr && x.ex.pr.length ? `<div class="bloc"><h3>Éléments de preuve à collecter</h3>
         <ul class="preuves">${x.ex.pr.map(p => `<li>${ech(p)}</li>`).join("")}</ul></div>` : ""}
+
+      ${this.blocTexteOfficiel(corpus, sections, !!x.ex.enonce)}
 
       <div class="sep"></div>
 
@@ -166,7 +177,7 @@ const EcranAudit = {
   },
 
   /** Bloc « texte officiel » : une ou plusieurs sections du corpus. */
-  blocTexteOfficiel(corpus, sections){
+  blocTexteOfficiel(corpus, sections, contexte){
     if(!corpus){
       return `<div class="bloc"><h3>Texte de référence</h3>
         <div class="texte-officiel vide">Exigence ajoutée par l'auditeur : elle ne renvoie à aucun texte officiel.</div></div>`;
@@ -174,7 +185,7 @@ const EcranAudit = {
     const avertissement = corpus.avertissement
       ? `<div class="provenance">${ech(corpus.avertissement)}</div>` : "";
     if(!sections.length){
-      return `<div class="bloc"><h3>Texte officiel</h3>${avertissement}
+      return contexte ? avertissement : `<div class="bloc"><h3>Texte officiel</h3>${avertissement}
         <div class="texte-officiel vide">Aucune section du texte n'est rattachée à cette exigence.</div></div>`;
     }
     const corps = sections.map(s => `
@@ -183,7 +194,9 @@ const EcranAudit = {
         ? ech(s.texte)
         : `<span style="font-style:italic">Cette partie du texte n'est pas publiée : elle figure dans une annexe
            diffusée séparément ou dans un document protégé. Reportez-vous à votre exemplaire autorisé.</span>`}</div>`).join("");
-    return `<div class="bloc"><h3>Texte officiel — ${ech(corpus.code)}</h3>${avertissement}${corps}</div>`;
+    const titre = contexte ? `Section de l'instruction dont elle découle — ${ech(corpus.code)}`
+                           : `Texte officiel — ${ech(corpus.code)}`;
+    return `<div class="bloc"><h3>${titre}</h3>${avertissement}${corps}</div>`;
   },
 
   /** Relie les champs de saisie à l'état de l'audit. */

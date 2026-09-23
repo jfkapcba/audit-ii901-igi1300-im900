@@ -12,6 +12,10 @@ nécessaires pour utiliser l'outil : ils servent à le régénérer quand un tex
 * IGI 1300 — arrêté du 9 août 2021, PDF publié par le ministère des Armées
 * IM 900 — arrêté du 27 août 2025, JORF du 1er octobre 2025
 
+Ainsi que le listing des exigences publié par l'ANSSI, à enregistrer dans `refs/` sous le nom
+`anssi-igi1300-exigences.xlsx` :
+<https://cyber.gouv.fr/documents/3/ANSSI-NP-IGI1300-listing_des_exigences-v0.4.xlsx>
+
 ```bash
 for f in ii901 igi1300 im900; do pdftotext -layout -enc UTF-8 refs/$f.pdf refs/$f.txt; done
 ./pipeline.sh          # extraction et découpage -> refs/*.json puis build/*.json
@@ -26,8 +30,9 @@ python3 assembler.py   # assemblage de la page finale
 | `extraire2.py` | Découpage de l'II 901 par article, avec correction des artefacts d'océrisation (le seul exemplaire publié est un scan). |
 | `extraire_im900.py` | Découpage de l'IM 900. Les intitulés du corps étant éclatés par la mise en page du Journal officiel, le sommaire sert de plan et le corps n'est repéré que par ses marqueurs de numéro. |
 | `recoller.py` | Recolle les intitulés de section coupés sur deux lignes. |
-| `regles901.py` | Découpe l'annexe 1 de l'II 901 en ses 178 règles codées (`ORG-SSI`, `PDT-CONFIG`…). |
-| `mapping.json` | Rattachement des 254 points de contrôle aux sections officielles. C'est le seul fichier à compléter à la main quand on ajoute un point de contrôle. |
+| `regles901.py` | Découpe l'annexe 1 de l'II 901 en ses 182 règles codées (`ORG-SSI`, `PDT-CONFIG`…), en réparant les artefacts d'océrisation, chacun documenté dans le script. |
+| `extraire_anssi_igi1300.py` | Lit le listing officiel des exigences SSI publié par l'ANSSI (classeur `.xlsx`) et en tire les 204 exigences avec leurs identifiants d'origine. |
+| `mapping.json` | Rattachement des points de contrôle **rédigés** (IM 900 et domaines de l'IGI 1300 hors listing ANSSI) aux sections officielles. Les exigences officielles portent leur propre référence et n'y figurent pas. |
 | `construire_donnees.py` | Assemble les corpus et le catalogue en JSON compact pour l'injection dans la page. |
 | `assembler.py` | Concatène styles, balisage, blocs de données et modules de code en un fichier unique. |
 

@@ -21,8 +21,14 @@ def petites_capitales(t):
     t = re.sub(r"([A-ZÀ-ÝŒ]) '", r"\1'", t)
     return re.sub(r'\s{2,}', ' ', t).strip()
 
+# Puces rendues en Wingdings par le PDF, qui arrivent dans la zone à usage privé
+# d'Unicode et s'afficheraient comme des carrés vides.
+PUCES = {"\uf0a7": "-", "\uf0a8": "-", "\uf0b7": "-", "\uf0be": "-", "\uf0fc": "-"}
+
 def nettoyer_page(page, entetes):
     """Retire en-têtes, pied de page et bloc de notes ; renvoie (corps, notes)."""
+    for caractere, remplacement in PUCES.items():
+        page = page.replace(caractere, remplacement)
     lignes = page.split("\n")
     lignes = [l for l in lignes if not any(h in l for h in entetes) and not re.search(r"\.{4,}", l)]
     while lignes and not lignes[-1].strip():

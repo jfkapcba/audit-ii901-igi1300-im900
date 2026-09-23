@@ -9,12 +9,13 @@ CHROME=/chemin/vers/chrome ./executer.sh
 interface, **avec la résolution DNS coupée** (`--host-resolver-rules="MAP * ~NOTFOUND"`). Le
 fichier livré n'est jamais modifié.
 
-Les 76 assertions couvrent :
+Les 87 assertions couvrent :
 
 * **Corpus officiel** — les trois textes sont chargés, leurs sections repères sont présentes et
   non vides.
-* **Rattachement** — chacun des 254 points de contrôle vise des sections qui existent réellement
-  et contiennent du texte.
+* **Provenance** — chaque exigence porte soit son énoncé officiel, soit une section de texte non
+  vide ; les identifiants officiels (`HOMOL_01`, `ORG-RSSI`, `EXP-IMP-2`…) sont effectivement
+  repris ; toute exigence rédigée pour ce projet est signalée comme telle.
 * **Marquage** — couleur d'encre mesurée sur le style calculé, position, taille comparée au texte
   courant, graisse, capitales, présence ou absence du bandeau bas selon le niveau, cartouche
   Spécial France en bleu à droite du timbre principal.

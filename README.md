@@ -23,7 +23,7 @@ choix. Conçu pour être utilisé en salle, sur un poste isolé.
 | `audit-ssi.html` | **L'outil.** Fichier unique et autonome, 1,5 Mo, assemblé à partir des sources ci-dessous. |
 | `source/` | Les morceaux de la page : feuille de styles, balisage, et six modules de code commentés. |
 | `outils/` | Chaîne de fabrication : extraction du texte des PDF officiels, découpage en sections, rattachement des points de contrôle, assemblage. |
-| `tests/` | Suite de 76 assertions exécutée dans un navigateur réel, réseau coupé. |
+| `tests/` | Suite de 87 assertions exécutée dans un navigateur réel, réseau coupé. |
 | `NOTICE.md` | Origine et statut des textes officiels reproduits. |
 
 ### Reconstruire et vérifier
@@ -31,47 +31,68 @@ choix. Conçu pour être utilisé en salle, sur un poste isolé.
 ```bash
 # déposer ii901.pdf, igi1300.pdf et im900.pdf dans outils/refs/ (liens dans NOTICE.md)
 ./outils/pipeline.sh     # PDF -> audit-ssi.html, à l'octet près
-./tests/executer.sh      # 76 assertions, résolution DNS coupée
+./tests/executer.sh      # 87 assertions, résolution DNS coupée
 ```
 
 ---
 
+## D'où viennent les exigences
+
+**401 des 537 exigences sont reprises telles quelles d'une source officielle, avec leur
+identifiant d'origine.** Les 136 restantes sont des points de contrôle rédigés pour ce projet,
+signalés comme tels dans l'outil par la mention *reformulation*.
+
+| Référentiel | Exigences | Origine |
+|---|---|---|
+| **II 901** | 197, toutes officielles | 15 articles de l'instruction (art. 5 à 19) et les **182 règles codées de l'annexe 1** (`ORG-RSSI`, `EXP-COR-SEC`, `PDT-VEROUIL-FIXE`…) |
+| **IGI 1300** | 268, dont **204 officielles** | Le [listing des exigences SSI publié par l'ANSSI](https://cyber.gouv.fr/documents/3/ANSSI-NP-IGI1300-listing_des_exigences-v0.4.xlsx) (v0.4), avec ses identifiants (`HOMOL_01`, `MARQ_04`, `ACC_12`…). 64 points de contrôle rédigés couvrent les domaines que ce listing laisse de côté. |
+| **IM 900** | 72, rédigées | Points de contrôle rédigés pour ce projet, rattachés aux sections de l'instruction. |
+
+### Le listing ANSSI ne couvre que le volet SSI de l'IGI 1300
+
+Il porte sur le § 1.4.2.4, l'ensemble du § 6, quelques points du § 7 et l'annexe 30. L'habilitation
+des personnels, la sécurité des lieux, les contrats et la gestion des supports papier n'y figurent
+pas. Ces domaines restent couverts par des points de contrôle rédigés, regroupés sous des intitulés
+suffixés « — hors listing ANSSI ».
+
 ## Textes officiels intégrés
 
 Le texte des trois instructions est **inclus dans le fichier**, découpé par article ou par section.
-Chaque point de contrôle affiche les sections dont il découle, dans leur rédaction officielle ;
+Chaque exigence affiche son énoncé officiel puis la section de l'instruction dont elle découle ;
 l'onglet *Textes* permet de parcourir et de rechercher les trois documents en intégralité.
 
 | Référentiel | Version intégrée | Sections | Volume | Provenance |
 |---|---|---|---|---|
-| **II 901** | Instruction interministérielle n° 901/SGDSN/ANSSI du 28 janvier 2015 | 201 | 79 ko | Document **numérisé** (seule forme publiée) |
+| **II 901** | Instruction interministérielle n° 901/SGDSN/ANSSI du 28 janvier 2015 | 205 | 78 ko | Document **numérisé** (seule forme publiée) |
 | **IGI 1300** | Instruction générale interministérielle n° 1300/SGDSN/PSE/PSD, arrêté du 9 août 2021 | 253 | 343 ko | PDF natif |
 | **IM 900** | Instruction ministérielle n° 900/ARM/CAB du 27 août 2025, JORF du 1er octobre 2025 | 121 | 773 ko | PDF natif (Journal officiel) |
 
 Sources : [II 901 sur Légifrance](https://www.legifrance.gouv.fr/circulaire/id/39217) ·
 [IGI 1300](https://www.defense.gouv.fr/sites/default/files/ministere-armees/Instruction%20g%C3%A9n%C3%A9rale%20interminist%C3%A9rielle_1300_9_aout_2021.pdf) ·
-[IM 900](https://armement.defense.gouv.fr/sites/default/files/2025-10/IM%20900%20du%2027%20ao%C3%BBt%202025.pdf)
+[IM 900](https://armement.defense.gouv.fr/sites/default/files/2025-10/IM%20900%20du%2027%20ao%C3%BBt%202025.pdf) ·
+[listing ANSSI IGI 1300](https://cyber.gouv.fr/documents/3/ANSSI-NP-IGI1300-listing_des_exigences-v0.4.xlsx)
 
 **IM 900 est bien l'instruction *ministérielle* n° 900** du ministère des Armées, relative à la
 protection de l'information et des données — et non l'instruction interministérielle 900. La
 version du 27 août 2025 abroge celle du 15 mars 2021 et est en vigueur depuis le 1er novembre 2025.
 
-L'annexe 1 de l'II 901 a été découpée en ses **178 règles codées** (`ORG-RSSI`, `EXP-COR-SEC`,
-`PDT-CHIFF-SENS`…), qui sont les exigences réellement auditables de ce référentiel.
-
 ### Ce qui reste en attente
 
-Deux réserves, signalées dans l'outil à l'endroit exact où elles s'appliquent :
+Trois réserves, signalées dans l'outil à l'endroit exact où elles s'appliquent :
 
 * **Annexes de l'IGI 1300** — publiées séparément et non reprises ici, notamment l'annexe 1
   (mesures applicables à la mention Diffusion Restreinte) et l'annexe 37 (modèles de timbres).
-  Un encart le rappelle sur chaque exigence rattachée à l'IGI 1300.
+  Les 35 exigences ANSSI tirées de l'annexe 30 portent donc leur énoncé sans section de contexte.
 * **II 901** — le seul exemplaire publié est un document numérisé ; le texte intégré est une
-  transcription automatique, corrigée des confusions de caractères les plus fréquentes. Les codes
-  de règles et les valeurs chiffrées sont à vérifier sur l'original avant citation. L'outil affiche
-  cet avertissement sur chaque exigence II 901.
+  transcription automatique. Les corrections de caractères appliquées aux codes de règles sont
+  documentées une par une dans `outils/regles901.py`. Recoupés avec une transcription
+  indépendante, 179 des 182 codes concordent ; les trois écarts sont expliqués dans ce script.
+  L'outil affiche l'avertissement de provenance sur chaque exigence II 901.
+* **IM 900** — aucune source d'exigences officielle n'existe pour ce texte : les 72 points de
+  contrôle sont rédigés.
 
-Aucun texte n'est inventé ni reformulé : ce qui n'est pas publié est signalé comme manquant.
+Aucun texte n'est inventé ni reformulé : ce qui n'est pas publié est signalé comme manquant, et ce
+qui est rédigé est signalé comme rédigé.
 
 ## Marquage — conformité vérifiée
 
@@ -123,8 +144,8 @@ Le fichier est découpé en quatre parties annoncées par un commentaire d'en-t�
 
 * **Initialisation** : client, périmètre, référence, auditeurs, référentiels combinables, niveaux
   traités, marquage du rapport et mentions d'identification.
-* **Audit** : 254 points de contrôle répartis en 41 domaines, chacun accompagné de son texte
-  officiel, d'un énoncé de contrôle et d'une liste d'éléments de preuve. Statut conforme /
+* **Audit** : 537 exigences réparties en 47 domaines, dont 401 issues directement des sources
+  officielles. Statut conforme /
   partiellement conforme / non conforme / non applicable, constat, commentaire, recommandation,
   criticité, responsable, échéance, références des preuves.
 * **Textes** : consultation et recherche plein texte dans les trois instructions.
@@ -164,9 +185,9 @@ reformulation de travail ; en cas de divergence, le texte officiel affiché à c
 
 ## Vérifications effectuées
 
-76 assertions automatisées exécutées dans un navigateur réel (Chromium sans interface, **réseau
-coupé**) : intégrité des trois corpus, rattachement des 254 points de contrôle à des sections
-réellement présentes et non vides, conformité du marquage aux quatre niveaux (couleur mesurée sur
+87 assertions automatisées exécutées dans un navigateur réel (Chromium sans interface, **réseau
+coupé**) : intégrité des trois corpus, reprise effective des identifiants officiels, présence d'un
+énoncé ou d'une section de texte pour chaque exigence, conformité du marquage aux quatre niveaux (couleur mesurée sur
 le style calculé, position, taille, présence ou absence du bandeau bas, mention Spécial France),
 parcours complet de création d'audit, saisie, raccourcis, filtres, recherche portant sur le texte
 officiel, écran des textes, synthèse, exports CSV / JSON / rapport, cycle export → import,
