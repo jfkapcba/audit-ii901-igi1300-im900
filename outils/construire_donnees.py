@@ -14,6 +14,9 @@ def lire(fichier):
     return json.load(open(chemin, encoding="utf-8"))
 
 def cle_num(k):
+    """Ordre de lecture : sections décimales d'abord, puis annexes numérotées."""
+    if k.startswith("A") and k[1:].isdigit():
+        return [999, int(k[1:])]
     return [int(x) if x.isdigit() else 0 for x in k.split(".")]
 
 # ----------------------------------------------------------------- II 901
@@ -53,8 +56,10 @@ def corpus_igi1300():
     sections = {}
     for k in ordre:
         v = s[k]
-        titre = v["titre"] if v["niveau"] > 2 else v["titre"]
-        sections[k] = {"t": "%s %s" % (k, titre), "x": v.get("texte", "")}
+        # Les annexes portent déjà leur numéro dans l'intitulé (« Annexe 37 — … ») ;
+        # seules les sections décimales sont préfixées de leur numéro.
+        prefixe = "" if k.startswith("A") and k[1:].isdigit() else k + " "
+        sections[k] = {"t": prefixe + v["titre"], "x": v.get("texte", "")}
     return {
         "id": "IGI1300", "code": "IGI 1300",
         "titre": "Protection du secret de la défense nationale",
