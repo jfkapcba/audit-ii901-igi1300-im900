@@ -8,6 +8,10 @@ texte officiel des trois instructions intégré.
 audit-ssi.html   →  ouvrir par double-clic. C'est tout.
 ```
 
+**Essayer en ligne :** <https://jfkapcba.github.io/audit-ii901-igi1300-im900/> — pratique pour
+découvrir l'outil, mais pour un audit réel téléchargez le fichier et ouvrez-le localement : la
+version en ligne enregistre la progression dans le stockage du domaine `github.io`.
+
 Pas de serveur, pas d'installation, pas de réseau : l'outil s'ouvre depuis un disque local ou une
 clé amovible et conserve la progression de l'audit dans le navigateur ou dans un fichier de votre
 choix. Conçu pour être utilisé en salle, sur un poste isolé.

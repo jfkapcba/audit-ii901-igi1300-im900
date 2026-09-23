@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Audit SSI — II 901 / IGI 1300 / IM 900</title>
+<meta name="description" content="Outil d'audit de conformité aux référentiels français II 901, IGI 1300 et IM 900. Fichier HTML unique, hors ligne, textes officiels intégrés.">
+<style>
+  :root{
+    --fond:#fff; --fond-2:#f6f6f6; --texte:#161616; --texte-2:#3a3a3a; --texte-3:#5f5f5f;
+    --bordure:#d8d8d8; --bleu:#000091; --bleu-pale:#e3e3fd; --bleu-survol:#f5f5fe;
+    --encre-rouge:#c9191e; --orange:#b34000; --orange-pale:#fff4e6;
+    --police:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+    --fond:#1b1b1b; --fond-2:#242424; --texte:#f2f2f2; --texte-2:#d4d4d4; --texte-3:#a5a5a5;
+    --bordure:#3d3d3d; --bleu:#8585f6; --bleu-pale:#21213f; --bleu-survol:#1b1b33;
+    --encre-rouge:#ff5b5b; --orange:#ffb766; --orange-pale:#33220f;
+  }}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--police);line-height:1.6;color:var(--texte);background:var(--fond);
+       font-size:16px;-webkit-text-size-adjust:100%}
+  .page{max-width:760px;margin:0 auto;padding:48px 20px 72px}
+  h1{font-size:1.9rem;line-height:1.2;margin:0 0 6px}
+  h2{font-size:1.15rem;margin:36px 0 10px}
+  p{margin:0 0 14px}
+  .chapeau{font-size:1.05rem;color:var(--texte-2);margin-bottom:28px}
+  .marque{display:inline-flex;align-items:center;gap:9px;color:var(--bleu);font-weight:700;
+          margin-bottom:22px;font-size:.95rem;letter-spacing:.02em}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 8px}
+  .btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--bleu);background:var(--bleu);
+       color:#fff;padding:11px 20px;border-radius:4px;text-decoration:none;font-weight:600;font-size:.95rem}
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .btn{color:#1b1b1b}}
+  .btn.secondaire{background:transparent;color:var(--bleu)}
+  .btn:hover{filter:brightness(1.12)}
+  .btn.secondaire:hover{background:var(--bleu-survol);filter:none}
+  .encart{border-left:4px solid var(--orange);background:var(--orange-pale);padding:14px 16px;
+          border-radius:0 4px 4px 0;margin:24px 0;font-size:.94rem}
+  .encart b{color:var(--orange)}
+  .encart p:last-child{margin-bottom:0}
+  table{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0 4px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--bordure);vertical-align:top}
+  th{font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texte-3);font-weight:700}
+  .enveloppe{overflow-x:auto}
+  ul{padding-left:22px;margin:0 0 14px} li{margin:5px 0}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;
+       background:var(--fond-2);padding:1px 5px;border-radius:3px}
+  a{color:var(--bleu)}
+  .timbre{color:var(--encre-rouge);font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+          font-size:.8rem}
+  footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--bordure);
+         font-size:.87rem;color:var(--texte-3)}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="marque">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="1.8" aria-hidden="true">
+      <path d="M12 2.5 4 6v6c0 4.6 3.2 8.4 8 9.5 4.8-1.1 8-4.9 8-9.5V6z"/><path d="m9 12 2 2 4-4"/>
+    </svg>
+    <span>Audit SSI</span>
+  </div>
+
+  <h1>Audit de conformité II&nbsp;901 / IGI&nbsp;1300 / IM&nbsp;900</h1>
+  <p class="chapeau">Un seul fichier HTML, entièrement hors ligne, avec le texte officiel
+  des trois instructions intégré et consultable.</p>
+
+  <div class="actions">
+    <a class="btn" href="audit-ssi.html">Ouvrir l'outil</a>
+    <a class="btn secondaire" href="https://github.com/jfkapcba/audit-ii901-igi1300-im900/raw/main/audit-ssi.html"
+       download="audit-ssi.html">Télécharger le fichier (1,5&nbsp;Mo)</a>
+    <a class="btn secondaire" href="https://github.com/jfkapcba/audit-ii901-igi1300-im900">Code source</a>
+  </div>
+
+  <div class="encart">
+    <p><b>Pour un audit réel, téléchargez le fichier et ouvrez-le localement.</b></p>
+    <p>L'outil n'émet aucune requête réseau, où qu'il soit ouvert&nbsp;: vos saisies ne quittent
+    jamais votre navigateur. Mais la version consultée ici est servie depuis Internet et enregistre
+    la progression dans le stockage du domaine <code>jfkapcba.github.io</code>, partagé avec les
+    autres pages de ce domaine. Le fichier téléchargé, lui, s'ouvre depuis votre disque ou une clé
+    amovible, sur un poste isolé si nécessaire, et c'est l'usage pour lequel il est conçu.</p>
+  </div>
+
+  <h2>Ce que fait l'outil</h2>
+  <ul>
+    <li><b>254 points de contrôle</b> répartis en 41 domaines, combinables entre référentiels,
+      filtrés selon les niveaux de protection traités par le système audité.</li>
+    <li><b>Textes officiels intégrés</b>&nbsp;: chaque point de contrôle affiche les sections dont
+      il découle, et un écran dédié permet de parcourir et d'interroger les trois instructions
+      en intégralité.</li>
+    <li><b>Évaluation</b>&nbsp;: conforme, partiellement conforme, non conforme ou non applicable,
+      avec constat, analyse, recommandation, criticité, responsable et échéance.</li>
+    <li><b>Synthèse</b>&nbsp;: taux de conformité, conformité par référentiel et par domaine,
+      écarts triés par criticité, plan d'action.</li>
+    <li><b>Éditions</b>&nbsp;: rapport HTML autonome, matrice et plan d'action en CSV, impression.</li>
+    <li><b>Marquage</b> conforme aux textes, reporté sur chaque écran et chaque édition&nbsp;:
+      <span class="timbre">Diffusion Restreinte</span>, <span class="timbre">Secret</span>,
+      <span class="timbre">Très Secret</span>.</li>
+  </ul>
+
+  <h2>Textes intégrés</h2>
+  <div class="enveloppe">
+  <table>
+    <tr><th>Référentiel</th><th>Version</th><th>Sections</th></tr>
+    <tr><td><b>II 901</b></td>
+        <td>Instruction interministérielle n° 901/SGDSN/ANSSI du 28 janvier 2015</td><td>201</td></tr>
+    <tr><td><b>IGI 1300</b></td>
+        <td>Instruction générale interministérielle n° 1300, arrêté du 9 août 2021</td><td>253</td></tr>
+    <tr><td><b>IM 900</b></td>
+        <td>Instruction ministérielle n° 900/ARM/CAB du 27 août 2025</td><td>121</td></tr>
+  </table>
+  </div>
+  <p style="font-size:.9rem;color:var(--texte-3)">Les parties non publiées — annexes de l'IGI 1300
+  notamment — sont signalées comme manquantes plutôt que reconstituées. Le seul exemplaire publié
+  de l'II 901 étant un document numérisé, sa provenance est indiquée sur chaque exigence concernée.
+  Voir <a href="https://github.com/jfkapcba/audit-ii901-igi1300-im900/blob/main/NOTICE.md">NOTICE.md</a>.</p>
+
+  <h2>Conserver la progression</h2>
+  <ul>
+    <li><b>Stockage du navigateur</b> — automatique, à chaque frappe.</li>
+    <li><b>Fichier lié</b> — sur Chrome, Edge et dérivés, chaque modification est écrite dans un
+      fichier <code>.json</code> de votre choix, y compris sur clé amovible.</li>
+    <li><b>Export <code>.json</code></b> — sauvegarde complète et transférable.</li>
+  </ul>
+
+  <h2>Protection des données produites</h2>
+  <p>Les fichiers produits contiennent le nom du client et le détail des non-conformités d'un
+  système pouvant traiter des informations classifiées. Protégez-les, transportez-les et
+  détruisez-les conformément au marquage retenu, qui est reporté sur chacun d'eux.</p>
+
+  <h2>Limites</h2>
+  <p>Aide à la conduite d'audit. Ne se substitue ni aux textes officiels, ni à l'appréciation de
+  l'auditeur, ni à la décision de l'autorité d'homologation. Les énoncés de contrôle sont une
+  reformulation de travail&nbsp;; en cas de divergence, le texte officiel affiché à côté prévaut.</p>
+
+  <footer>
+    Code et énoncés de contrôle sous
+    <a href="https://github.com/jfkapcba/audit-ii901-igi1300-im900/blob/main/LICENCE">Licence Ouverte 2.0</a>.
+    Le texte des instructions relève des actes officiels de l'État.
+    Cette page n'a aucun caractère officiel et n'engage aucune administration.
+  </footer>
+
+</div>
+</body>
+</html>
