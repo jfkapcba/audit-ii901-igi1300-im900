@@ -236,7 +236,7 @@ const EcranAccueil = {
     $("#encart-textes-detail").innerHTML =
       stats.map(s => `<b>${ech(s.code)}</b> : ${s.sections} sections, ${Math.round(s.caracteres / 1000)} 000 caractères`)
            .join(" · ") +
-      ". Les annexes non publiées et les documents protégés sont signalés comme tels à l'endroit où ils manquent.";
+      ". Corps des instructions et annexes, consultables depuis l'onglet Textes.";
 
     const diag = $("#diag-stockage");
     if(Stockage.disponible){

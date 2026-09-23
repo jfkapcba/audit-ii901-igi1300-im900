@@ -44,12 +44,25 @@ const NIVEAUX = {
  *                Oui pour les informations classifiées (IGI 1300 § 7.1.2.3 a),
  *                non pour la mention Diffusion Restreinte (IM 900 § 7.2.3 :
  *                « au milieu du haut de la page »). */
+/** `avertissementPenal` : l'annexe 37 ne prévoit le rappel du code pénal que
+ *  dans les modèles Secret et Très Secret, sur la couverture des documents
+ *  reliés. La mention Diffusion Restreinte n'en comporte pas. */
 const MARQUAGES = {
-  NP: {id:"NP", libelle:"Non protégé",           timbre:false, timbreBas:false, source:""},
-  DR: {id:"DR", libelle:"Diffusion Restreinte",  timbre:true,  timbreBas:false, source:"IM 900 § 7.2.3"},
-  S:  {id:"S",  libelle:"Secret",                timbre:true,  timbreBas:true,  source:"IGI 1300 § 7.1.2.3 a)"},
-  TS: {id:"TS", libelle:"Très Secret",           timbre:true,  timbreBas:true,  source:"IGI 1300 § 7.1.2.3 a)"},
+  NP: {id:"NP", libelle:"Non protégé",          timbre:false, timbreBas:false,
+       avertissementPenal:false, source:""},
+  DR: {id:"DR", libelle:"Diffusion Restreinte", timbre:true,  timbreBas:false,
+       avertissementPenal:false, source:"IGI 1300 annexe 1 ; IM 900 § 7.2.3"},
+  S:  {id:"S",  libelle:"Secret",               timbre:true,  timbreBas:true,
+       avertissementPenal:true,  source:"IGI 1300 § 7.1.2.3 a) et annexe 37"},
+  TS: {id:"TS", libelle:"Très Secret",          timbre:true,  timbreBas:true,
+       avertissementPenal:true,  source:"IGI 1300 § 7.1.2.3 a) et annexe 37"},
 };
+
+/** Avertissement porté sous le niveau sur la couverture des documents reliés,
+ *  reproduit à l'identique de l'annexe 37 de l'IGI 1300. */
+const AVERTISSEMENT_PENAL =
+  "Toute personne qui détient ce document sans avoir qualité pour le connaître tombe sous le " +
+  "coup des dispositions du code pénal réprimant les atteintes au secret de la défense nationale";
 
 /** Encres prescrites par les textes, reprises à l'identique dans les éditions. */
 const ENCRE_ROUGE = "#c9191e";   /* timbre de classification et mention DR */

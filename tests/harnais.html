@@ -16,6 +16,14 @@
     ok("II 901 : articles présents", !!Corpus.section("II901","art9"), Corpus.section("II901","art9").t);
     ok("II 901 : règles codées présentes", !!Corpus.section("II901","R:ORG-RSSI"));
     ok("IGI 1300 : section marquage présente", !!Corpus.section("IGI1300","7.1.2.3"));
+    ok("IGI 1300 : les 46 annexes sont intégrées",
+       Array.from({length:46}, (_, i) => "A" + (i + 1)).every(k => !!Corpus.section("IGI1300", k)));
+    ok("IGI 1300 : annexe 37 (modèles de timbres) présente et exploitable",
+       (Corpus.section("IGI1300","A37") || {}).x.includes("Epaisseur du cadre"));
+    ok("IGI 1300 : annexe 1 (règles Diffusion Restreinte) présente",
+       (Corpus.section("IGI1300","A1") || {}).x.includes("Diffusion Restreinte"));
+    ok("IGI 1300 : plus aucun avertissement d'annexe manquante",
+       !(Corpus.de("IGI1300").avertissement || "").length);
     ok("IM 900 : section ACSSI présente", !!Corpus.section("IM900","6.9"));
     ok("texte officiel non vide sur un échantillon",
        Corpus.section("IGI1300","7.1.2.3").x.includes("encre de couleur rouge"));
@@ -78,11 +86,20 @@
        getComputedStyle(timbreHaut).textTransform === "uppercase");
     ok("DR : pas de timbre au bas de page (IM 900 § 7.2.3)", bandeauBas.hidden);
     ok("DR : timbre centré", getComputedStyle(timbreHaut.parentNode).justifyContent === "center");
-    ok("DR : taille du timbre supérieure au texte courant",
-       parseFloat(getComputedStyle(timbreHaut).fontSize) > parseFloat(getComputedStyle(document.body).fontSize),
-       getComputedStyle(timbreHaut).fontSize + " vs " + getComputedStyle(document.body).fontSize);
-    ok("DR : graisse appuyée", parseInt(getComputedStyle(timbreHaut).fontWeight) >= 700,
-       getComputedStyle(timbreHaut).fontWeight);
+    // Annexe 37 de l'IGI 1300 : Arial, gras, taille 18, cadre de 2,5 points.
+    const st = getComputedStyle(timbreHaut);
+    ok("timbre : police Arial (annexe 37)", /^Arial/.test(st.fontFamily), st.fontFamily);
+    ok("timbre : gras", parseInt(st.fontWeight) >= 700, st.fontWeight);
+    ok("timbre : taille 18 points, soit 24 px", st.fontSize === "24px", st.fontSize);
+    // Le navigateur arrondit l'épaisseur au pixel entier : on vérifie la valeur
+    // déclarée dans la feuille de styles, et que le rendu en reste proche.
+    const feuille = document.querySelector("style").textContent;
+    ok("timbre : cadre déclaré à 2,5 points (annexe 37)",
+       /\.timbre\s*\{[^}]*border:\s*2\.5pt\s+solid/.test(feuille),
+       st.borderTopWidth + " au rendu");
+    ok("timbre : cadre de la couleur de l'encre",
+       st.borderTopColor === "rgb(201, 25, 30)", st.borderTopColor);
+    ok("timbre : texte centré dans le cadre", st.textAlign === "center");
 
     Audit.etat.meta.marquage = "S"; appliquerMarquage();
     ok("Secret : timbre en toutes lettres", timbreHaut.textContent === "Secret");
@@ -99,6 +116,12 @@
     Audit.etat.meta.specialFrance = true; appliquerMarquage();
     ok("Spécial France : visible quand activée", !special.hidden);
     ok("Spécial France : encre bleue (IM 900 § 7.3.2)", rgb(special) === "rgb(0, 80, 200)", rgb(special));
+    const ss = getComputedStyle(special);
+    ok("Spécial France : mêmes règles de marquage que le timbre (annexe 37)",
+       ss.fontSize === "24px" && /^Arial/.test(ss.fontFamily)
+       && /\.timbre-special\s*\{[^}]*border:\s*2\.5pt\s+solid/
+            .test(document.querySelector("style").textContent),
+       ss.fontSize + " / cadre rendu " + ss.borderTopWidth);
     ok("Spécial France : placée à droite du timbre principal",
        special.compareDocumentPosition(timbreHaut) & Node.DOCUMENT_POSITION_PRECEDING);
 
@@ -220,7 +243,14 @@
     ok("rapport : Spécial France en bleu", rap.includes("#0050c8") && rap.includes("SPÉCIAL FRANCE"));
     ok("rapport : timbre haut et bas pour Secret",
        (rap.match(/class="timbre haut"/g)||[]).length === 1 && (rap.match(/class="timbre bas"/g)||[]).length === 1);
-    ok("rapport : timbre de dimension supérieure en couverture", rap.includes("timbre-couverture"));
+    ok("rapport : timbre de couverture encadré de 3 points (annexe 37)",
+       rap.includes("timbre-couverture") && rap.includes("3pt solid"));
+    ok("rapport : cadre des timbres de page de 2,5 points", rap.includes("2.5pt solid"));
+    ok("rapport : avertissement pénal sous le niveau en couverture",
+       rap.includes("tombe sous le coup des dispositions du code pénal"));
+    ok("rapport : Spécial France uniquement en haut de page (annexe 37)",
+       (rap.match(/class="sf"/g) || []).length === 2,
+       (rap.match(/class="sf"/g) || []).length + " occurrence(s) : bandeau haut + couverture");
     ok("rapport : mentions d'identification (IGI 1300 § 7.1.2.3 b)",
        ["Autorité émettrice","Date d&#39;émission","Numéro d&#39;enregistrement",
         "Échéance de la classification","Exemplaire"].every(m => rap.includes(m)),

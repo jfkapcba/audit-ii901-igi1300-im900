@@ -69,13 +69,18 @@ const Exports = {
     const ecarts = EcranSynthese.ecarts(plan);
     const timbre = regle.libelle.toUpperCase();
 
+    /* Timbres conformes à l'annexe 37 de l'IGI 1300 : Arial gras 18, cadre de
+       2,5 points sur les pages et de 3 points sur la couverture, encre rouge
+       sauf Spécial France en bleu. */
     const styles = `
       body{font:12pt/1.55 Georgia,"Times New Roman",serif;margin:0;color:#111;background:#fff}
-      .timbre{position:fixed;left:0;right:0;text-align:center;font:800 11pt/1.3 Arial,Helvetica,sans-serif;
-        letter-spacing:.18em;color:${ENCRE_ROUGE};background:#fff;padding:5px 0}
+      .timbre{position:fixed;left:0;right:0;display:flex;justify-content:center;align-items:flex-start;
+        gap:10px;background:#fff;padding:4px 0}
       .timbre.haut{top:0} .timbre.bas{bottom:0}
-      .sf{color:${ENCRE_BLEUE};border:2px solid ${ENCRE_BLEUE};padding:0 6px;margin-left:10px;
-        font-size:9pt;letter-spacing:.12em;white-space:nowrap}
+      .timbre b{font:700 18pt/1.1 Arial,Helvetica,sans-serif;color:${ENCRE_ROUGE};
+        border:2.5pt solid ${ENCRE_ROUGE};padding:1px 12px;text-transform:uppercase}
+      .sf{font:700 18pt/1.1 Arial,Helvetica,sans-serif;color:${ENCRE_BLEUE};
+        border:2.5pt solid ${ENCRE_BLEUE};padding:1px 12px;text-transform:uppercase;white-space:nowrap}
       .page{max-width:19cm;margin:0 auto;padding:44px 26px}
       h1{font-size:20pt;margin:0 0 6px} h2{font-size:14pt;margin:26px 0 8px;
         border-bottom:1px solid #bbb;padding-bottom:4px} h3{font-size:11pt;margin:16px 0 4px}
@@ -93,8 +98,13 @@ const Exports = {
         display:flex;flex-direction:column}
       .couverture dl{margin-top:26px}
       .couverture dt{font:700 10pt Arial,sans-serif;color:#555;margin-top:10px}
-      .timbre-couverture{margin-top:auto;padding-top:24px;text-align:center;
-        font:800 22pt/1.2 Arial,Helvetica,sans-serif;letter-spacing:.22em;color:${ENCRE_ROUGE}}
+      .timbre-couverture{margin-top:auto;padding-top:24px;display:flex;flex-direction:column;
+        align-items:center;gap:6px}
+      .timbre-couverture .cadre{border:3pt solid ${ENCRE_ROUGE};color:${ENCRE_ROUGE};
+        padding:4px 16px;max-width:12cm;text-align:center}
+      .timbre-couverture .niveau{font:700 18pt/1.15 Arial,Helvetica,sans-serif;text-transform:uppercase}
+      .timbre-couverture .avertissement{font:6pt/1.25 Arial,Helvetica,sans-serif;margin-top:3px}
+      .timbre-couverture .sf{font-size:18pt}
       @page{margin:20mm 14mm}`;
 
     const identification = [
@@ -126,7 +136,11 @@ const Exports = {
       <p class="gris" style="margin-top:26px">Rapport établi à partir d'un plan de contrôle de ${st.total}
       exigences. Il est protégé, transporté et détruit conformément au marquage porté ci-dessus.
       La numérotation des pages est produite par la fonction d'impression du navigateur.</p>
-      ${regle.timbre ? `<div class="timbre-couverture">${ech(timbre)}</div>` : ""}</div>`;
+      ${regle.timbre ? `<div class="timbre-couverture">
+        <div class="cadre"><div class="niveau">${ech(regle.libelle)}</div>${
+          regle.avertissementPenal
+            ? `<div class="avertissement">${ech(AVERTISSEMENT_PENAL)}</div>` : ""}</div>
+        ${meta.specialFrance ? '<span class="sf">SPÉCIAL FRANCE</span>' : ""}</div>` : ""}</div>`;
 
     corps += `<h2>1. Synthèse</h2>
       <table><tr><th>Exigences au plan de contrôle</th><td>${st.total}</td>
@@ -200,9 +214,11 @@ const Exports = {
     corps += `</table><p class="gris" style="margin-top:20px">Rapport généré le
       ${ech(horodatageFr(new Date().toISOString()))} par l'outil d'audit SSI hors ligne.</p>`;
 
+    // La mention Spécial France n'est apposée qu'en haut de page (annexe 37).
     const bandeau = (position) => regle.timbre
-      ? `<div class="timbre ${position}">${ech(timbre)}${meta.specialFrance
-          ? '<span class="sf">SPÉCIAL FRANCE</span>' : ""}</div>` : "";
+      ? `<div class="timbre ${position}"><b>${ech(regle.libelle)}</b>${
+          meta.specialFrance && position === "haut" ? '<span class="sf">SPÉCIAL FRANCE</span>' : ""}</div>`
+      : "";
 
     const document_ = `<!doctype html><html lang="fr"><head><meta charset="utf-8">
       <title>${ech(timbre)} — Rapport d'audit — ${ech(meta.client)}</title>

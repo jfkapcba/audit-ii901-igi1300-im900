@@ -89,46 +89,49 @@ kbd{background:var(--fond-3);border:1px solid var(--bordure);border-bottom-width
 /* =========================================================================
    3. TIMBRES DE PROTECTION
    -------------------------------------------------------------------------
-   Règles appliquées :
-     IGI 1300 § 7.1.2.1 — niveau inscrit EN TOUTES LETTRES, toujours visible.
-     IGI 1300 § 7.1.2.3 a) — le timbre « indique le niveau de classification et
-       permet par sa position, sa taille et sa couleur d'attirer immédiatement
-       l'attention » ; il est « apposé, avec une encre de couleur rouge […] au
-       milieu du haut et du bas de chaque page » ; pour les documents reliés,
-       « un timbre d'un modèle de dimension supérieure » figure au milieu de la
-       couverture et de la page de garde.
-     IM 900 § 7.2.3 — la mention Diffusion Restreinte est apposée « avec de
-       l'encre de couleur rouge, au milieu du haut de la page » (haut seul).
-     IM 900 § 7.3.2 — la mention Spécial France est « de couleur bleue »,
-       apposée « en haut de page, immédiatement à droite ou au-dessous du
-       timbre de classification ».
-   Aucune police de caractères n'est prescrite par les textes : on emploie une
-   linéale grasse en capitales, qui satisfait l'exigence de lisibilité.
+   Modèles fixés par l'annexe 37 de l'IGI 1300 :
+     « Les timbres sont apposés avec une encre indélébile de couleur rouge,
+       sauf le timbre Spécial France qui est de couleur bleue. »
+     Pages du document — « Le timbre est apposé au milieu du haut et du bas de
+       la page (à l'exception du marquage Spécial France qui est apposé
+       uniquement en haut de la page) […] Niveau de classification / Spécial
+       France : centré, police Arial, gras, taille 18 ; épaisseur du cadre :
+       2,5 points. »
+     Couverture et page de garde des documents reliés — timbre au milieu du bas
+       de la couverture, niveau en Arial gras 18 suivi de l'avertissement pénal
+       en taille 6, épaisseur du cadre : 3 points.
+   Mention Diffusion Restreinte : annexe 1 de l'IGI 1300 (timbre encadré,
+   « apposé au milieu du haut de la page ») et IM 900 § 7.2.3 (encre rouge).
+   L'annexe 1 ne prescrivant ni police ni épaisseur de cadre, on reprend celles
+   de l'annexe 37.
    ========================================================================= */
 .bandeau-timbre{
-  display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;
-  padding:7px 12px;background:var(--fond);border-bottom:2px solid var(--encre-rouge);
+  display:flex;justify-content:center;align-items:flex-start;gap:12px;flex-wrap:wrap;
+  padding:6px 12px;background:var(--fond);
 }
 .bandeau-timbre.haut{position:sticky;top:0;z-index:60;
-  padding-top:calc(7px + env(safe-area-inset-top,0px))}
+  padding-top:calc(6px + env(safe-area-inset-top,0px))}
 .bandeau-timbre.bas{position:fixed;top:auto;bottom:0;left:0;right:0;z-index:60;
-  border-bottom:0;border-top:2px solid var(--encre-rouge);
-  padding-bottom:calc(7px + env(safe-area-inset-bottom,0px))}
+  padding-bottom:calc(6px + env(safe-area-inset-bottom,0px))}
+
+/* Timbre de classification ou de protection : Arial gras 18, cadre 2,5 pt. */
 .timbre{
-  font-weight:800;font-size:1.05rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--encre-rouge);line-height:1.2;text-align:center;
+  font-family:Arial,Helvetica,"Liberation Sans",sans-serif;
+  font-weight:700;font-size:18pt;line-height:1.1;
+  color:var(--encre-rouge);border:2.5pt solid var(--encre-rouge);
+  padding:1px 12px;text-align:center;text-transform:uppercase;
 }
-.timbre-special{                       /* mention complémentaire Spécial France */
-  font-weight:800;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--encre-bleue);border:2px solid var(--encre-bleue);
-  border-radius:2px;padding:1px 8px;line-height:1.3;
+/* Mention complémentaire Spécial France : mêmes règles, encre bleue. */
+.timbre-special{
+  font-family:Arial,Helvetica,"Liberation Sans",sans-serif;
+  font-weight:700;font-size:18pt;line-height:1.1;
+  color:var(--encre-bleue);border:2.5pt solid var(--encre-bleue);
+  padding:1px 12px;text-align:center;text-transform:uppercase;
 }
 /* Document non protégé : il n'y a pas de timbre, seulement un repère discret. */
-.bandeau-timbre[data-niveau="NP"]{border-color:var(--bordure)}
 .bandeau-timbre[data-niveau="NP"] .timbre{
-  color:var(--texte-3);font-size:.76rem;font-weight:600;letter-spacing:.1em}
-/* Timbre de dimension supérieure, pour la couverture des éditions reliées. */
-.timbre-couverture{font-size:1.9rem;letter-spacing:.22em;margin:0 0 6px}
+  color:var(--texte-3);border:1px solid var(--bordure);
+  font-size:.76rem;font-weight:600;letter-spacing:.08em;padding:2px 10px}
 
 /* =========================================================================
    4. BARRE D'APPLICATION
@@ -383,11 +386,10 @@ html[data-theme="sombre"] .notif{background:#f2f2f2;color:#161616}
   .lecture-sommaire{max-height:32vh;border-right:0;border-bottom:1px solid var(--bordure)}
   .barre-dom{grid-template-columns:minmax(90px,1fr) 1.4fr 56px;gap:8px;font-size:.8rem}
   .kpis{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
-  /* Le timbre doit rester plus visible que le texte courant, y compris
-     sur petit écran (IGI 1300 § 7.1.2.3 a : « attirer immédiatement
-     l'attention » par sa position, sa taille et sa couleur). */
-  .timbre{font-size:1.02rem;letter-spacing:.1em}
-  .timbre-special{font-size:.74rem;letter-spacing:.08em}
+  /* La taille 18 prescrite par l'annexe 37 est conservée : c'est elle qui
+     fait que le timbre « attire immédiatement l'attention ». Seuls les
+     rembourrages sont resserrés pour tenir sur un écran étroit. */
+  .timbre,.timbre-special{padding:1px 8px}
 }
 
 /* =========================================================================

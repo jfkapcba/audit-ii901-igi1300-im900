@@ -204,10 +204,9 @@ function ouvrirAide(){
 
     <h3>Textes officiels</h3>
     <p>Le texte des trois instructions est intégré :</p><ul>${stats}</ul>
-    <p>Chaque point de contrôle affiche les sections dont il découle ; l'onglet <i>Textes</i> permet
-    de parcourir et de rechercher dans l'intégralité des trois documents. Les parties non publiées
-    (annexes diffusées séparément, documents protégés) sont signalées à l'endroit où elles manquent
-    plutôt que reconstituées.</p>
+    <p>Chaque exigence affiche son énoncé officiel puis la section de l'instruction dont elle
+    découle ; l'onglet <i>Textes</i> permet de parcourir et de rechercher dans l'intégralité des
+    trois documents, annexes comprises.</p>
 
     <h3>Conservation de la progression</h3>
     <ul>

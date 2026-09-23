@@ -23,7 +23,7 @@ choix. Conçu pour être utilisé en salle, sur un poste isolé.
 | `audit-ssi.html` | **L'outil.** Fichier unique et autonome, 1,5 Mo, assemblé à partir des sources ci-dessous. |
 | `source/` | Les morceaux de la page : feuille de styles, balisage, et six modules de code commentés. |
 | `outils/` | Chaîne de fabrication : extraction du texte des PDF officiels, découpage en sections, rattachement des points de contrôle, assemblage. |
-| `tests/` | Suite de 87 assertions exécutée dans un navigateur réel, réseau coupé. |
+| `tests/` | Suite de 99 assertions exécutée dans un navigateur réel, réseau coupé. |
 | `NOTICE.md` | Origine et statut des textes officiels reproduits. |
 
 ### Reconstruire et vérifier
@@ -31,7 +31,7 @@ choix. Conçu pour être utilisé en salle, sur un poste isolé.
 ```bash
 # déposer ii901.pdf, igi1300.pdf et im900.pdf dans outils/refs/ (liens dans NOTICE.md)
 ./outils/pipeline.sh     # PDF -> audit-ssi.html, à l'octet près
-./tests/executer.sh      # 87 assertions, résolution DNS coupée
+./tests/executer.sh      # 99 assertions, résolution DNS coupée
 ```
 
 ---
@@ -64,7 +64,7 @@ l'onglet *Textes* permet de parcourir et de rechercher les trois documents en in
 | Référentiel | Version intégrée | Sections | Volume | Provenance |
 |---|---|---|---|---|
 | **II 901** | Instruction interministérielle n° 901/SGDSN/ANSSI du 28 janvier 2015 | 205 | 78 ko | Document **numérisé** (seule forme publiée) |
-| **IGI 1300** | Instruction générale interministérielle n° 1300/SGDSN/PSE/PSD, arrêté du 9 août 2021 | 253 | 343 ko | PDF natif |
+| **IGI 1300** | Instruction générale interministérielle n° 1300/SGDSN/PSE/PSD, arrêté du 9 août 2021 | 299 dont 46 annexes | 478 ko | PDF natif |
 | **IM 900** | Instruction ministérielle n° 900/ARM/CAB du 27 août 2025, JORF du 1er octobre 2025 | 121 | 773 ko | PDF natif (Journal officiel) |
 
 Sources : [II 901 sur Légifrance](https://www.legifrance.gouv.fr/circulaire/id/39217) ·
@@ -78,11 +78,11 @@ version du 27 août 2025 abroge celle du 15 mars 2021 et est en vigueur depuis l
 
 ### Ce qui reste en attente
 
-Trois réserves, signalées dans l'outil à l'endroit exact où elles s'appliquent :
+Deux réserves, signalées dans l'outil à l'endroit exact où elles s'appliquent :
 
-* **Annexes de l'IGI 1300** — publiées séparément et non reprises ici, notamment l'annexe 1
-  (mesures applicables à la mention Diffusion Restreinte) et l'annexe 37 (modèles de timbres).
-  Les 35 exigences ANSSI tirées de l'annexe 30 portent donc leur énoncé sans section de contexte.
+* **Annexes de l'IGI 1300** — les 46 annexes sont intégrées. Celles qui sont des formulaires ou
+  des tableaux (modèles de décision, bordereaux, inventaires) s'extraient moins bien que le texte
+  courant et restent à relire sur l'original avant citation.
 * **II 901** — le seul exemplaire publié est un document numérisé ; le texte intégré est une
   transcription automatique. Les corrections de caractères appliquées aux codes de règles sont
   documentées une par une dans `outils/regles901.py`. Recoupés avec une transcription
@@ -94,24 +94,24 @@ Trois réserves, signalées dans l'outil à l'endroit exact où elles s'applique
 Aucun texte n'est inventé ni reformulé : ce qui n'est pas publié est signalé comme manquant, et ce
 qui est rédigé est signalé comme rédigé.
 
-## Marquage — conformité vérifiée
+## Marquage — conformité à l'annexe 37
 
-Le marquage appliqué à l'écran, dans le rapport HTML, les exports CSV et les impressions suit les
-règles des textes :
+Les modèles de timbres sont fixés par l'**annexe 37 de l'IGI 1300**, qui figure dans le même PDF
+que l'instruction. L'outil les reproduit à l'écran, dans le rapport HTML et à l'impression.
 
 | Règle | Source | Mise en œuvre |
 |---|---|---|
-| Niveau inscrit **en toutes lettres**, toujours visible | IGI 1300 § 7.1.2.1 | « DIFFUSION RESTREINTE », « SECRET », « TRÈS SECRET » en capitales ; les abréviations S / TS ne servent qu'au marquage des paragraphes et ne sont pas employées |
-| **Encre rouge**, au milieu du haut **et du bas** de chaque page | IGI 1300 § 7.1.2.3 a) | Timbre `#c9191e` centré, bandeau haut et bandeau bas pour Secret et Très Secret |
-| Mention **Diffusion Restreinte** à l'encre rouge, **au milieu du haut** de la page | IM 900 § 7.2.3 | Bandeau haut seulement : pas de timbre en pied, conformément au texte |
-| Attirer l'attention par sa **position, sa taille et sa couleur** | IGI 1300 § 7.1.2.3 a) | Timbre plus grand que le texte courant à toutes les largeurs d'écran, graisse 800, interlettrage élargi |
-| **Timbre de dimension supérieure** au bas de la couverture | IGI 1300 § 7.1.2.3 a) | Timbre 22 pt au bas de la page de garde du rapport |
-| Mention **Spécial France** de couleur **bleue**, en haut de page, **immédiatement à droite** du timbre | IM 900 § 7.3.2 | Cartouche `#0050c8` encadré, à droite du timbre principal |
-| Identification en première page : autorité émettrice, auteur, date d'émission, numéro d'enregistrement, échéance de la classification | IGI 1300 § 7.1.2.3 b) | Champs saisis à l'initialisation et reportés sur la couverture du rapport |
-| Au niveau Très Secret : numéro d'exemplaire et nombre total d'exemplaires | IGI 1300 § 7.1.2.3 b) | Champs dédiés, rendus « 1 sur 3 » |
-
-Aucune police de caractères n'est prescrite par les textes ; l'outil emploie une linéale grasse en
-capitales, qui satisfait l'exigence de lisibilité.
+| « Les timbres sont apposés avec une **encre indélébile de couleur rouge**, sauf le timbre Spécial France qui est de couleur **bleue** » | IGI 1300, annexe 37 | `#c9191e` pour le timbre, `#0050c8` pour Spécial France |
+| Niveau **centré, police Arial, gras, taille 18** | IGI 1300, annexe 37, point 2 | `font:700 18pt Arial`, texte centré |
+| **Épaisseur du cadre : 2,5 points** sur les pages | IGI 1300, annexe 37, point 2 | `border:2.5pt solid` — le timbre est un **cadre**, pas un bandeau |
+| Timbre « au milieu du **haut et du bas** de la page » | IGI 1300, annexe 37, point 2 | Bandeau haut et bandeau bas pour Secret et Très Secret |
+| Spécial France « apposé **uniquement en haut** de la page » | IGI 1300, annexe 37, point 2 | Cartouche bleu à droite du timbre, absent du bas de page |
+| Couverture des documents reliés : timbre **au milieu du bas**, niveau en Arial gras 18, **texte taille 6**, **cadre 3 points** | IGI 1300, annexe 37, point 1 | Cadre 3 pt au bas de la couverture du rapport, avec l'avertissement pénal reproduit à l'identique |
+| Spécial France **sous** le timbre de classification sur la couverture | IGI 1300, annexe 37, point 1 | Cartouche bleu placé dessous |
+| Mention Diffusion Restreinte : timbre encadré **au milieu du haut** de la page, encre rouge | IGI 1300, annexe 1 ; IM 900 § 7.2.3 | Bandeau haut seulement. L'annexe 1 ne prescrivant ni police ni épaisseur de cadre, celles de l'annexe 37 sont reprises |
+| Niveau **en toutes lettres** | IGI 1300 § 7.1.2.1 | « DIFFUSION RESTREINTE », « SECRET », « TRÈS SECRET » ; les abréviations S / TS ne servent qu'au marquage des paragraphes et ne sont pas employées |
+| Identification en première page : autorité émettrice, auteur, date d'émission, numéro d'enregistrement, échéance | IGI 1300 § 7.1.2.3 b) et annexe 1 | Champs saisis à l'initialisation et reportés sur la couverture |
+| Niveau Très Secret : numéro d'exemplaire et nombre total d'exemplaires | IGI 1300 § 7.1.2.3 b) | Champs dédiés, rendus « 1 sur 3 » |
 
 **Limite assumée :** la pagination « page X sur Y » exigée par l'IGI 1300 § 7.1.2.3 c) n'est pas
 réalisable en HTML — aucun navigateur n'implémente les boîtes de marge `@page`. Activez l'option
@@ -185,7 +185,7 @@ reformulation de travail ; en cas de divergence, le texte officiel affiché à c
 
 ## Vérifications effectuées
 
-87 assertions automatisées exécutées dans un navigateur réel (Chromium sans interface, **réseau
+99 assertions automatisées exécutées dans un navigateur réel (Chromium sans interface, **réseau
 coupé**) : intégrité des trois corpus, reprise effective des identifiants officiels, présence d'un
 énoncé ou d'une section de texte pour chaque exigence, conformité du marquage aux quatre niveaux (couleur mesurée sur
 le style calculé, position, taille, présence ou absence du bandeau bas, mention Spécial France),

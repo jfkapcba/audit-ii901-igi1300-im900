@@ -61,9 +61,7 @@ def corpus_igi1300():
         "reference": "Instruction générale interministérielle n° 1300/SGDSN/PSE/PSD, approuvée par "
                      "l'arrêté du 9 août 2021 (en vigueur au 1er juillet 2021)",
         "provenance": "numerique",
-        "avertissement": "Les annexes de l'IGI 1300 (dont l'annexe 1 relative à la mention Diffusion "
-                         "Restreinte et l'annexe 37 relative aux timbres) sont publiées séparément et "
-                         "ne sont pas reprises ici.",
+        "avertissement": "",
         "sections": sections, "ordre": ordre,
     }
 
@@ -204,6 +202,9 @@ def catalogue_igi1300(source, mapping):
         # « 6.6.3.1.a) » renvoie à la section 6.6.3.1 du texte ; l'annexe 30
         # n'est pas publiée avec l'instruction et n'a donc pas de section.
         reference = re.sub(r'\.[a-z]\)$', '', exigence["ref"])
+        m = re.match(r'Annexe\s+(\d+)', reference, re.I)
+        if m:
+            reference = "A" + m.group(1)
         par_domaine.setdefault((identifiant, nom), []).append({
             "id": exigence["id"],
             "t": intitule(exigence),

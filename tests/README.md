@@ -9,16 +9,18 @@ CHROME=/chemin/vers/chrome ./executer.sh
 interface, **avec la résolution DNS coupée** (`--host-resolver-rules="MAP * ~NOTFOUND"`). Le
 fichier livré n'est jamais modifié.
 
-Les 87 assertions couvrent :
+Les 99 assertions couvrent :
 
 * **Corpus officiel** — les trois textes sont chargés, leurs sections repères sont présentes et
   non vides.
 * **Provenance** — chaque exigence porte soit son énoncé officiel, soit une section de texte non
   vide ; les identifiants officiels (`HOMOL_01`, `ORG-RSSI`, `EXP-IMP-2`…) sont effectivement
   repris ; toute exigence rédigée pour ce projet est signalée comme telle.
-* **Marquage** — couleur d'encre mesurée sur le style calculé, position, taille comparée au texte
-  courant, graisse, capitales, présence ou absence du bandeau bas selon le niveau, cartouche
-  Spécial France en bleu à droite du timbre principal.
+* **Marquage** — conformité aux modèles de l'annexe 37 de l'IGI 1300 : encre mesurée sur le style
+  calculé, police Arial, taille 18, cadre déclaré à 2,5 points, texte centré, capitales, présence
+  ou absence du bandeau bas selon le niveau, cartouche Spécial France en bleu aux mêmes règles, et
+  dans le rapport : cadre de 3 points en couverture avec l'avertissement pénal, Spécial France
+  apposé uniquement en haut de page.
 * **Parcours d'audit** — création, plan de contrôle, arbre, panneau d'exigence, statuts au
   clavier, navigation, filtres, recherche portant sur le texte officiel.
 * **Écran des textes**, **synthèse** (taux, anneau SVG, reprise du marquage).

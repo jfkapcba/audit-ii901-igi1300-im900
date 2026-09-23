@@ -33,9 +33,10 @@ Deux réserves particulières :
 * **Listing ANSSI** — les 204 exigences IGI 1300 et leurs identifiants sont repris du classeur
   publié par l'ANSSI, sans modification des énoncés. Ce classeur ne couvre que le volet
   « systèmes d'information » de l'instruction.
-* **IGI 1300** — les annexes sont publiées séparément et ne sont pas reprises, notamment
-  l'annexe 1 (mesures applicables à la mention Diffusion Restreinte) et l'annexe 37 (modèles de
-  timbres). L'outil le signale à l'endroit où elles manquent.
+* **IGI 1300** — les 46 annexes figurent dans le même PDF que le corps de l'instruction et sont
+  intégrées, y compris l'annexe 1 (règles applicables à la mention Diffusion Restreinte),
+  l'annexe 30 (protection physique) et l'annexe 37 (modèles de timbres). Les annexes qui sont des
+  formulaires ou des tableaux s'extraient moins bien que le texte courant. L'outil le signale à l'endroit où elles manquent.
 
 Aucun passage n'a été reformulé, complété ni reconstitué : ce qui n'est pas publié est signalé
 comme manquant.
