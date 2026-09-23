@@ -1,0 +1,3049 @@
+{
+ "version": "2026.09.1",
+ "referentiels": [
+  {
+   "id": "II901",
+   "code": "II 901",
+   "nom": "Protection des systèmes d'information sensibles",
+   "ref": "Instruction interministérielle n° 901/SGDSN/ANSSI du 28 janvier 2015",
+   "portee": "Systèmes d'information traitant d'informations sensibles non classifiées, dont celles portant la mention Diffusion Restreinte.",
+   "niveaux": [
+    "DR"
+   ],
+   "domaines": [
+    {
+     "id": "GOU",
+     "nom": "Gouvernance, organisation et chaîne SSI",
+     "exigences": [
+      {
+       "id": "II901-GOU-01",
+       "t": "Autorité qualifiée en SSI (AQSSI) désignée",
+       "src": "II 901 — Organisation de la SSI",
+       "ctrl": "Vérifier qu'une autorité qualifiée pour la SSI est formellement désignée pour l'entité, par un acte écrit, et qu'elle dispose de l'autorité et des moyens nécessaires sur le périmètre audité.",
+       "pr": [
+        "Décision ou lettre de désignation signée",
+        "Organigramme de l'entité",
+        "Lettre de mission précisant les attributions"
+       ]
+      },
+      {
+       "id": "II901-GOU-02",
+       "t": "Responsable de la SSI (RSSI) et chaîne fonctionnelle",
+       "src": "II 901 — Organisation de la SSI",
+       "ctrl": "Vérifier la désignation d'un RSSI, son positionnement hiérarchique et fonctionnel, et l'existence d'une chaîne SSI identifiée jusqu'aux correspondants locaux du périmètre audité.",
+       "pr": [
+        "Décision de désignation du RSSI",
+        "Schéma de la chaîne fonctionnelle SSI",
+        "Liste nominative des correspondants SSI"
+       ]
+      },
+      {
+       "id": "II901-GOU-03",
+       "t": "Attributions et moyens de la fonction SSI",
+       "src": "II 901 — Organisation de la SSI",
+       "ctrl": "Apprécier si les rôles SSI sont décrits (fiches de poste), dotés d'un temps de travail et d'un budget identifiés, et si le RSSI rend compte périodiquement à l'autorité qualifiée.",
+       "pr": [
+        "Fiches de poste",
+        "Comptes rendus de comité SSI",
+        "Budget SSI"
+       ]
+      },
+      {
+       "id": "II901-GOU-04",
+       "t": "Inventaire et cartographie du système d'information",
+       "src": "II 901 — Connaissance du SI",
+       "ctrl": "Vérifier l'existence d'une cartographie à jour du SI sensible : périmètre, composants matériels et logiciels, flux, interconnexions, localisation physique et hébergement des données.",
+       "pr": [
+        "Cartographie technique et applicative",
+        "Inventaire des actifs daté",
+        "Schéma des flux et des interconnexions"
+       ]
+      },
+      {
+       "id": "II901-GOU-05",
+       "t": "Identification des informations sensibles et Diffusion Restreinte",
+       "src": "II 901 — Champ d'application",
+       "ctrl": "Vérifier que les informations sensibles et celles portant la mention Diffusion Restreinte traitées par le SI sont identifiées, recensées et rattachées à un propriétaire métier responsable de leur niveau de protection.",
+       "pr": [
+        "Registre ou tableau des données sensibles",
+        "Règles de marquage interne",
+        "Désignation des propriétaires de données"
+       ]
+      },
+      {
+       "id": "II901-GOU-06",
+       "t": "Périmètre d'application formalisé",
+       "src": "II 901 — Champ d'application",
+       "ctrl": "Vérifier que le périmètre d'application de l'instruction au sein de l'entité est formellement arrêté et que les systèmes exclus le sont sur décision motivée de l'autorité qualifiée.",
+       "pr": [
+        "Note de périmètre validée",
+        "Décisions d'exclusion motivées"
+       ]
+      },
+      {
+       "id": "II901-GOU-07",
+       "t": "Pilotage par indicateurs et compte rendu annuel",
+       "src": "II 901 — Suivi de la SSI",
+       "ctrl": "Vérifier qu'un jeu d'indicateurs SSI est suivi (couverture des mises à jour, incidents, homologations, sensibilisation) et qu'un bilan est présenté au moins annuellement à l'autorité qualifiée.",
+       "pr": [
+        "Tableau de bord SSI",
+        "Bilan annuel SSI signé"
+       ]
+      },
+      {
+       "id": "II901-GOU-08",
+       "t": "Conformité réglementaire suivie",
+       "src": "II 901 — Dispositions générales",
+       "ctrl": "Vérifier l'existence d'un suivi des textes applicables (II 901, PSSI de l'État, PSSI ministérielle, instructions internes) et de leur déclinaison locale, avec une revue à chaque évolution réglementaire.",
+       "pr": [
+        "Veille réglementaire",
+        "Table de correspondance textes / mesures internes"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "RSQ",
+     "nom": "Appréciation des risques et politique de sécurité",
+     "exigences": [
+      {
+       "id": "II901-RSQ-01",
+       "t": "Politique de sécurité des systèmes d'information formalisée",
+       "src": "II 901 — Politique de sécurité",
+       "ctrl": "Vérifier l'existence d'une PSSI applicable au périmètre, approuvée par l'autorité qualifiée, datée, versionnée et diffusée aux personnels concernés.",
+       "pr": [
+        "PSSI signée et datée",
+        "Preuve de diffusion",
+        "Historique des versions"
+       ]
+      },
+      {
+       "id": "II901-RSQ-02",
+       "t": "Révision périodique de la politique",
+       "src": "II 901 — Politique de sécurité",
+       "ctrl": "Vérifier que la PSSI fait l'objet d'une revue périodique et d'une mise à jour lors de toute évolution majeure du SI, de la menace ou de la réglementation.",
+       "pr": [
+        "Comptes rendus de revue",
+        "Dates des versions successives"
+       ]
+      },
+      {
+       "id": "II901-RSQ-03",
+       "t": "Appréciation des risques conduite et tracée",
+       "src": "II 901 — Analyse de risque",
+       "ctrl": "Vérifier qu'une appréciation des risques a été conduite sur le périmètre selon une méthode reconnue (EBIOS Risk Manager ou équivalent), qu'elle identifie les besoins de sécurité, les scénarios de menace et les mesures retenues.",
+       "pr": [
+        "Étude de risque datée",
+        "Ateliers et parties prenantes",
+        "Échelle de gravité et de vraisemblance"
+       ]
+      },
+      {
+       "id": "II901-RSQ-04",
+       "t": "Risques résiduels acceptés par l'autorité",
+       "src": "II 901 — Analyse de risque",
+       "ctrl": "Vérifier que les risques résiduels sont explicitement présentés à l'autorité d'homologation et acceptés par écrit, et qu'ils sont réexaminés lors de chaque révision.",
+       "pr": [
+        "Tableau des risques résiduels",
+        "Décision d'acceptation signée"
+       ]
+      },
+      {
+       "id": "II901-RSQ-05",
+       "t": "Plan d'action de traitement des risques suivi",
+       "src": "II 901 — Analyse de risque",
+       "ctrl": "Vérifier l'existence d'un plan d'action de réduction des risques comportant, pour chaque mesure, un responsable, une échéance et un état d'avancement revu périodiquement.",
+       "pr": [
+        "Plan d'action daté",
+        "Revues d'avancement"
+       ]
+      },
+      {
+       "id": "II901-RSQ-06",
+       "t": "Déclinaison opérationnelle en règles d'hygiène",
+       "src": "II 901 — Mesures de sécurité",
+       "ctrl": "Vérifier que la politique est déclinée en règles opérationnelles applicables (charte utilisateur, procédures d'exploitation sécurisée, guides de configuration) et non seulement en principes généraux.",
+       "pr": [
+        "Charte utilisateur signée",
+        "Procédures d'exploitation",
+        "Guides de durcissement internes"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "HOM",
+     "nom": "Homologation de sécurité",
+     "exigences": [
+      {
+       "id": "II901-HOM-01",
+       "t": "Obligation d'homologation respectée",
+       "src": "II 901 — Homologation",
+       "ctrl": "Vérifier que tout système d'information sensible du périmètre, notamment tout système traitant des informations Diffusion Restreinte, fait l'objet d'une décision d'homologation en vigueur avant sa mise en service opérationnelle.",
+       "pr": [
+        "Décision d'homologation signée et datée",
+        "Liste des SI du périmètre et de leur état d'homologation"
+       ]
+      },
+      {
+       "id": "II901-HOM-02",
+       "t": "Autorité d'homologation désignée",
+       "src": "II 901 — Homologation",
+       "ctrl": "Vérifier que l'autorité d'homologation est formellement désignée, qu'elle dispose du niveau de responsabilité adéquat et qu'elle est distincte de l'équipe de réalisation du système.",
+       "pr": [
+        "Acte de désignation",
+        "Organigramme décisionnel"
+       ]
+      },
+      {
+       "id": "II901-HOM-03",
+       "t": "Dossier d'homologation complet",
+       "src": "II 901 — Homologation",
+       "ctrl": "Vérifier que le dossier d'homologation comporte au minimum la description du système et de son périmètre, l'analyse de risque, la politique de sécurité applicable, les mesures mises en œuvre, les résultats des audits et les risques résiduels.",
+       "pr": [
+        "Dossier d'homologation complet",
+        "Bordereau des pièces"
+       ]
+      },
+      {
+       "id": "II901-HOM-04",
+       "t": "Stratégie d'homologation et commission",
+       "src": "II 901 — Homologation",
+       "ctrl": "Vérifier qu'une stratégie d'homologation a été établie (périmètre, acteurs, jalons, profondeur des contrôles) et qu'une commission d'homologation se réunit et consigne ses avis.",
+       "pr": [
+        "Stratégie d'homologation",
+        "Comptes rendus de commission"
+       ]
+      },
+      {
+       "id": "II901-HOM-05",
+       "t": "Audit technique préalable à l'homologation",
+       "src": "II 901 — Homologation",
+       "ctrl": "Vérifier qu'un audit de sécurité (configuration, architecture, tests d'intrusion selon le niveau d'enjeu) a été réalisé avant la décision et que les écarts relevés ont été traités ou explicitement acceptés.",
+       "pr": [
+        "Rapport d'audit",
+        "Plan de traitement des écarts"
+       ]
+      },
+      {
+       "id": "II901-HOM-06",
+       "t": "Durée de validité et conditions de l'homologation",
+       "src": "II 901 — Homologation",
+       "ctrl": "Vérifier que la décision fixe une durée de validité et, le cas échéant, des réserves ou conditions, et que ces conditions font l'objet d'un suivi documenté jusqu'à leur levée.",
+       "pr": [
+        "Décision mentionnant la durée et les réserves",
+        "Suivi de levée des réserves"
+       ]
+      },
+      {
+       "id": "II901-HOM-07",
+       "t": "Maintien de l'homologation dans le temps",
+       "src": "II 901 — Homologation",
+       "ctrl": "Vérifier qu'un processus de maintien en condition d'homologation existe : revue périodique, réévaluation en cas d'évolution significative du système, de son environnement ou de la menace, et renouvellement avant échéance.",
+       "pr": [
+        "Procédure de maintien",
+        "Comptes rendus de revue",
+        "Décisions de renouvellement"
+       ]
+      },
+      {
+       "id": "II901-HOM-08",
+       "t": "Homologation des interconnexions",
+       "src": "II 901 — Homologation",
+       "ctrl": "Vérifier que toute interconnexion du système homologué avec un autre système est couverte par l'homologation ou par une décision spécifique, et qu'une convention de sécurité lie les parties.",
+       "pr": [
+        "Conventions d'interconnexion",
+        "Analyse de risque de l'interconnexion"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "RHU",
+     "nom": "Personnels, sensibilisation et formation",
+     "exigences": [
+      {
+       "id": "II901-RHU-01",
+       "t": "Habilitation ou vérification adaptée des personnels",
+       "src": "II 901 — Personnels",
+       "ctrl": "Vérifier que l'accès aux informations sensibles est réservé aux personnes ayant le besoin d'en connaître et ayant fait l'objet des vérifications prévues (contrôle élémentaire, avis de sécurité) selon la sensibilité du système.",
+       "pr": [
+        "Liste des personnels autorisés",
+        "Justificatifs de vérification",
+        "Décisions d'accès"
+       ]
+      },
+      {
+       "id": "II901-RHU-02",
+       "t": "Engagement de confidentialité signé",
+       "src": "II 901 — Personnels",
+       "ctrl": "Vérifier que les personnels, y compris les prestataires et stagiaires, ont signé un engagement de confidentialité et la charte d'usage du SI, et que ces engagements sont conservés et à jour.",
+       "pr": [
+        "Engagements signés et archivés",
+        "Charte d'utilisation signée"
+       ]
+      },
+      {
+       "id": "II901-RHU-03",
+       "t": "Sensibilisation initiale et périodique",
+       "src": "II 901 — Sensibilisation",
+       "ctrl": "Vérifier qu'une sensibilisation à la protection des informations sensibles est dispensée à l'arrivée puis périodiquement, avec émargement ou trace de suivi, et qu'elle couvre les risques réels (hameçonnage, ingénierie sociale, supports amovibles, nomadisme).",
+       "pr": [
+        "Supports de sensibilisation",
+        "Feuilles d'émargement",
+        "Taux de couverture"
+       ]
+      },
+      {
+       "id": "II901-RHU-04",
+       "t": "Formation spécifique des administrateurs",
+       "src": "II 901 — Compétences",
+       "ctrl": "Vérifier que les administrateurs et les personnels de la chaîne SSI reçoivent une formation adaptée à leurs responsabilités et que leurs compétences sont maintenues.",
+       "pr": [
+        "Plan de formation",
+        "Attestations de formation"
+       ]
+      },
+      {
+       "id": "II901-RHU-05",
+       "t": "Procédures d'arrivée, de mutation et de départ",
+       "src": "II 901 — Personnels",
+       "ctrl": "Vérifier l'existence et l'application effective de procédures d'attribution, de revue et de retrait des droits et des matériels lors des arrivées, changements de fonction et départs, avec restitution tracée des moyens.",
+       "pr": [
+        "Procédure formalisée",
+        "Fiches d'arrivée et de départ renseignées",
+        "Contrôle par sondage sur les départs récents"
+       ]
+      },
+      {
+       "id": "II901-RHU-06",
+       "t": "Règles d'usage et sanctions portées à connaissance",
+       "src": "II 901 — Personnels",
+       "ctrl": "Vérifier que les règles d'usage du SI, les contrôles opérés et les sanctions encourues sont portés à la connaissance des utilisateurs dans les formes requises, y compris l'information sur la journalisation.",
+       "pr": [
+        "Charte diffusée",
+        "Preuve d'information des instances compétentes"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PHY",
+     "nom": "Sécurité physique et environnementale",
+     "exigences": [
+      {
+       "id": "II901-PHY-01",
+       "t": "Zonage et contrôle d'accès physique",
+       "src": "II 901 — Sécurité physique",
+       "ctrl": "Vérifier que les locaux abritant le SI sensible sont identifiés, que leur accès est contrôlé et restreint aux personnes autorisées, et que les visiteurs sont enregistrés et accompagnés.",
+       "pr": [
+        "Plan de zonage",
+        "Liste des porteurs de badge",
+        "Registre des visiteurs"
+       ]
+      },
+      {
+       "id": "II901-PHY-02",
+       "t": "Protection des locaux techniques",
+       "src": "II 901 — Sécurité physique",
+       "ctrl": "Vérifier que les salles serveurs, locaux de brassage et armoires de répartition sont fermés à clé, à accès tracé, et protégés contre les risques environnementaux (incendie, dégât des eaux, coupure d'alimentation).",
+       "pr": [
+        "Constat de visite",
+        "Journal d'accès aux locaux techniques",
+        "Contrats de maintenance des installations"
+       ]
+      },
+      {
+       "id": "II901-PHY-03",
+       "t": "Protection des postes de travail en environnement ouvert",
+       "src": "II 901 — Sécurité physique",
+       "ctrl": "Vérifier que les postes situés dans des zones accessibles au public ou à des tiers sont protégés (verrouillage automatique de session, filtre de confidentialité, rangement des documents, bureau net).",
+       "pr": [
+        "Constat de visite inopinée",
+        "Règle de bureau net diffusée",
+        "Paramétrage du verrouillage de session"
+       ]
+      },
+      {
+       "id": "II901-PHY-04",
+       "t": "Maîtrise du câblage et des prises réseau",
+       "src": "II 901 — Sécurité physique",
+       "ctrl": "Vérifier que les prises réseau accessibles sont désactivées par défaut ou protégées, et que le cheminement des câbles du SI sensible est maîtrisé et documenté.",
+       "pr": [
+        "Plan de câblage",
+        "Configuration des commutateurs",
+        "Test par sondage sur une prise libre"
+       ]
+      },
+      {
+       "id": "II901-PHY-05",
+       "t": "Encadrement des interventions de tiers sur site",
+       "src": "II 901 — Sécurité physique",
+       "ctrl": "Vérifier que les interventions de prestataires en zone sensible sont autorisées, tracées, accompagnées, et que les équipements qu'ils apportent sont contrôlés.",
+       "pr": [
+        "Registre des interventions",
+        "Autorisations d'accès temporaires",
+        "Procédure d'accompagnement"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ARC",
+     "nom": "Architecture, cloisonnement et interconnexions",
+     "exigences": [
+      {
+       "id": "II901-ARC-01",
+       "t": "Cloisonnement du système sensible",
+       "src": "II 901 — Architecture",
+       "ctrl": "Vérifier que le SI traitant des informations Diffusion Restreinte est cloisonné des autres systèmes, physiquement ou logiquement, et que le cloisonnement est effectivement mis en œuvre au niveau réseau et système.",
+       "pr": [
+        "Schéma d'architecture",
+        "Configuration des VLAN et des filtres",
+        "Tests de cloisonnement"
+       ]
+      },
+      {
+       "id": "II901-ARC-02",
+       "t": "Filtrage des flux et principe du besoin d'en connaître",
+       "src": "II 901 — Architecture",
+       "ctrl": "Vérifier que les flux entre zones sont filtrés par des dispositifs dédiés selon une matrice de flux formalisée, avec une politique de refus par défaut et des règles justifiées et revues.",
+       "pr": [
+        "Matrice de flux validée",
+        "Règles de pare-feu exportées",
+        "Revue périodique des règles"
+       ]
+      },
+      {
+       "id": "II901-ARC-03",
+       "t": "Maîtrise du raccordement à Internet",
+       "src": "II 901 — Interconnexions",
+       "ctrl": "Vérifier que le raccordement à Internet ou à tout réseau non maîtrisé s'effectue via une passerelle sécurisée dédiée, avec filtrage, relais applicatifs, analyse antivirale et journalisation.",
+       "pr": [
+        "Architecture de la passerelle",
+        "Configuration des relais",
+        "Journaux de la passerelle"
+       ]
+      },
+      {
+       "id": "II901-ARC-04",
+       "t": "Conventions et analyse des interconnexions",
+       "src": "II 901 — Interconnexions",
+       "ctrl": "Vérifier que chaque interconnexion avec un système tiers fait l'objet d'une analyse de risque, d'une convention précisant les responsabilités et les flux autorisés, et d'une validation de l'autorité d'homologation.",
+       "pr": [
+        "Conventions signées",
+        "Analyses de risque associées",
+        "Inventaire des interconnexions"
+       ]
+      },
+      {
+       "id": "II901-ARC-05",
+       "t": "Absence de connexion simultanée à deux réseaux",
+       "src": "II 901 — Architecture",
+       "ctrl": "Vérifier qu'aucun équipement ne peut être connecté simultanément au SI sensible et à un réseau de niveau de sensibilité inférieur (pontage réseau, double carte, partage de connexion, modem 4G/5G).",
+       "pr": [
+        "Configuration des postes",
+        "Inventaire des interfaces réseau",
+        "Contrôle technique par sondage"
+       ]
+      },
+      {
+       "id": "II901-ARC-06",
+       "t": "Sécurité des réseaux sans fil",
+       "src": "II 901 — Architecture",
+       "ctrl": "Vérifier que l'usage du sans-fil sur le périmètre sensible est proscrit ou strictement encadré et autorisé par l'autorité d'homologation, avec authentification forte et chiffrement conforme à l'état de l'art.",
+       "pr": [
+        "Décision d'autorisation ou d'interdiction",
+        "Configuration des bornes",
+        "Relevé des émissions sur site"
+       ]
+      },
+      {
+       "id": "II901-ARC-07",
+       "t": "Sécurité des services d'infrastructure",
+       "src": "II 901 — Architecture",
+       "ctrl": "Vérifier que les services structurants (annuaire, DNS, messagerie, temps, mise à jour) sont maîtrisés en interne, redondés et durcis, et que leur compromission ne permet pas de franchir le cloisonnement.",
+       "pr": [
+        "Configuration des services",
+        "Schéma de dépendance",
+        "Plan de durcissement"
+       ]
+      },
+      {
+       "id": "II901-ARC-08",
+       "t": "Synchronisation de temps commune",
+       "src": "II 901 — Architecture",
+       "ctrl": "Vérifier que tous les équipements du périmètre sont synchronisés sur une source de temps commune et maîtrisée, condition de l'exploitabilité des journaux.",
+       "pr": [
+        "Configuration NTP",
+        "Contrôle de dérive sur un échantillon"
+       ]
+      },
+      {
+       "id": "II901-ARC-09",
+       "t": "Sécurité de la virtualisation et de l'hébergement mutualisé",
+       "src": "II 901 — Architecture",
+       "ctrl": "Vérifier que la virtualisation ne remet pas en cause le cloisonnement : hyperviseurs durcis et administrés depuis le réseau d'administration, absence de mutualisation avec des systèmes de niveau inférieur sans analyse de risque.",
+       "pr": [
+        "Architecture de virtualisation",
+        "Configuration des hyperviseurs",
+        "Analyse de risque de mutualisation"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "IAM",
+     "nom": "Identification, authentification et contrôle d'accès",
+     "exigences": [
+      {
+       "id": "II901-IAM-01",
+       "t": "Comptes nominatifs et unicité des identités",
+       "src": "II 901 — Contrôle d'accès",
+       "ctrl": "Vérifier que chaque utilisateur dispose d'un compte nominatif, que les comptes génériques ou partagés sont proscrits ou strictement justifiés, tracés et à mot de passe maîtrisé.",
+       "pr": [
+        "Extraction de l'annuaire",
+        "Liste des comptes génériques et justifications"
+       ]
+      },
+      {
+       "id": "II901-IAM-02",
+       "t": "Gestion du cycle de vie des comptes",
+       "src": "II 901 — Contrôle d'accès",
+       "ctrl": "Vérifier l'existence d'un processus de création, modification, suspension et suppression des comptes déclenché par les événements RH, et contrôler par sondage l'absence de comptes actifs d'agents partis.",
+       "pr": [
+        "Procédure de gestion des comptes",
+        "Rapprochement annuaire / effectifs",
+        "Comptes inactifs relevés"
+       ]
+      },
+      {
+       "id": "II901-IAM-03",
+       "t": "Politique d'authentification robuste",
+       "src": "II 901 — Authentification",
+       "ctrl": "Vérifier que la politique d'authentification (longueur et complexité des secrets, renouvellement, blocage après échecs, interdiction de réutilisation) est définie et techniquement imposée, conformément aux recommandations de l'ANSSI.",
+       "pr": [
+        "Politique de mot de passe documentée",
+        "Paramétrage technique (GPO ou équivalent)",
+        "Test de conformité"
+       ]
+      },
+      {
+       "id": "II901-IAM-04",
+       "t": "Authentification renforcée pour les accès sensibles",
+       "src": "II 901 — Authentification",
+       "ctrl": "Vérifier que les accès distants, les accès d'administration et les accès aux ressources les plus sensibles reposent sur une authentification à plusieurs facteurs ou par certificat sur support matériel.",
+       "pr": [
+        "Architecture d'authentification",
+        "Inventaire des porteurs de jeton ou carte",
+        "Configuration des accès distants"
+       ]
+      },
+      {
+       "id": "II901-IAM-05",
+       "t": "Moindre privilège et séparation des rôles",
+       "src": "II 901 — Contrôle d'accès",
+       "ctrl": "Vérifier que les droits sont attribués selon le besoin d'en connaître et le moindre privilège, sur la base de profils documentés, et que les fonctions incompatibles sont séparées.",
+       "pr": [
+        "Matrice des habilitations logiques",
+        "Profils applicatifs",
+        "Analyse des cumuls de droits"
+       ]
+      },
+      {
+       "id": "II901-IAM-06",
+       "t": "Revue périodique des droits",
+       "src": "II 901 — Contrôle d'accès",
+       "ctrl": "Vérifier qu'une revue formelle des comptes et des droits est conduite périodiquement avec les responsables métier, que les écarts sont corrigés et que la revue est tracée.",
+       "pr": [
+        "Comptes rendus de revue signés",
+        "Liste des retraits effectués"
+       ]
+      },
+      {
+       "id": "II901-IAM-07",
+       "t": "Protection des secrets d'authentification",
+       "src": "II 901 — Authentification",
+       "ctrl": "Vérifier que les secrets d'authentification ne sont ni stockés en clair, ni transmis par des canaux non protégés, ni partagés, et que les empreintes sont conservées avec des mécanismes à l'état de l'art.",
+       "pr": [
+        "Configuration des dépôts de secrets",
+        "Vérification de l'absence de mots de passe en clair dans les scripts et fichiers"
+       ]
+      },
+      {
+       "id": "II901-IAM-08",
+       "t": "Verrouillage automatique des sessions",
+       "src": "II 901 — Contrôle d'accès",
+       "ctrl": "Vérifier que les sessions inactives sont verrouillées automatiquement après un délai court et que le déverrouillage nécessite une nouvelle authentification.",
+       "pr": [
+        "Paramétrage central",
+        "Constat sur postes"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ADM",
+     "nom": "Administration et comptes à privilèges",
+     "exigences": [
+      {
+       "id": "II901-ADM-01",
+       "t": "Réseau et postes d'administration dédiés",
+       "src": "II 901 — Administration",
+       "ctrl": "Vérifier que l'administration du SI sensible s'effectue depuis des postes dédiés et durcis, sur un réseau d'administration cloisonné, sans accès à la messagerie ni à la navigation Internet.",
+       "pr": [
+        "Architecture d'administration",
+        "Inventaire des postes d'administration",
+        "Configuration réseau"
+       ]
+      },
+      {
+       "id": "II901-ADM-02",
+       "t": "Comptes d'administration distincts et nominatifs",
+       "src": "II 901 — Administration",
+       "ctrl": "Vérifier que chaque administrateur dispose d'un compte d'administration nominatif distinct de son compte utilisateur courant, et que les comptes natifs à privilèges sont désactivés, renommés ou séquestrés.",
+       "pr": [
+        "Extraction des groupes à privilèges",
+        "Procédure de séquestre des comptes natifs"
+       ]
+      },
+      {
+       "id": "II901-ADM-03",
+       "t": "Limitation et revue des comptes à privilèges",
+       "src": "II 901 — Administration",
+       "ctrl": "Vérifier que le nombre de comptes à privilèges est limité au strict nécessaire, formellement justifié et revu périodiquement, et qu'aucun privilège permanent n'est accordé sans besoin avéré.",
+       "pr": [
+        "Liste nominative des administrateurs",
+        "Justifications",
+        "Compte rendu de revue"
+       ]
+      },
+      {
+       "id": "II901-ADM-04",
+       "t": "Protocoles d'administration sécurisés",
+       "src": "II 901 — Administration",
+       "ctrl": "Vérifier que les flux d'administration utilisent des protocoles protégés en confidentialité et en intégrité et que les protocoles en clair sont désactivés sur les équipements.",
+       "pr": [
+        "Configuration des équipements",
+        "Capture ou relevé de ports ouverts"
+       ]
+      },
+      {
+       "id": "II901-ADM-05",
+       "t": "Traçabilité des actions d'administration",
+       "src": "II 901 — Administration",
+       "ctrl": "Vérifier que les actions d'administration sont journalisées de manière nominative, que les journaux sont déportés hors du périmètre administré et qu'ils ne sont pas modifiables par les administrateurs eux-mêmes.",
+       "pr": [
+        "Journaux d'administration",
+        "Architecture de collecte",
+        "Droits sur le collecteur"
+       ]
+      },
+      {
+       "id": "II901-ADM-06",
+       "t": "Séquestre et gestion des secrets d'administration",
+       "src": "II 901 — Administration",
+       "ctrl": "Vérifier l'existence d'une procédure de séquestre des secrets critiques (comptes de secours, clés de recouvrement), avec conservation sous double contrôle en lieu sûr et traçabilité des ouvertures.",
+       "pr": [
+        "Procédure de séquestre",
+        "Registre d'ouverture des plis",
+        "Inspection du coffre"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SYS",
+     "nom": "Configuration, durcissement et postes de travail",
+     "exigences": [
+      {
+       "id": "II901-SYS-01",
+       "t": "Configurations de référence durcies",
+       "src": "II 901 — Configuration",
+       "ctrl": "Vérifier que des configurations de référence durcies sont définies pour chaque type de système (poste, serveur, équipement réseau), fondées sur les guides de l'ANSSI ou équivalents, et appliquées au déploiement.",
+       "pr": [
+        "Guides de configuration internes",
+        "Images de référence",
+        "Rapport d'écart de configuration"
+       ]
+      },
+      {
+       "id": "II901-SYS-02",
+       "t": "Réduction de la surface d'attaque",
+       "src": "II 901 — Configuration",
+       "ctrl": "Vérifier que les services, comptes, ports et fonctions inutiles sont désactivés, et que les logiciels installés sont limités au besoin opérationnel.",
+       "pr": [
+        "Relevé des services actifs",
+        "Inventaire logiciel",
+        "Politique de liste d'autorisation"
+       ]
+      },
+      {
+       "id": "II901-SYS-03",
+       "t": "Maîtrise des droits sur les postes de travail",
+       "src": "II 901 — Postes de travail",
+       "ctrl": "Vérifier que les utilisateurs ne disposent pas de droits d'administration sur leur poste, sauf dérogation motivée, tracée et limitée dans le temps.",
+       "pr": [
+        "Extraction des administrateurs locaux",
+        "Registre des dérogations"
+       ]
+      },
+      {
+       "id": "II901-SYS-04",
+       "t": "Maîtrise de l'exécution de code",
+       "src": "II 901 — Postes de travail",
+       "ctrl": "Vérifier que l'exécution des programmes est encadrée (liste d'autorisation, restriction des répertoires inscriptibles, blocage des macros non signées) afin de limiter l'exécution de code non maîtrisé.",
+       "pr": [
+        "Politique d'exécution configurée",
+        "Paramétrage bureautique des macros"
+       ]
+      },
+      {
+       "id": "II901-SYS-05",
+       "t": "Protection contre les codes malveillants",
+       "src": "II 901 — Protection",
+       "ctrl": "Vérifier qu'une protection anti-codes malveillants est déployée sur l'ensemble des postes et serveurs, maintenue à jour, non désactivable par l'utilisateur, et que les alertes sont traitées.",
+       "pr": [
+        "Console d'administration antivirale",
+        "Taux de couverture et d'actualité",
+        "Traitement des alertes"
+       ]
+      },
+      {
+       "id": "II901-SYS-06",
+       "t": "Démarrage sécurisé et protection du micrologiciel",
+       "src": "II 901 — Postes de travail",
+       "ctrl": "Vérifier que le micrologiciel est protégé par mot de passe, que l'ordre de démarrage interdit les supports externes non autorisés et que les mises à jour de micrologiciel sont maîtrisées.",
+       "pr": [
+        "Configuration UEFI/BIOS sur échantillon",
+        "Procédure de mise à jour du micrologiciel"
+       ]
+      },
+      {
+       "id": "II901-SYS-07",
+       "t": "Cohérence des configurations vérifiée",
+       "src": "II 901 — Configuration",
+       "ctrl": "Vérifier qu'un contrôle périodique détecte les écarts entre la configuration réelle et la configuration de référence, et que les écarts sont corrigés ou justifiés.",
+       "pr": [
+        "Rapports de conformité de configuration",
+        "Suivi de remédiation"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "MOB",
+     "nom": "Nomadisme, télétravail et terminaux mobiles",
+     "exigences": [
+      {
+       "id": "II901-MOB-01",
+       "t": "Encadrement formel du nomadisme",
+       "src": "II 901 — Nomadisme",
+       "ctrl": "Vérifier que le travail en mobilité et le télétravail sur informations sensibles sont autorisés par une décision explicite, couverts par l'homologation, et encadrés par des règles écrites portées à la connaissance des agents.",
+       "pr": [
+        "Décision d'autorisation",
+        "Note d'encadrement du télétravail",
+        "Charte du nomade"
+       ]
+      },
+      {
+       "id": "II901-MOB-02",
+       "t": "Chiffrement des postes nomades",
+       "src": "II 901 — Nomadisme",
+       "ctrl": "Vérifier que tout poste nomade traitant des informations Diffusion Restreinte est chiffré intégralement par un produit conforme aux exigences applicables, avec gestion maîtrisée des clés de recouvrement.",
+       "pr": [
+        "Console de chiffrement",
+        "Preuve de chiffrement sur échantillon",
+        "Procédure de recouvrement"
+       ]
+      },
+      {
+       "id": "II901-MOB-03",
+       "t": "Accès distant par tunnel protégé",
+       "src": "II 901 — Nomadisme",
+       "ctrl": "Vérifier que les accès distants passent par un tunnel chiffré avec authentification forte des deux extrémités, terminé sur une passerelle maîtrisée, sans accès direct au cœur du SI.",
+       "pr": [
+        "Architecture d'accès distant",
+        "Configuration de la passerelle",
+        "Journaux de connexion"
+       ]
+      },
+      {
+       "id": "II901-MOB-04",
+       "t": "Interdiction des équipements personnels",
+       "src": "II 901 — Nomadisme",
+       "ctrl": "Vérifier que le traitement d'informations sensibles sur des équipements personnels non maîtrisés est interdit, que l'interdiction est connue et qu'elle fait l'objet de contrôles.",
+       "pr": [
+        "Règle écrite diffusée",
+        "Contrôle des accès non conformes dans les journaux"
+       ]
+      },
+      {
+       "id": "II901-MOB-05",
+       "t": "Terminaux mobiles et téléphonie maîtrisés",
+       "src": "II 901 — Nomadisme",
+       "ctrl": "Vérifier que les ordiphones et tablettes accédant à des ressources sensibles sont administrés (gestion de flotte, chiffrement, verrouillage, effacement à distance) et que les usages non maîtrisés sont bloqués.",
+       "pr": [
+        "Console de gestion de flotte",
+        "Politique appliquée aux terminaux",
+        "Inventaire des terminaux"
+       ]
+      },
+      {
+       "id": "II901-MOB-06",
+       "t": "Règles de déplacement et missions à l'étranger",
+       "src": "II 901 — Nomadisme",
+       "ctrl": "Vérifier l'existence de consignes pour les déplacements, notamment à l'étranger (matériel dédié, données minimisées, contrôle au retour) et leur application effective.",
+       "pr": [
+        "Note de consignes voyage",
+        "Registre des matériels de mission",
+        "Procédure de contrôle au retour"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "CRY",
+     "nom": "Cryptographie et protection en confidentialité",
+     "exigences": [
+      {
+       "id": "II901-CRY-01",
+       "t": "Chiffrement des informations Diffusion Restreinte transmises",
+       "src": "II 901 — Protection des échanges",
+       "n": [
+        "DR"
+       ],
+       "ctrl": "Vérifier que les informations portant la mention Diffusion Restreinte transitant sur un réseau non maîtrisé sont protégées par un moyen de chiffrement conforme aux exigences applicables à ce niveau.",
+       "pr": [
+        "Inventaire des moyens de chiffrement",
+        "Référence du produit et de sa qualification",
+        "Configuration des tunnels"
+       ]
+      },
+      {
+       "id": "II901-CRY-02",
+       "t": "Emploi de produits qualifiés ou recommandés",
+       "src": "II 901 — Moyens de sécurité",
+       "ctrl": "Vérifier que les produits de sécurité employés font l'objet d'une qualification, d'une certification ou d'une recommandation appropriée, et que leur version correspond à celle visée par cette qualification.",
+       "pr": [
+        "Liste des produits et de leur statut",
+        "Versions déployées",
+        "Conditions d'emploi respectées"
+       ]
+      },
+      {
+       "id": "II901-CRY-03",
+       "t": "Gestion du cycle de vie des clés",
+       "src": "II 901 — Cryptographie",
+       "ctrl": "Vérifier que la génération, la distribution, le renouvellement, la révocation et la destruction des clés et certificats sont définis, tracés et conformes aux conditions d'emploi des produits.",
+       "pr": [
+        "Procédure de gestion des clés",
+        "Registre des clés et certificats",
+        "Preuves de renouvellement"
+       ]
+      },
+      {
+       "id": "II901-CRY-04",
+       "t": "Chiffrement des données au repos",
+       "src": "II 901 — Protection des données",
+       "ctrl": "Vérifier que les informations sensibles stockées sur des supports susceptibles de sortir du périmètre maîtrisé, ou hébergées chez un tiers, sont chiffrées avec des moyens appropriés et des clés maîtrisées par l'entité.",
+       "pr": [
+        "Cartographie des stockages chiffrés",
+        "Localisation des clés"
+       ]
+      },
+      {
+       "id": "II901-CRY-05",
+       "t": "Protection de la messagerie",
+       "src": "II 901 — Protection des échanges",
+       "ctrl": "Vérifier que l'échange d'informations sensibles par messagerie est encadré : chiffrement de bout en bout lorsque requis, interdiction des messageries grand public, filtrage des pièces jointes et sensibilisation aux erreurs de destinataire.",
+       "pr": [
+        "Règles de messagerie configurées",
+        "Moyens de chiffrement des messages",
+        "Consignes diffusées"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SUP",
+     "nom": "Supports amovibles, impressions et effacement",
+     "exigences": [
+      {
+       "id": "II901-SUP-01",
+       "t": "Maîtrise des supports amovibles",
+       "src": "II 901 — Supports",
+       "ctrl": "Vérifier que l'usage des supports amovibles est interdit par défaut et n'est autorisé que par exception, avec des supports fournis, identifiés, inventoriés et chiffrés.",
+       "pr": [
+        "Politique de blocage des ports appliquée",
+        "Inventaire des supports autorisés",
+        "Registre des dérogations"
+       ]
+      },
+      {
+       "id": "II901-SUP-02",
+       "t": "Sas de décontamination des supports entrants",
+       "src": "II 901 — Supports",
+       "ctrl": "Vérifier qu'un dispositif de contrôle et de décontamination est en place pour tout support ou fichier entrant dans le périmètre sensible, et qu'il est effectivement utilisé.",
+       "pr": [
+        "Description du sas",
+        "Journaux d'analyse",
+        "Consigne d'emploi"
+       ]
+      },
+      {
+       "id": "II901-SUP-03",
+       "t": "Marquage et traçabilité des supports",
+       "src": "II 901 — Supports",
+       "n": [
+        "DR"
+       ],
+       "ctrl": "Vérifier que les supports contenant des informations Diffusion Restreinte portent la mention correspondante, sont inventoriés et que leurs mouvements hors zone sont tracés.",
+       "pr": [
+        "Inventaire des supports",
+        "Constat de marquage",
+        "Registre de sortie"
+       ]
+      },
+      {
+       "id": "II901-SUP-04",
+       "t": "Maîtrise des impressions et des copieurs",
+       "src": "II 901 — Supports",
+       "ctrl": "Vérifier que les impressions d'informations sensibles sont maîtrisées (libération par badge, absence de documents abandonnés, purge des disques des copieurs, désactivation des services réseau inutiles).",
+       "pr": [
+        "Configuration des imprimantes",
+        "Constat de visite près des copieurs",
+        "Procédure de fin de vie des copieurs"
+       ]
+      },
+      {
+       "id": "II901-SUP-05",
+       "t": "Effacement et destruction en fin de vie",
+       "src": "II 901 — Fin de vie",
+       "ctrl": "Vérifier que les supports réformés, réaffectés ou envoyés en maintenance font l'objet d'un effacement sécurisé ou d'une destruction physique adaptée, tracés par un document.",
+       "pr": [
+        "Procédure d'effacement",
+        "Certificats ou procès-verbaux de destruction",
+        "Contrat du prestataire de destruction"
+       ]
+      },
+      {
+       "id": "II901-SUP-06",
+       "t": "Destruction des documents papier",
+       "src": "II 901 — Supports",
+       "ctrl": "Vérifier que les documents papier sensibles sont détruits par un moyen adapté au niveau de protection et que des corbeilles ordinaires ne sont pas utilisées à cette fin.",
+       "pr": [
+        "Broyeurs disponibles et conformes",
+        "Constat de visite",
+        "Contrat de collecte sécurisée"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "JOU",
+     "nom": "Journalisation, détection et supervision",
+     "exigences": [
+      {
+       "id": "II901-JOU-01",
+       "t": "Politique de journalisation définie",
+       "src": "II 901 — Journalisation",
+       "ctrl": "Vérifier qu'une politique de journalisation définit les événements collectés, les équipements concernés, la durée de conservation et les modalités d'exploitation, en cohérence avec l'analyse de risque et le cadre juridique.",
+       "pr": [
+        "Politique de journalisation",
+        "Périmètre couvert",
+        "Durées de conservation"
+       ]
+      },
+      {
+       "id": "II901-JOU-02",
+       "t": "Collecte centralisée et protection des journaux",
+       "src": "II 901 — Journalisation",
+       "ctrl": "Vérifier que les journaux sont centralisés sur un dispositif dédié, protégés en intégrité et en accès, et conservés pendant la durée définie.",
+       "pr": [
+        "Architecture de collecte",
+        "Droits d'accès au collecteur",
+        "Contrôle d'exhaustivité"
+       ]
+      },
+      {
+       "id": "II901-JOU-03",
+       "t": "Exploitation effective des journaux",
+       "src": "II 901 — Détection",
+       "ctrl": "Vérifier que les journaux sont réellement analysés (règles de corrélation, revue périodique, alertes définies) et que l'analyse donne lieu à des actions tracées, et non à une simple conservation.",
+       "pr": [
+        "Règles de détection",
+        "Comptes rendus d'analyse",
+        "Exemples d'alertes traitées"
+       ]
+      },
+      {
+       "id": "II901-JOU-04",
+       "t": "Détection des événements de sécurité significatifs",
+       "src": "II 901 — Détection",
+       "ctrl": "Vérifier que les événements significatifs sont couverts : échecs d'authentification répétés, élévation de privilèges, connexions hors horaires, branchement de supports, modifications de configuration, flux sortants anormaux.",
+       "pr": [
+        "Liste des cas d'usage de détection",
+        "Tests de détection réalisés"
+       ]
+      },
+      {
+       "id": "II901-JOU-05",
+       "t": "Information des utilisateurs et proportionnalité",
+       "src": "II 901 — Journalisation",
+       "ctrl": "Vérifier que les dispositifs de journalisation ont fait l'objet de l'information des personnels et des formalités requises, et que les données collectées sont proportionnées à la finalité de sécurité.",
+       "pr": [
+        "Note d'information",
+        "Registre des traitements",
+        "Avis des instances compétentes"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "MCS",
+     "nom": "Maintien en condition de sécurité",
+     "exigences": [
+      {
+       "id": "II901-MCS-01",
+       "t": "Veille sur les vulnérabilités",
+       "src": "II 901 — MCS",
+       "ctrl": "Vérifier qu'une veille sur les vulnérabilités et les avis de sécurité (CERT-FR notamment) est organisée, tracée et couvre l'ensemble des technologies du périmètre.",
+       "pr": [
+        "Sources de veille",
+        "Traces de traitement des avis",
+        "Inventaire technologique rapproché"
+       ]
+      },
+      {
+       "id": "II901-MCS-02",
+       "t": "Application maîtrisée des correctifs",
+       "src": "II 901 — MCS",
+       "ctrl": "Vérifier l'existence d'un processus de qualification et de déploiement des correctifs, assorti de délais cibles différenciés selon la criticité, et mesurer l'écart réel sur un échantillon.",
+       "pr": [
+        "Procédure de gestion des correctifs",
+        "Rapports de déploiement",
+        "Relevé des correctifs manquants"
+       ]
+      },
+      {
+       "id": "II901-MCS-03",
+       "t": "Maîtrise des composants obsolètes",
+       "src": "II 901 — MCS",
+       "ctrl": "Vérifier que les systèmes et logiciels non maintenus par l'éditeur sont identifiés, que des mesures compensatoires sont en place et qu'un plan de sortie d'obsolescence est arrêté.",
+       "pr": [
+        "Inventaire des obsolescences",
+        "Mesures compensatoires documentées",
+        "Plan de migration daté"
+       ]
+      },
+      {
+       "id": "II901-MCS-04",
+       "t": "Gestion des changements",
+       "src": "II 901 — MCS",
+       "ctrl": "Vérifier que les évolutions du SI sont soumises à un processus de gestion des changements intégrant une analyse d'impact sécurité et, le cas échéant, la saisine de l'autorité d'homologation.",
+       "pr": [
+        "Procédure de gestion des changements",
+        "Fiches de changement avec volet sécurité"
+       ]
+      },
+      {
+       "id": "II901-MCS-05",
+       "t": "Contrôle périodique de vulnérabilités",
+       "src": "II 901 — MCS",
+       "ctrl": "Vérifier qu'un balayage de vulnérabilités ou un audit technique périodique est réalisé sur le périmètre et que les résultats alimentent un plan de remédiation suivi.",
+       "pr": [
+        "Rapports de balayage",
+        "Plan de remédiation",
+        "Preuves de correction"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SAU",
+     "nom": "Sauvegarde, continuité et reprise",
+     "exigences": [
+      {
+       "id": "II901-SAU-01",
+       "t": "Politique de sauvegarde définie et appliquée",
+       "src": "II 901 — Sauvegarde",
+       "ctrl": "Vérifier qu'une politique de sauvegarde définit le périmètre, la fréquence, la rétention et le niveau de protection des sauvegardes, et qu'elle est effectivement appliquée.",
+       "pr": [
+        "Politique de sauvegarde",
+        "Journaux de sauvegarde",
+        "Rapports d'échec traités"
+       ]
+      },
+      {
+       "id": "II901-SAU-02",
+       "t": "Protection et externalisation des sauvegardes",
+       "src": "II 901 — Sauvegarde",
+       "ctrl": "Vérifier que les sauvegardes d'informations sensibles bénéficient du même niveau de protection que les données d'origine, qu'elles sont chiffrées si elles sortent de la zone maîtrisée, et qu'un jeu est conservé hors ligne ou hors site.",
+       "pr": [
+        "Localisation des sauvegardes",
+        "Preuve de chiffrement",
+        "Modalités de transport"
+       ]
+      },
+      {
+       "id": "II901-SAU-03",
+       "t": "Tests de restauration",
+       "src": "II 901 — Sauvegarde",
+       "ctrl": "Vérifier que des tests de restauration sont réalisés périodiquement, portent sur des données réelles et sont consignés avec leur résultat.",
+       "pr": [
+        "Comptes rendus de test de restauration",
+        "Périmètre et date des tests"
+       ]
+      },
+      {
+       "id": "II901-SAU-04",
+       "t": "Continuité d'activité et reprise",
+       "src": "II 901 — Continuité",
+       "ctrl": "Vérifier l'existence d'un plan de continuité ou de reprise couvrant le SI sensible, avec objectifs de reprise définis, procédures dégradées et exercices périodiques.",
+       "pr": [
+        "Plan de continuité",
+        "Objectifs RTO/RPO",
+        "Comptes rendus d'exercice"
+       ]
+      },
+      {
+       "id": "II901-SAU-05",
+       "t": "Résilience des sauvegardes face à un rançongiciel",
+       "src": "II 901 — Sauvegarde",
+       "ctrl": "Vérifier que les sauvegardes ne peuvent être altérées depuis le SI de production compromis : cloisonnement des comptes, immuabilité ou déconnexion, surveillance des suppressions massives.",
+       "pr": [
+        "Architecture de sauvegarde",
+        "Comptes et droits sur le système de sauvegarde",
+        "Mécanisme d'immuabilité"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "INC",
+     "nom": "Gestion des incidents et des compromissions",
+     "exigences": [
+      {
+       "id": "II901-INC-01",
+       "t": "Procédure de gestion des incidents",
+       "src": "II 901 — Incidents",
+       "ctrl": "Vérifier l'existence d'une procédure de détection, de qualification, de traitement et de clôture des incidents de sécurité, connue des personnels et assortie de points de contact identifiés.",
+       "pr": [
+        "Procédure formalisée",
+        "Fiches d'incident",
+        "Annuaire de crise"
+       ]
+      },
+      {
+       "id": "II901-INC-02",
+       "t": "Déclaration aux autorités compétentes",
+       "src": "II 901 — Incidents",
+       "ctrl": "Vérifier que les incidents significatifs sont déclarés selon la chaîne prévue (chaîne SSI ministérielle, ANSSI, HFDS) dans les délais requis, et que les déclarations sont tracées.",
+       "pr": [
+        "Registre des déclarations",
+        "Accusés de réception",
+        "Chaîne d'alerte documentée"
+       ]
+      },
+      {
+       "id": "II901-INC-03",
+       "t": "Traitement des suspicions de compromission d'informations sensibles",
+       "src": "II 901 — Incidents",
+       "ctrl": "Vérifier qu'une procédure spécifique couvre la compromission avérée ou suspectée d'informations sensibles : gel des éléments de preuve, périmètre touché, information de l'autorité qualifiée.",
+       "pr": [
+        "Procédure de compromission",
+        "Exemples de traitement",
+        "Mesures conservatoires prévues"
+       ]
+      },
+      {
+       "id": "II901-INC-04",
+       "t": "Capacité de réaction et préservation des preuves",
+       "src": "II 901 — Incidents",
+       "ctrl": "Vérifier que les moyens de réaction sont prévus (isolement, collecte de traces, recours à un prestataire de réponse à incident) et que la préservation des preuves est organisée.",
+       "pr": [
+        "Convention avec un prestataire de réponse",
+        "Procédure de collecte",
+        "Matériel et supports prévus"
+       ]
+      },
+      {
+       "id": "II901-INC-05",
+       "t": "Retour d'expérience",
+       "src": "II 901 — Incidents",
+       "ctrl": "Vérifier que les incidents donnent lieu à un retour d'expérience formalisé et que les actions correctives sont intégrées au plan d'action SSI.",
+       "pr": [
+        "Comptes rendus de retour d'expérience",
+        "Actions correctives suivies"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "EXT",
+     "nom": "Prestataires, sous-traitance et hébergement",
+     "exigences": [
+      {
+       "id": "II901-EXT-01",
+       "t": "Clauses de sécurité contractuelles",
+       "src": "II 901 — Prestataires",
+       "ctrl": "Vérifier que les marchés et contrats donnant accès à des informations sensibles comportent des clauses de sécurité : obligations, confidentialité, localisation, droit d'audit, réversibilité, gestion des incidents et fin de contrat.",
+       "pr": [
+        "Contrats et annexes de sécurité",
+        "Clauses types",
+        "Revue d'un contrat récent"
+       ]
+      },
+      {
+       "id": "II901-EXT-02",
+       "t": "Qualification et contrôle des prestataires",
+       "src": "II 901 — Prestataires",
+       "ctrl": "Vérifier que le niveau d'exigence imposé aux prestataires est cohérent avec la sensibilité (recours à des prestataires qualifiés lorsque requis) et que leur conformité fait l'objet de contrôles.",
+       "pr": [
+        "Critères de sélection",
+        "Attestations ou qualifications",
+        "Comptes rendus de contrôle"
+       ]
+      },
+      {
+       "id": "II901-EXT-03",
+       "t": "Maîtrise des accès des prestataires",
+       "src": "II 901 — Prestataires",
+       "ctrl": "Vérifier que les accès accordés aux prestataires sont nominatifs, limités dans le temps et en périmètre, tracés, et révoqués en fin de prestation.",
+       "pr": [
+        "Liste des comptes prestataires",
+        "Dates d'ouverture et de fermeture",
+        "Journaux d'accès distants"
+       ]
+      },
+      {
+       "id": "II901-EXT-04",
+       "t": "Hébergement et informatique en nuage",
+       "src": "II 901 — Prestataires",
+       "ctrl": "Vérifier que tout hébergement externalisé d'informations sensibles a été autorisé, qu'il respecte les exigences de localisation et de protection applicables et qu'il est couvert par l'homologation.",
+       "pr": [
+        "Décision d'autorisation",
+        "Localisation des données et des administrateurs",
+        "Qualification du service"
+       ]
+      },
+      {
+       "id": "II901-EXT-05",
+       "t": "Réversibilité et restitution en fin de contrat",
+       "src": "II 901 — Prestataires",
+       "ctrl": "Vérifier que la fin de contrat prévoit la restitution intégrale des données, la preuve de leur effacement chez le prestataire et la révocation des accès.",
+       "pr": [
+        "Clause de réversibilité",
+        "Attestations d'effacement",
+        "Preuve de fermeture des accès"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "CTL",
+     "nom": "Contrôle, audit et amélioration continue",
+     "exigences": [
+      {
+       "id": "II901-CTL-01",
+       "t": "Programme de contrôle interne SSI",
+       "src": "II 901 — Contrôle",
+       "ctrl": "Vérifier qu'un programme pluriannuel de contrôles internes SSI existe, qu'il est exécuté et que ses constats alimentent le plan d'action.",
+       "pr": [
+        "Programme de contrôle",
+        "Rapports de contrôle",
+        "Suivi des actions"
+       ]
+      },
+      {
+       "id": "II901-CTL-02",
+       "t": "Audits de sécurité périodiques",
+       "src": "II 901 — Contrôle",
+       "ctrl": "Vérifier que le système fait l'objet d'audits périodiques (configuration, architecture, intrusion, code selon le cas) proportionnés aux enjeux, réalisés par des auditeurs compétents et indépendants du projet.",
+       "pr": [
+        "Rapports d'audit",
+        "Qualification des auditeurs",
+        "Périodicité respectée"
+       ]
+      },
+      {
+       "id": "II901-CTL-03",
+       "t": "Suivi des recommandations d'audit",
+       "src": "II 901 — Contrôle",
+       "ctrl": "Vérifier que les recommandations issues des audits antérieurs sont suivies jusqu'à leur clôture, et relever celles restées ouvertes au-delà de leur échéance.",
+       "pr": [
+        "Registre des recommandations",
+        "État d'avancement",
+        "Justification des non-traitées"
+       ]
+      },
+      {
+       "id": "II901-CTL-04",
+       "t": "Documentation maintenue et accessible",
+       "src": "II 901 — Documentation",
+       "ctrl": "Vérifier que la documentation de sécurité est à jour, versionnée, accessible aux acteurs concernés et protégée selon sa propre sensibilité.",
+       "pr": [
+        "Référentiel documentaire",
+        "Dates de mise à jour",
+        "Droits d'accès à la documentation"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "IGI1300",
+   "code": "IGI 1300",
+   "nom": "Protection du secret de la défense nationale",
+   "ref": "Instruction générale interministérielle n° 1300 sur la protection du secret de la défense nationale (version en vigueur)",
+   "portee": "Informations et supports classifiés au niveau Secret ou Très Secret, ainsi que les mentions particulières associées.",
+   "niveaux": [
+    "S",
+    "TS"
+   ],
+   "domaines": [
+    {
+     "id": "ORG",
+     "nom": "Organisation de la protection du secret",
+     "exigences": [
+      {
+       "id": "IGI1300-ORG-01",
+       "t": "Autorité qualifiée et chaîne de sécurité désignées",
+       "src": "IGI 1300 — Organisation",
+       "ctrl": "Vérifier que l'autorité responsable de la protection du secret au sein de l'entité est formellement désignée, ainsi que la chaîne de sécurité qui lui est rattachée, par des actes écrits en vigueur.",
+       "pr": [
+        "Décisions de désignation",
+        "Organigramme de sécurité",
+        "Lettres de mission"
+       ]
+      },
+      {
+       "id": "IGI1300-ORG-02",
+       "t": "Officier de sécurité désigné et suppléé",
+       "src": "IGI 1300 — Organisation",
+       "ctrl": "Vérifier qu'un officier de sécurité est désigné par écrit, qu'un suppléant est prévu, qu'ils sont eux-mêmes habilités au niveau requis et formés à leurs attributions.",
+       "pr": [
+        "Décision de désignation de l'officier de sécurité et du suppléant",
+        "Décisions d'habilitation",
+        "Attestations de formation"
+       ]
+      },
+      {
+       "id": "IGI1300-ORG-03",
+       "t": "Instruction ou consignes internes de sécurité",
+       "src": "IGI 1300 — Organisation",
+       "ctrl": "Vérifier l'existence de consignes internes déclinant l'instruction pour l'entité : détention, circulation, reproduction, destruction, conduite à tenir en cas d'incident, et vérifier leur diffusion effective.",
+       "pr": [
+        "Consignes internes signées et datées",
+        "Preuve de diffusion",
+        "Affichage dans les locaux concernés"
+       ]
+      },
+      {
+       "id": "IGI1300-ORG-04",
+       "t": "Recensement des points de détention du secret",
+       "src": "IGI 1300 — Organisation",
+       "ctrl": "Vérifier que l'entité tient à jour la liste des lieux, locaux et systèmes détenant des informations classifiées, et que cette liste correspond à la réalité constatée sur site.",
+       "pr": [
+        "Liste des points de détention",
+        "Plans des locaux",
+        "Constat de visite contradictoire"
+       ]
+      },
+      {
+       "id": "IGI1300-ORG-05",
+       "t": "Registre des habilitations tenu à jour",
+       "src": "IGI 1300 — Organisation",
+       "ctrl": "Vérifier que l'officier de sécurité tient un registre ou fichier des personnes habilitées de l'entité, avec niveau, date de décision et échéance, et que ce registre est exact et exploité pour le suivi des échéances.",
+       "pr": [
+        "Registre des habilitations",
+        "Rapprochement avec les effectifs",
+        "Alertes d'échéance"
+       ]
+      },
+      {
+       "id": "IGI1300-ORG-06",
+       "t": "Plan de protection et mesures en cas de crise",
+       "src": "IGI 1300 — Organisation",
+       "ctrl": "Vérifier que des dispositions sont prévues pour la protection ou l'évacuation d'urgence des informations classifiées (incendie, intrusion, crise) et qu'elles sont connues des personnels concernés.",
+       "pr": [
+        "Consignes d'urgence",
+        "Ordre de priorité d'évacuation ou de destruction",
+        "Exercice réalisé"
+       ]
+      },
+      {
+       "id": "IGI1300-ORG-07",
+       "t": "Formation et information des détenteurs",
+       "src": "IGI 1300 — Organisation",
+       "ctrl": "Vérifier que toute personne habilitée reçoit, avant tout accès, une information sur ses obligations et les sanctions encourues, renouvelée périodiquement, et que cette information est tracée.",
+       "pr": [
+        "Supports de formation",
+        "Émargements",
+        "Registre de l'officier de sécurité"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "HAB",
+     "nom": "Habilitation et besoin d'en connaître",
+     "exigences": [
+      {
+       "id": "IGI1300-HAB-01",
+       "t": "Double condition d'accès respectée",
+       "src": "IGI 1300 — Accès aux informations classifiées",
+       "ctrl": "Vérifier que l'accès aux informations classifiées n'est ouvert qu'aux personnes cumulant une décision d'habilitation au niveau requis et le besoin d'en connaître, et que ce cumul est contrôlé avant chaque communication.",
+       "pr": [
+        "Liste des personnes ayant accès",
+        "Justification du besoin d'en connaître",
+        "Procédure de contrôle avant communication"
+       ]
+      },
+      {
+       "id": "IGI1300-HAB-02",
+       "t": "Catalogue des emplois justifiant une habilitation",
+       "src": "IGI 1300 — Habilitation",
+       "ctrl": "Vérifier l'existence d'un catalogue ou d'une liste des emplois justifiant une habilitation, tenu à jour, justifiant le niveau demandé pour chaque poste, et l'absence d'habilitations sans emploi correspondant.",
+       "pr": [
+        "Catalogue des emplois",
+        "Rapprochement emplois / habilitations en cours",
+        "Justifications des écarts"
+       ]
+      },
+      {
+       "id": "IGI1300-HAB-03",
+       "t": "Décisions d'habilitation régulières et en cours de validité",
+       "src": "IGI 1300 — Habilitation",
+       "ctrl": "Vérifier par sondage que les décisions d'habilitation sont formelles, signées par l'autorité compétente, au niveau adapté à l'emploi, et en cours de validité au regard des durées fixées par l'instruction.",
+       "pr": [
+        "Décisions d'habilitation",
+        "Dates de signature et d'échéance",
+        "Échantillon contrôlé"
+       ]
+      },
+      {
+       "id": "IGI1300-HAB-04",
+       "t": "Procédure d'habilitation conduite dans les formes",
+       "src": "IGI 1300 — Habilitation",
+       "ctrl": "Vérifier que les demandes d'habilitation sont instruites selon la procédure prévue (dossier, notice de sécurité, avis de l'autorité d'enquête) et que les délais d'anticipation sont respectés.",
+       "pr": [
+        "Dossiers de demande",
+        "Traces des avis",
+        "Délais constatés"
+       ]
+      },
+      {
+       "id": "IGI1300-HAB-05",
+       "t": "Engagement de responsabilité signé",
+       "src": "IGI 1300 — Habilitation",
+       "ctrl": "Vérifier que chaque personne habilitée a signé l'engagement de responsabilité prévu lors de la notification de sa décision, et que cet engagement est conservé par l'officier de sécurité.",
+       "pr": [
+        "Engagements signés",
+        "Registre de notification",
+        "Échantillon contrôlé"
+       ]
+      },
+      {
+       "id": "IGI1300-HAB-06",
+       "t": "Renouvellement anticipé des habilitations",
+       "src": "IGI 1300 — Habilitation",
+       "ctrl": "Vérifier qu'un suivi des échéances permet d'engager les renouvellements suffisamment tôt, et relever les personnes exerçant sur un emploi sensible avec une habilitation échue ou en cours de renouvellement.",
+       "pr": [
+        "Tableau de suivi des échéances",
+        "Liste des habilitations échues",
+        "Mesures conservatoires prises"
+       ]
+      },
+      {
+       "id": "IGI1300-HAB-07",
+       "t": "Retrait, suspension et fin d'habilitation",
+       "src": "IGI 1300 — Habilitation",
+       "ctrl": "Vérifier que les mutations, départs et retraits d'habilitation entraînent sans délai le retrait des accès, la restitution des supports classifiés et la signature de la déclaration de fin d'accès prévue.",
+       "pr": [
+        "Procédure de départ",
+        "Déclarations de fin d'accès",
+        "Preuves de restitution des supports"
+       ]
+      },
+      {
+       "id": "IGI1300-HAB-08",
+       "t": "Signalement des éléments nouveaux de vulnérabilité",
+       "src": "IGI 1300 — Habilitation",
+       "ctrl": "Vérifier que les personnes habilitées sont informées de leur obligation de signaler tout élément nouveau susceptible d'affecter leur habilitation, et que l'officier de sécurité traite ces signalements.",
+       "pr": [
+        "Consigne écrite",
+        "Registre des signalements",
+        "Suites données"
+       ]
+      },
+      {
+       "id": "IGI1300-HAB-09",
+       "t": "Accès des personnes non habilitées encadré",
+       "src": "IGI 1300 — Accès",
+       "ctrl": "Vérifier que les personnes non habilitées n'accèdent jamais à des informations classifiées, y compris lors d'interventions techniques, de visites ou de réunions, et que des mesures d'accompagnement et de mise à l'abri sont appliquées.",
+       "pr": [
+        "Procédure d'accompagnement",
+        "Registre des visiteurs",
+        "Constat lors d'une intervention"
+       ]
+      },
+      {
+       "id": "IGI1300-HAB-10",
+       "t": "Habilitations des ressortissants étrangers et accords internationaux",
+       "src": "IGI 1300 — Accès",
+       "ctrl": "Vérifier que la communication d'informations classifiées à des ressortissants étrangers ou à des organisations internationales s'appuie sur un accord de sécurité applicable et sur les autorisations requises.",
+       "pr": [
+        "Accords de sécurité applicables",
+        "Autorisations de communication",
+        "Certificats de sécurité étrangers"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "CLA",
+     "nom": "Classification, marquage et déclassification",
+     "exigences": [
+      {
+       "id": "IGI1300-CLA-01",
+       "t": "Décision de classification par l'autorité compétente",
+       "src": "IGI 1300 — Classification",
+       "ctrl": "Vérifier que la classification des informations produites par l'entité est décidée par l'autorité émettrice compétente, au juste niveau, et qu'elle est justifiée par l'atteinte aux intérêts fondamentaux de la Nation qu'une divulgation causerait.",
+       "pr": [
+        "Guide de classification interne",
+        "Exemples de documents produits",
+        "Traçabilité de la décision"
+       ]
+      },
+      {
+       "id": "IGI1300-CLA-02",
+       "t": "Guide de classification du périmètre",
+       "src": "IGI 1300 — Classification",
+       "ctrl": "Vérifier l'existence d'un guide de classification propre au programme ou au périmètre, à jour, diffusé aux rédacteurs, et effectivement utilisé.",
+       "pr": [
+        "Guide de classification",
+        "Preuve de diffusion",
+        "Entretien avec des rédacteurs"
+       ]
+      },
+      {
+       "id": "IGI1300-CLA-03",
+       "t": "Marquage conforme des documents",
+       "src": "IGI 1300 — Marquage",
+       "ctrl": "Vérifier sur un échantillon que les documents classifiés portent le timbre de classification aux emplacements prévus, sur chaque page, ainsi que les mentions requises : émetteur, date, numéro d'exemplaire, pagination et nombre total de pages.",
+       "pr": [
+        "Échantillon de documents examinés",
+        "Modèle de page type",
+        "Écarts relevés"
+       ]
+      },
+      {
+       "id": "IGI1300-CLA-04",
+       "t": "Marquage des mentions particulières",
+       "src": "IGI 1300 — Marquage",
+       "ctrl": "Vérifier que les mentions particulières et restrictions de diffusion sont apposées conformément aux règles et que leur signification est connue des détenteurs.",
+       "pr": [
+        "Documents portant des mentions particulières",
+        "Consignes associées"
+       ]
+      },
+      {
+       "id": "IGI1300-CLA-05",
+       "t": "Marquage des supports non documentaires",
+       "src": "IGI 1300 — Marquage",
+       "ctrl": "Vérifier que les supports informatiques, équipements et matériels contenant des informations classifiées portent un marquage visible et durable correspondant au niveau le plus élevé qu'ils contiennent.",
+       "pr": [
+        "Constat sur les supports",
+        "Étiquetage des postes et disques",
+        "Inventaire des supports marqués"
+       ]
+      },
+      {
+       "id": "IGI1300-CLA-06",
+       "t": "Classification des documents composites",
+       "src": "IGI 1300 — Classification",
+       "ctrl": "Vérifier que les documents agrégeant plusieurs sources sont classifiés au niveau le plus élevé des éléments qu'ils contiennent et que l'effet d'agrégation est pris en compte.",
+       "pr": [
+        "Exemples de documents composites",
+        "Règle écrite sur l'agrégation"
+       ]
+      },
+      {
+       "id": "IGI1300-CLA-07",
+       "t": "Déclassification et changement de niveau tracés",
+       "src": "IGI 1300 — Déclassification",
+       "ctrl": "Vérifier que toute déclassification ou changement de niveau résulte d'une décision de l'autorité émettrice, qu'elle est tracée et que les marquages des exemplaires sont mis à jour ou annulés en conséquence.",
+       "pr": [
+        "Décisions de déclassification",
+        "Traitement des exemplaires diffusés",
+        "Registre associé"
+       ]
+      },
+      {
+       "id": "IGI1300-CLA-08",
+       "t": "Durée de classification et revue périodique",
+       "src": "IGI 1300 — Classification",
+       "ctrl": "Vérifier que la durée de la classification fait l'objet d'un réexamen périodique afin d'éviter le maintien injustifié du secret, selon les modalités prévues par l'instruction.",
+       "pr": [
+        "Comptes rendus de revue",
+        "Décisions prises à l'issue"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GES",
+     "nom": "Détention, inventaire et traçabilité",
+     "exigences": [
+      {
+       "id": "IGI1300-GES-01",
+       "t": "Inventaire des informations et supports classifiés",
+       "src": "IGI 1300 — Gestion des supports",
+       "ctrl": "Vérifier qu'un inventaire des documents et supports classifiés détenus est tenu, qu'il mentionne les éléments d'identification requis et qu'il correspond aux supports réellement présents.",
+       "pr": [
+        "Inventaire ou registre",
+        "Recollement contradictoire sur échantillon",
+        "Écarts constatés"
+       ]
+      },
+      {
+       "id": "IGI1300-GES-02",
+       "t": "Recensement périodique et procès-verbal",
+       "src": "IGI 1300 — Gestion des supports",
+       "ctrl": "Vérifier qu'un recensement périodique des supports classifiés est effectué selon la périodicité prévue, donne lieu à un procès-verbal signé, et que les manquants font l'objet d'un traitement.",
+       "pr": [
+        "Procès-verbaux de recensement",
+        "Dates et signataires",
+        "Suites données aux manquants"
+       ]
+      },
+      {
+       "id": "IGI1300-GES-03",
+       "t": "Traçabilité renforcée des documents Très Secret",
+       "src": "IGI 1300 — Très Secret",
+       "n": [
+        "TS"
+       ],
+       "ctrl": "Vérifier que les documents classifiés au niveau Très Secret font l'objet du suivi renforcé prévu : enregistrement particulier, suivi nominatif des détenteurs, contrôle et recensement selon les modalités propres à ce niveau.",
+       "pr": [
+        "Registre spécifique Très Secret",
+        "Traces de contrôle",
+        "Constat sur place"
+       ]
+      },
+      {
+       "id": "IGI1300-GES-04",
+       "t": "Détenteur identifié pour chaque support",
+       "src": "IGI 1300 — Gestion des supports",
+       "ctrl": "Vérifier que chaque document ou support classifié est rattaché à un détenteur responsable identifié, et que les prêts et transferts internes sont enregistrés.",
+       "pr": [
+        "Registre des détenteurs",
+        "Fiches de prêt",
+        "Contrôle par sondage"
+       ]
+      },
+      {
+       "id": "IGI1300-GES-05",
+       "t": "Bordereaux et accusés de réception",
+       "src": "IGI 1300 — Gestion des supports",
+       "ctrl": "Vérifier que les envois de documents classifiés sont accompagnés d'un bordereau et que les accusés de réception sont retournés, collectés et archivés par l'officier de sécurité.",
+       "pr": [
+        "Bordereaux d'envoi",
+        "Accusés de réception classés",
+        "Relances des accusés manquants"
+       ]
+      },
+      {
+       "id": "IGI1300-GES-06",
+       "t": "Diffusion limitée au besoin d'en connaître",
+       "src": "IGI 1300 — Diffusion",
+       "ctrl": "Vérifier que les listes de diffusion des documents classifiés sont établies et revues selon le besoin d'en connaître, et que l'autorisation de l'émetteur est requise pour toute rediffusion.",
+       "pr": [
+        "Listes de diffusion",
+        "Autorisations de rediffusion",
+        "Contrôle par sondage"
+       ]
+      },
+      {
+       "id": "IGI1300-GES-07",
+       "t": "Conservation en meuble de sécurité adapté",
+       "src": "IGI 1300 — Conservation",
+       "ctrl": "Vérifier que les documents classifiés sont conservés dans des meubles de sécurité conformes aux prescriptions applicables au niveau considéré, effectivement fermés, et que leur emplacement est recensé.",
+       "pr": [
+        "Inventaire des meubles de sécurité et de leurs caractéristiques",
+        "Constat de visite inopinée",
+        "Registre d'affectation"
+       ]
+      },
+      {
+       "id": "IGI1300-GES-08",
+       "t": "Gestion des combinaisons et des clés",
+       "src": "IGI 1300 — Conservation",
+       "ctrl": "Vérifier que les combinaisons et clés des meubles de sécurité sont connues des seules personnes désignées, changées lors de tout changement de détenteur ou incident, et que les doubles sont placés sous pli scellé conservé en lieu sûr.",
+       "pr": [
+        "Registre des détenteurs de combinaison",
+        "Plis scellés en coffre",
+        "Traces de changement de combinaison"
+       ]
+      },
+      {
+       "id": "IGI1300-GES-09",
+       "t": "Archivage des informations classifiées",
+       "src": "IGI 1300 — Archivage",
+       "ctrl": "Vérifier que l'archivage des documents classifiés respecte les règles de protection applicables jusqu'au versement aux services d'archives compétents, sans rupture de traçabilité.",
+       "pr": [
+        "Procédure d'archivage",
+        "Bordereaux de versement",
+        "Conditions de stockage des archives"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "LOC",
+     "nom": "Locaux, zones et protection physique",
+     "exigences": [
+      {
+       "id": "IGI1300-LOC-01",
+       "t": "Création et délimitation des zones protégées",
+       "src": "IGI 1300 — Protection physique",
+       "ctrl": "Vérifier que les lieux abritant des informations classifiées sont constitués en zone protégée par une décision formelle, que leurs limites sont matérialisées et signalées, et que la décision est à jour.",
+       "pr": [
+        "Arrêté ou décision de création de zone",
+        "Plans annexés",
+        "Signalisation en place"
+       ]
+      },
+      {
+       "id": "IGI1300-LOC-02",
+       "t": "Contrôle d'accès aux zones",
+       "src": "IGI 1300 — Protection physique",
+       "ctrl": "Vérifier que l'accès aux zones protégées est contrôlé, limité aux personnes autorisées nominativement, tracé, et que les autorisations sont revues périodiquement.",
+       "pr": [
+        "Liste des personnes autorisées",
+        "Journaux du contrôle d'accès",
+        "Compte rendu de revue"
+       ]
+      },
+      {
+       "id": "IGI1300-LOC-03",
+       "t": "Accompagnement des visiteurs et intervenants",
+       "src": "IGI 1300 — Protection physique",
+       "ctrl": "Vérifier que les visiteurs et intervenants non autorisés sont enregistrés, porteurs d'un signe distinctif et accompagnés en permanence par une personne habilitée pendant toute leur présence en zone.",
+       "pr": [
+        "Registre des visiteurs",
+        "Badges visiteurs",
+        "Constat sur site"
+       ]
+      },
+      {
+       "id": "IGI1300-LOC-04",
+       "t": "Moyens de détection et de surveillance",
+       "src": "IGI 1300 — Protection physique",
+       "ctrl": "Vérifier que les zones sont dotées des moyens de détection d'intrusion et de surveillance prévus, qu'ils sont en état de fonctionnement, maintenus, et que les alarmes donnent lieu à une intervention dans un délai maîtrisé.",
+       "pr": [
+        "Description des moyens",
+        "Contrats et comptes rendus de maintenance",
+        "Journal des alarmes et des interventions"
+       ]
+      },
+      {
+       "id": "IGI1300-LOC-05",
+       "t": "Protection périphérique et mesures de retardement",
+       "src": "IGI 1300 — Protection physique",
+       "ctrl": "Vérifier que les protections physiques (portes, huisseries, vitrages, barreaudage, serrures) sont adaptées au niveau de protection requis et exemptes de points de faiblesse manifestes.",
+       "pr": [
+        "Constat de visite technique",
+        "Caractéristiques des équipements",
+        "Écarts relevés"
+       ]
+      },
+      {
+       "id": "IGI1300-LOC-06",
+       "t": "Salles de réunion abritant des échanges classifiés",
+       "src": "IGI 1300 — Protection physique",
+       "ctrl": "Vérifier que les réunions portant sur des informations classifiées se tiennent dans des locaux adaptés, avec contrôle des participants et de leur habilitation, et interdiction ou dépôt des équipements non autorisés.",
+       "pr": [
+        "Consigne de réunion sensible",
+        "Feuilles de présence avec vérification d'habilitation",
+        "Dispositif de dépôt des terminaux"
+       ]
+      },
+      {
+       "id": "IGI1300-LOC-07",
+       "t": "Interdiction des appareils d'enregistrement et de transmission",
+       "src": "IGI 1300 — Protection physique",
+       "ctrl": "Vérifier que l'introduction d'appareils d'enregistrement, de photographie ou de transmission en zone protégée est interdite ou strictement encadrée, que l'interdiction est affichée et qu'elle est respectée.",
+       "pr": [
+        "Affichage",
+        "Dispositif de consigne",
+        "Constat de visite inopinée"
+       ]
+      },
+      {
+       "id": "IGI1300-LOC-08",
+       "t": "Fin de journée et mise en sûreté",
+       "src": "IGI 1300 — Protection physique",
+       "ctrl": "Vérifier qu'une procédure de fin de journée impose le rangement des documents classifiés, la fermeture des meubles de sécurité et la vérification des locaux, et que son exécution est tracée.",
+       "pr": [
+        "Consigne de fermeture",
+        "Fiches de contrôle de fin de journée",
+        "Constat de visite en fin de journée"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "TRA",
+     "nom": "Transmission, transport et échanges",
+     "exigences": [
+      {
+       "id": "IGI1300-TRA-01",
+       "t": "Transport par personne habilitée et modalités prévues",
+       "src": "IGI 1300 — Transport",
+       "ctrl": "Vérifier que le transport de supports classifiés s'effectue selon les modalités prévues par l'instruction, par une personne habilitée au niveau requis, munie des documents nécessaires, sans interruption de la garde.",
+       "pr": [
+        "Procédure de transport",
+        "Ordres de transport",
+        "Registre des convoyages"
+       ]
+      },
+      {
+       "id": "IGI1300-TRA-02",
+       "t": "Conditionnement sous double enveloppe",
+       "src": "IGI 1300 — Transport",
+       "ctrl": "Vérifier que le conditionnement des envois respecte les règles applicables, notamment l'enveloppe intérieure portant les mentions requises et l'enveloppe extérieure neutre, et que l'intégrité est vérifiable à la réception.",
+       "pr": [
+        "Constat sur un envoi préparé",
+        "Consigne de conditionnement",
+        "Fournitures disponibles"
+       ]
+      },
+      {
+       "id": "IGI1300-TRA-03",
+       "t": "Voies d'acheminement autorisées",
+       "src": "IGI 1300 — Transport",
+       "ctrl": "Vérifier que les voies d'acheminement employées sont celles autorisées pour le niveau considéré et qu'aucun envoi n'emprunte des services postaux ou de messagerie non autorisés.",
+       "pr": [
+        "Registre des envois et voies employées",
+        "Conventions avec les services d'acheminement"
+       ]
+      },
+      {
+       "id": "IGI1300-TRA-04",
+       "t": "Transmission électronique par moyens agréés",
+       "src": "IGI 1300 — Transmission",
+       "ctrl": "Vérifier que toute transmission électronique d'informations classifiées emprunte exclusivement des systèmes homologués et des moyens de chiffrement agréés au niveau requis, à l'exclusion de tout autre canal.",
+       "pr": [
+        "Liste des systèmes homologués utilisés",
+        "Références d'agrément des moyens de chiffrement",
+        "Constat d'absence de canaux non autorisés"
+       ]
+      },
+      {
+       "id": "IGI1300-TRA-05",
+       "t": "Interdiction des conversations classifiées sur canaux non protégés",
+       "src": "IGI 1300 — Transmission",
+       "ctrl": "Vérifier que la consigne interdisant de traiter d'informations classifiées sur les moyens de téléphonie ou de visioconférence non protégés est diffusée et respectée, et que des moyens protégés sont mis à disposition lorsque le besoin existe.",
+       "pr": [
+        "Consigne diffusée",
+        "Moyens protégés disponibles et opérationnels",
+        "Entretien avec les utilisateurs"
+       ]
+      },
+      {
+       "id": "IGI1300-TRA-06",
+       "t": "Échanges avec des entités extérieures",
+       "src": "IGI 1300 — Transmission",
+       "ctrl": "Vérifier que les échanges d'informations classifiées avec d'autres entités, y compris étrangères, reposent sur une base juridique et des procédures établies, et sont tracés.",
+       "pr": [
+        "Conventions ou accords applicables",
+        "Registre des échanges",
+        "Autorisations de l'émetteur"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "REP",
+     "nom": "Reproduction, transformation et destruction",
+     "exigences": [
+      {
+       "id": "IGI1300-REP-01",
+       "t": "Reproduction soumise à autorisation",
+       "src": "IGI 1300 — Reproduction",
+       "ctrl": "Vérifier que la reproduction de documents classifiés est soumise à l'autorisation de l'autorité émettrice lorsqu'elle est requise, qu'elle est tracée et que les exemplaires produits sont numérotés et inventoriés.",
+       "pr": [
+        "Registre des reproductions",
+        "Autorisations obtenues",
+        "Numérotation des exemplaires"
+       ]
+      },
+      {
+       "id": "IGI1300-REP-02",
+       "t": "Moyens de reproduction dédiés et maîtrisés",
+       "src": "IGI 1300 — Reproduction",
+       "ctrl": "Vérifier que les moyens de reproduction employés pour les documents classifiés sont dédiés ou maîtrisés, non connectés à des réseaux non autorisés, et que leurs mémoires sont traitées en conséquence.",
+       "pr": [
+        "Identification des matériels",
+        "Configuration réseau",
+        "Procédure de fin de vie des matériels"
+       ]
+      },
+      {
+       "id": "IGI1300-REP-03",
+       "t": "Destruction par des moyens conformes",
+       "src": "IGI 1300 — Destruction",
+       "ctrl": "Vérifier que la destruction des documents classifiés s'effectue par des moyens conformes aux prescriptions applicables au niveau considéré, et que les appareils utilisés répondent aux caractéristiques requises.",
+       "pr": [
+        "Caractéristiques des broyeurs ou incinérateurs",
+        "Constat sur site",
+        "Consigne d'emploi"
+       ]
+      },
+      {
+       "id": "IGI1300-REP-04",
+       "t": "Procès-verbal de destruction",
+       "src": "IGI 1300 — Destruction",
+       "ctrl": "Vérifier que les destructions font l'objet des procès-verbaux prévus, signés par les témoins requis selon le niveau, et que ces procès-verbaux sont archivés et rapprochés de l'inventaire.",
+       "pr": [
+        "Procès-verbaux de destruction",
+        "Signataires et témoins",
+        "Mise à jour de l'inventaire"
+       ]
+      },
+      {
+       "id": "IGI1300-REP-05",
+       "t": "Destruction des supports informatiques classifiés",
+       "src": "IGI 1300 — Destruction",
+       "ctrl": "Vérifier que les supports informatiques ayant contenu des informations classifiées sont effacés par un procédé reconnu ou détruits physiquement, et jamais réemployés à un niveau inférieur sans procédure autorisée.",
+       "pr": [
+        "Procédure de traitement des supports",
+        "Procès-verbaux",
+        "Filière de destruction employée"
+       ]
+      },
+      {
+       "id": "IGI1300-REP-06",
+       "t": "Élimination des rebuts et brouillons",
+       "src": "IGI 1300 — Destruction",
+       "ctrl": "Vérifier que les brouillons, tirages intermédiaires et rebuts issus du traitement d'informations classifiées suivent la même filière de destruction que les documents finaux.",
+       "pr": [
+        "Consigne interne",
+        "Constat de visite près des postes de travail et des imprimantes"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SIC",
+     "nom": "Systèmes d'information traitant du classifié",
+     "exigences": [
+      {
+       "id": "IGI1300-SIC-01",
+       "t": "Traitement du classifié sur systèmes homologués uniquement",
+       "src": "IGI 1300 — Systèmes d'information",
+       "ctrl": "Vérifier qu'aucune information classifiée n'est créée, traitée ou stockée en dehors d'un système d'information homologué à ce niveau, et rechercher les usages non conformes (bureautique courante, messagerie, stockage partagé).",
+       "pr": [
+        "Liste des systèmes homologués",
+        "Décisions d'homologation",
+        "Recherche d'occurrences sur le SI non classifié"
+       ]
+      },
+      {
+       "id": "IGI1300-SIC-02",
+       "t": "Application de l'instruction relative aux SI classifiés",
+       "src": "IGI 1300 — Systèmes d'information",
+       "ctrl": "Vérifier que les systèmes traitant des informations classifiées sont protégés conformément à l'instruction interministérielle applicable aux systèmes d'information classifiés, et que la chaîne SSI correspondante est constituée.",
+       "pr": [
+        "Dossier de sécurité du système",
+        "Désignations de la chaîne SSI",
+        "Renvois réglementaires documentés"
+       ]
+      },
+      {
+       "id": "IGI1300-SIC-03",
+       "t": "Séparation stricte des systèmes selon le niveau",
+       "src": "IGI 1300 — Systèmes d'information",
+       "ctrl": "Vérifier que les systèmes de niveaux différents sont séparés et qu'aucun transfert non autorisé n'est possible entre eux, notamment par support amovible ou poste partagé.",
+       "pr": [
+        "Architecture et séparation constatée",
+        "Marquage des postes",
+        "Contrôle des supports"
+       ]
+      },
+      {
+       "id": "IGI1300-SIC-04",
+       "t": "Marquage des postes et des supports informatiques",
+       "src": "IGI 1300 — Systèmes d'information",
+       "ctrl": "Vérifier que les postes, supports et périphériques rattachés à un système classifié sont identifiés par un marquage visible correspondant au niveau, y compris les câbles et les postes mobiles.",
+       "pr": [
+        "Constat de visite",
+        "Convention de marquage interne",
+        "Inventaire des équipements marqués"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "CTR",
+     "nom": "Contrats, industriels et tiers",
+     "exigences": [
+      {
+       "id": "IGI1300-CTR-01",
+       "t": "Recours à des entités habilitées",
+       "src": "IGI 1300 — Contrats",
+       "ctrl": "Vérifier que les contrats impliquant l'accès à des informations classifiées ne sont conclus qu'avec des entités disposant des habilitations et agréments requis, en cours de validité.",
+       "pr": [
+        "Décisions d'habilitation d'entreprise",
+        "Agréments des locaux",
+        "Dates de validité"
+       ]
+      },
+      {
+       "id": "IGI1300-CTR-02",
+       "t": "Annexe de sécurité au contrat",
+       "src": "IGI 1300 — Contrats",
+       "ctrl": "Vérifier que chaque contrat concerné comporte une annexe de sécurité précisant les informations classifiées concernées, leur niveau, les obligations du titulaire, les contrôles et le sort des informations en fin de contrat.",
+       "pr": [
+        "Annexes de sécurité signées",
+        "Guide de classification associé",
+        "Revue d'un contrat en cours"
+       ]
+      },
+      {
+       "id": "IGI1300-CTR-03",
+       "t": "Maîtrise de la sous-traitance",
+       "src": "IGI 1300 — Contrats",
+       "ctrl": "Vérifier que le recours à des sous-traitants accédant à des informations classifiées est soumis à autorisation préalable et que les mêmes obligations leur sont imposées et contrôlées.",
+       "pr": [
+        "Autorisations de sous-traitance",
+        "Chaîne contractuelle documentée",
+        "Habilitations des sous-traitants"
+       ]
+      },
+      {
+       "id": "IGI1300-CTR-04",
+       "t": "Contrôle des titulaires en cours d'exécution",
+       "src": "IGI 1300 — Contrats",
+       "ctrl": "Vérifier que des contrôles sont effectués chez les titulaires pendant l'exécution du contrat et que leurs constats donnent lieu à des actions correctives suivies.",
+       "pr": [
+        "Comptes rendus d'inspection ou de visite",
+        "Plans d'action des titulaires"
+       ]
+      },
+      {
+       "id": "IGI1300-CTR-05",
+       "t": "Fin de contrat et sort des informations classifiées",
+       "src": "IGI 1300 — Contrats",
+       "ctrl": "Vérifier qu'à la fin du contrat les informations classifiées sont restituées ou détruites selon les modalités prévues, avec preuve écrite, et que les accès et habilitations liés sont clôturés.",
+       "pr": [
+        "Procès-verbaux de restitution ou de destruction",
+        "Clôture des habilitations liées au contrat"
+       ]
+      },
+      {
+       "id": "IGI1300-CTR-06",
+       "t": "Visites et échanges avec des entités étrangères",
+       "src": "IGI 1300 — Contrats",
+       "ctrl": "Vérifier que les visites d'entités étrangères sur des sites détenant du classifié suivent la procédure de demande de visite prévue et que les informations communiquées restent dans le cadre autorisé.",
+       "pr": [
+        "Demandes de visite",
+        "Autorisations obtenues",
+        "Comptes rendus de visite"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "COM",
+     "nom": "Compromissions, incidents et sanctions",
+     "exigences": [
+      {
+       "id": "IGI1300-COM-01",
+       "t": "Procédure de signalement immédiat",
+       "src": "IGI 1300 — Compromission",
+       "ctrl": "Vérifier qu'une procédure impose le signalement immédiat de toute compromission, perte, disparition ou suspicion, qu'elle désigne les destinataires du signalement et qu'elle est connue de tous les détenteurs.",
+       "pr": [
+        "Procédure écrite et diffusée",
+        "Coordonnées de la chaîne d'alerte",
+        "Entretiens de vérification de la connaissance"
+       ]
+      },
+      {
+       "id": "IGI1300-COM-02",
+       "t": "Mesures conservatoires immédiates",
+       "src": "IGI 1300 — Compromission",
+       "ctrl": "Vérifier que la procédure prévoit les mesures conservatoires à prendre sans délai : préservation des lieux et des éléments, limitation de la diffusion, information de l'autorité émettrice.",
+       "pr": [
+        "Procédure",
+        "Exemples de mise en œuvre",
+        "Fiches réflexe"
+       ]
+      },
+      {
+       "id": "IGI1300-COM-03",
+       "t": "Enquête et compte rendu",
+       "src": "IGI 1300 — Compromission",
+       "ctrl": "Vérifier que les compromissions donnent lieu à une enquête interne, à un compte rendu aux autorités compétentes dans les formes prévues, et à l'évaluation du préjudice par l'autorité émettrice.",
+       "pr": [
+        "Rapports d'enquête",
+        "Comptes rendus transmis",
+        "Évaluations de préjudice"
+       ]
+      },
+      {
+       "id": "IGI1300-COM-04",
+       "t": "Registre des incidents de sécurité",
+       "src": "IGI 1300 — Compromission",
+       "ctrl": "Vérifier que l'officier de sécurité tient un registre des incidents et compromissions, y compris les incidents mineurs, et qu'il en tire des mesures de prévention.",
+       "pr": [
+        "Registre des incidents",
+        "Analyse des tendances",
+        "Mesures prises"
+       ]
+      },
+      {
+       "id": "IGI1300-COM-05",
+       "t": "Information sur les sanctions encourues",
+       "src": "IGI 1300 — Sanctions",
+       "ctrl": "Vérifier que les personnels sont informés des sanctions disciplinaires et des sanctions pénales encourues en cas d'atteinte au secret de la défense nationale, et que cette information est tracée.",
+       "pr": [
+        "Supports d'information",
+        "Engagements de responsabilité signés",
+        "Rappels périodiques"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "INS",
+     "nom": "Contrôles et inspections",
+     "exigences": [
+      {
+       "id": "IGI1300-INS-01",
+       "t": "Contrôles internes périodiques",
+       "src": "IGI 1300 — Contrôle",
+       "ctrl": "Vérifier que l'officier de sécurité conduit des contrôles internes périodiques portant sur la détention, le marquage, la conservation et les habilitations, et qu'ils sont consignés.",
+       "pr": [
+        "Programme de contrôle",
+        "Comptes rendus de contrôle",
+        "Écarts et suites données"
+       ]
+      },
+      {
+       "id": "IGI1300-INS-02",
+       "t": "Suites données aux inspections externes",
+       "src": "IGI 1300 — Contrôle",
+       "ctrl": "Vérifier que les observations des inspections externes antérieures ont été traitées, et relever celles demeurées sans suite.",
+       "pr": [
+        "Rapports d'inspection antérieurs",
+        "Plan d'action et preuves de mise en œuvre"
+       ]
+      },
+      {
+       "id": "IGI1300-INS-03",
+       "t": "Compte rendu annuel de sécurité",
+       "src": "IGI 1300 — Contrôle",
+       "ctrl": "Vérifier qu'un compte rendu périodique sur l'état de la protection du secret est établi et transmis à l'autorité compétente selon la périodicité prévue.",
+       "pr": [
+        "Comptes rendus établis",
+        "Preuve de transmission"
+       ]
+      },
+      {
+       "id": "IGI1300-INS-04",
+       "t": "Traitement des écarts constatés",
+       "src": "IGI 1300 — Contrôle",
+       "ctrl": "Vérifier que les écarts relevés lors des contrôles font l'objet d'un plan d'action avec responsable et échéance, et que leur clôture est vérifiée.",
+       "pr": [
+        "Plan d'action",
+        "Preuves de clôture"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "IM900",
+   "code": "II 900",
+   "nom": "Protection des systèmes d'information classifiés",
+   "ref": "Instruction interministérielle n° 900 relative à la protection des systèmes d'information classifiés (version en vigueur) — désignée IM 900 dans certains ministères et déclinée par des instructions ministérielles d'application",
+   "portee": "Systèmes d'information traitant, stockant ou transmettant des informations classifiées au niveau Secret ou Très Secret.",
+   "niveaux": [
+    "S",
+    "TS"
+   ],
+   "domaines": [
+    {
+     "id": "GOU",
+     "nom": "Gouvernance et chaîne SSI des systèmes classifiés",
+     "exigences": [
+      {
+       "id": "IM900-GOU-01",
+       "t": "Chaîne SSI du système classifié constituée",
+       "src": "II 900 — Organisation",
+       "ctrl": "Vérifier que la chaîne SSI propre au système classifié est constituée et formalisée : autorité qualifiée, autorité d'homologation, responsable SSI, officier ou agent de sécurité des systèmes d'information, et que chacun est désigné par écrit.",
+       "pr": [
+        "Décisions de désignation en vigueur",
+        "Organigramme SSI du système",
+        "Lettres de mission"
+       ]
+      },
+      {
+       "id": "IM900-GOU-02",
+       "t": "Habilitation des acteurs de la chaîne SSI",
+       "src": "II 900 — Organisation",
+       "ctrl": "Vérifier que tous les acteurs de la chaîne SSI et les administrateurs du système sont habilités au niveau du système et disposent du besoin d'en connaître.",
+       "pr": [
+        "Décisions d'habilitation",
+        "Rapprochement avec la liste des administrateurs"
+       ]
+      },
+      {
+       "id": "IM900-GOU-03",
+       "t": "Politique de sécurité propre au système classifié",
+       "src": "II 900 — Politique de sécurité",
+       "ctrl": "Vérifier qu'une politique de sécurité spécifique au système classifié est établie, approuvée, et qu'elle décline les exigences de l'instruction en règles applicables aux exploitants et aux utilisateurs.",
+       "pr": [
+        "Politique de sécurité du système",
+        "Approbation de l'autorité",
+        "Preuve de diffusion"
+       ]
+      },
+      {
+       "id": "IM900-GOU-04",
+       "t": "Consignes d'exploitation et de sécurité utilisateur",
+       "src": "II 900 — Politique de sécurité",
+       "ctrl": "Vérifier l'existence de consignes écrites pour les utilisateurs et pour les exploitants du système classifié, effectivement remises, et vérifier par entretien qu'elles sont connues.",
+       "pr": [
+        "Consignes utilisateur et exploitant",
+        "Émargements de remise",
+        "Entretiens de contrôle"
+       ]
+      },
+      {
+       "id": "IM900-GOU-05",
+       "t": "Inventaire des systèmes classifiés de l'entité",
+       "src": "II 900 — Organisation",
+       "ctrl": "Vérifier que l'entité tient l'inventaire de ses systèmes d'information classifiés, avec leur niveau, leur état d'homologation et leur autorité d'homologation, et que cet inventaire est exact.",
+       "pr": [
+        "Inventaire des systèmes",
+        "Rapprochement avec le constat sur site"
+       ]
+      },
+      {
+       "id": "IM900-GOU-06",
+       "t": "Prise en compte de la sécurité dès la conception",
+       "src": "II 900 — Conduite de projet",
+       "ctrl": "Vérifier que la SSI est intégrée dès l'expression de besoin et tout au long du cycle de vie du système, avec des jalons de sécurité identifiés et l'implication de la chaîne SSI.",
+       "pr": [
+        "Expression de besoin de sécurité",
+        "Jalons du projet",
+        "Comptes rendus des revues de sécurité"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "HOM",
+     "nom": "Homologation et dossier de sécurité",
+     "exigences": [
+      {
+       "id": "IM900-HOM-01",
+       "t": "Décision d'homologation préalable à la mise en service",
+       "src": "II 900 — Homologation",
+       "ctrl": "Vérifier que le système classifié dispose d'une décision d'homologation écrite, signée par l'autorité d'homologation compétente, au niveau de classification traité, et antérieure à sa mise en exploitation.",
+       "pr": [
+        "Décision d'homologation",
+        "Date de mise en service effective",
+        "Périmètre homologué"
+       ]
+      },
+      {
+       "id": "IM900-HOM-02",
+       "t": "Correspondance entre le périmètre homologué et le système réel",
+       "src": "II 900 — Homologation",
+       "ctrl": "Comparer le périmètre décrit dans la décision d'homologation avec le système réellement déployé : composants, sites, postes, interconnexions, et relever tout écart non couvert.",
+       "pr": [
+        "Périmètre homologué",
+        "Inventaire réel constaté",
+        "Écarts documentés"
+       ]
+      },
+      {
+       "id": "IM900-HOM-03",
+       "t": "Dossier de sécurité complet et à jour",
+       "src": "II 900 — Dossier d'homologation",
+       "ctrl": "Vérifier que le dossier de sécurité comporte les pièces requises : description et architecture du système, analyse de risque, politique de sécurité, procédures d'exploitation sécurisée, résultats des audits, risques résiduels, et qu'il correspond à la configuration actuelle.",
+       "pr": [
+        "Dossier de sécurité",
+        "Bordereau des pièces",
+        "Dates des versions"
+       ]
+      },
+      {
+       "id": "IM900-HOM-04",
+       "t": "Analyse de risque spécifique au système classifié",
+       "src": "II 900 — Analyse de risque",
+       "ctrl": "Vérifier que l'analyse de risque prend en compte les menaces propres au niveau de classification traité, y compris les menaces d'origine étatique, la menace interne et les vecteurs physiques.",
+       "pr": [
+        "Étude de risque",
+        "Scénarios retenus",
+        "Mesures associées"
+       ]
+      },
+      {
+       "id": "IM900-HOM-05",
+       "t": "Commission d'homologation et avis techniques",
+       "src": "II 900 — Homologation",
+       "ctrl": "Vérifier que la commission d'homologation s'est réunie, que les avis techniques requis ont été recueillis auprès des autorités compétentes, et que les comptes rendus sont archivés.",
+       "pr": [
+        "Comptes rendus de commission",
+        "Avis recueillis",
+        "Liste des membres"
+       ]
+      },
+      {
+       "id": "IM900-HOM-06",
+       "t": "Réserves d'homologation levées ou suivies",
+       "src": "II 900 — Homologation",
+       "ctrl": "Vérifier que les réserves et conditions assortissant la décision font l'objet d'un suivi formel, avec échéances, et relever les réserves échues non levées.",
+       "pr": [
+        "Liste des réserves",
+        "Preuves de levée",
+        "Échéances dépassées"
+       ]
+      },
+      {
+       "id": "IM900-HOM-07",
+       "t": "Validité et renouvellement de l'homologation",
+       "src": "II 900 — Homologation",
+       "ctrl": "Vérifier que la décision est en cours de validité et que le processus de renouvellement est engagé suffisamment tôt avant l'échéance.",
+       "pr": [
+        "Date d'échéance",
+        "Calendrier de renouvellement",
+        "Actes de prorogation éventuels"
+       ]
+      },
+      {
+       "id": "IM900-HOM-08",
+       "t": "Réexamen en cas d'évolution significative",
+       "src": "II 900 — Homologation",
+       "ctrl": "Vérifier que toute évolution significative du système, de son environnement ou de la menace donne lieu à une saisine de l'autorité d'homologation et, le cas échéant, à une nouvelle décision.",
+       "pr": [
+        "Procédure de saisine",
+        "Exemples d'évolutions récentes et suites données"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PER",
+     "nom": "Personnels, administration et exploitation",
+     "exigences": [
+      {
+       "id": "IM900-PER-01",
+       "t": "Liste nominative des utilisateurs autorisés",
+       "src": "II 900 — Contrôle d'accès",
+       "ctrl": "Vérifier qu'une liste nominative des utilisateurs autorisés à accéder au système classifié est tenue à jour par la chaîne SSI, validée, et rapprochée des habilitations et du besoin d'en connaître.",
+       "pr": [
+        "Liste nominative validée",
+        "Rapprochement avec le registre des habilitations",
+        "Comptes existants sur le système"
+       ]
+      },
+      {
+       "id": "IM900-PER-02",
+       "t": "Comptes nominatifs et interdiction des comptes partagés",
+       "src": "II 900 — Contrôle d'accès",
+       "ctrl": "Vérifier que chaque utilisateur et chaque administrateur dispose d'un compte nominatif, que les comptes partagés sont proscrits, et que toute exception est autorisée, tracée et compensée.",
+       "pr": [
+        "Extraction des comptes du système",
+        "Justification des comptes de service",
+        "Mesures compensatoires"
+       ]
+      },
+      {
+       "id": "IM900-PER-03",
+       "t": "Administration depuis des postes dédiés et habilités",
+       "src": "II 900 — Administration",
+       "ctrl": "Vérifier que l'administration du système classifié s'effectue depuis des postes dédiés, situés dans la zone appropriée, par des administrateurs habilités, sans administration depuis un système de niveau inférieur.",
+       "pr": [
+        "Inventaire des postes d'administration",
+        "Localisation constatée",
+        "Architecture d'administration"
+       ]
+      },
+      {
+       "id": "IM900-PER-04",
+       "t": "Limitation et justification des privilèges",
+       "src": "II 900 — Administration",
+       "ctrl": "Vérifier que les droits d'administration sont limités au strict nécessaire, formellement attribués, revus périodiquement, et que la séparation des rôles d'administration et de contrôle est assurée.",
+       "pr": [
+        "Liste des comptes à privilèges",
+        "Décisions d'attribution",
+        "Comptes rendus de revue"
+       ]
+      },
+      {
+       "id": "IM900-PER-05",
+       "t": "Authentification conforme au niveau du système",
+       "src": "II 900 — Authentification",
+       "ctrl": "Vérifier que les mécanismes d'authentification mis en œuvre sont conformes aux exigences applicables au niveau de classification, notamment le recours à des supports matériels ou à une authentification multifacteur lorsqu'elle est requise.",
+       "pr": [
+        "Mécanismes déployés",
+        "Références des produits employés",
+        "Configuration constatée"
+       ]
+      },
+      {
+       "id": "IM900-PER-06",
+       "t": "Formation spécifique des exploitants",
+       "src": "II 900 — Personnels",
+       "ctrl": "Vérifier que les exploitants et administrateurs du système classifié ont reçu une formation aux procédures de sécurité spécifiques de ce système et aux conduites à tenir en cas d'incident.",
+       "pr": [
+        "Plan de formation",
+        "Attestations",
+        "Exercices réalisés"
+       ]
+      },
+      {
+       "id": "IM900-PER-07",
+       "t": "Retrait des accès en fin de fonction",
+       "src": "II 900 — Contrôle d'accès",
+       "ctrl": "Vérifier que la cessation de fonction, la mutation ou le retrait d'habilitation entraîne sans délai la suppression des comptes et la restitution des moyens d'authentification, et contrôler par sondage.",
+       "pr": [
+        "Procédure de départ",
+        "Comptes désactivés",
+        "Registre de restitution des jetons ou cartes"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ARC",
+     "nom": "Architecture, cloisonnement et interconnexions",
+     "exigences": [
+      {
+       "id": "IM900-ARC-01",
+       "t": "Séparation physique ou logique selon le niveau",
+       "src": "II 900 — Architecture",
+       "ctrl": "Vérifier que le système classifié est séparé des systèmes de niveau inférieur selon les modalités imposées pour son niveau, et que cette séparation est vérifiable techniquement et physiquement.",
+       "pr": [
+        "Architecture et schémas",
+        "Constat de câblage et d'équipements",
+        "Tests de séparation"
+       ]
+      },
+      {
+       "id": "IM900-ARC-02",
+       "t": "Absence d'interconnexion non autorisée",
+       "src": "II 900 — Interconnexions",
+       "ctrl": "Rechercher activement toute interconnexion non autorisée entre le système classifié et un autre réseau : liaison filaire, interface sans fil, modem, passerelle temporaire, poste à double rattachement.",
+       "pr": [
+        "Relevé des interfaces actives",
+        "Inspection physique des équipements",
+        "Analyse des configurations réseau"
+       ]
+      },
+      {
+       "id": "IM900-ARC-03",
+       "t": "Interconnexions autorisées par dispositif agréé",
+       "src": "II 900 — Interconnexions",
+       "ctrl": "Vérifier que toute interconnexion autorisée entre systèmes de niveaux différents s'effectue au moyen d'un dispositif agréé au niveau requis, mis en œuvre conformément à ses conditions d'emploi, et couverte par une décision explicite.",
+       "pr": [
+        "Référence d'agrément du dispositif",
+        "Conditions d'emploi respectées",
+        "Décision d'autorisation de l'interconnexion"
+       ]
+      },
+      {
+       "id": "IM900-ARC-04",
+       "t": "Maîtrise des transferts d'information entre niveaux",
+       "src": "II 900 — Interconnexions",
+       "ctrl": "Vérifier que les transferts d'un niveau à un autre suivent une procédure formalisée, avec contrôle du contenu, validation par une autorité désignée et traçabilité de chaque transfert.",
+       "pr": [
+        "Procédure de transfert",
+        "Registre des transferts",
+        "Preuves de validation"
+       ]
+      },
+      {
+       "id": "IM900-ARC-05",
+       "t": "Interdiction ou encadrement strict du sans-fil",
+       "src": "II 900 — Architecture",
+       "ctrl": "Vérifier qu'aucune technologie sans fil non autorisée n'est employée sur le système classifié ni à proximité immédiate, et que les équipements en comportant ont été neutralisés ou autorisés explicitement.",
+       "pr": [
+        "Inventaire des interfaces sans fil",
+        "Preuves de neutralisation",
+        "Relevé d'émissions"
+       ]
+      },
+      {
+       "id": "IM900-ARC-06",
+       "t": "Durcissement des composants",
+       "src": "II 900 — Configuration",
+       "ctrl": "Vérifier que les systèmes d'exploitation, équipements réseau et applications du système classifié sont durcis selon des configurations de référence documentées, et contrôler l'application réelle sur un échantillon.",
+       "pr": [
+        "Guides de configuration",
+        "Relevés de configuration",
+        "Écarts constatés"
+       ]
+      },
+      {
+       "id": "IM900-ARC-07",
+       "t": "Filtrage interne et cloisonnement des zones",
+       "src": "II 900 — Architecture",
+       "ctrl": "Vérifier que le système classifié est lui-même segmenté selon les besoins d'en connaître et que les flux internes sont filtrés selon une matrice documentée.",
+       "pr": [
+        "Matrice de flux interne",
+        "Configuration des filtres",
+        "Justification des règles"
+       ]
+      },
+      {
+       "id": "IM900-ARC-08",
+       "t": "Maîtrise de la chaîne d'approvisionnement des équipements",
+       "src": "II 900 — Approvisionnement",
+       "ctrl": "Vérifier que les équipements du système classifié proviennent de sources maîtrisées, que leur intégrité est contrôlée à la réception et qu'ils sont conservés en zone protégée avant mise en service.",
+       "pr": [
+        "Procédure de réception",
+        "Contrôles d'intégrité effectués",
+        "Conditions de stockage constatées"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "CHI",
+     "nom": "Chiffrement et produits de sécurité agréés",
+     "exigences": [
+      {
+       "id": "IM900-CHI-01",
+       "t": "Emploi exclusif de produits agréés au niveau requis",
+       "src": "II 900 — Produits de sécurité",
+       "ctrl": "Vérifier que les moyens de chiffrement et les produits de sécurité protégeant des informations classifiées sont agréés au niveau de classification concerné, dans la version déployée, et employés conformément à leurs conditions d'emploi.",
+       "pr": [
+        "Inventaire des produits et références d'agrément",
+        "Versions déployées",
+        "Conditions d'emploi et écarts"
+       ]
+      },
+      {
+       "id": "IM900-CHI-02",
+       "t": "Chiffrement des liaisons sortant de la zone protégée",
+       "src": "II 900 — Chiffrement",
+       "ctrl": "Vérifier que toute liaison du système classifié empruntant un cheminement hors zone protégée est chiffrée par un dispositif agréé, et qu'aucun flux classifié ne circule en clair hors de la zone.",
+       "pr": [
+        "Schéma des liaisons et de leur protection",
+        "Configuration des chiffreurs",
+        "Constat de cheminement"
+       ]
+      },
+      {
+       "id": "IM900-CHI-03",
+       "t": "Gestion des articles contrôlés de la sécurité des systèmes d'information",
+       "src": "II 900 — Articles contrôlés",
+       "ctrl": "Vérifier que les articles contrôlés de la SSI (chiffreurs, clés, cartes, éléments secrets) sont inventoriés, détenus par des personnes désignées et habilitées, conservés selon les prescriptions et recensés périodiquement.",
+       "pr": [
+        "Inventaire des articles contrôlés",
+        "Désignation des détenteurs",
+        "Procès-verbaux de recensement"
+       ]
+      },
+      {
+       "id": "IM900-CHI-04",
+       "t": "Cycle de vie des clés maîtrisé",
+       "src": "II 900 — Clés",
+       "ctrl": "Vérifier que la commande, la réception, la mise en service, le renouvellement, la destruction et la comptabilité des clés suivent la procédure de l'autorité de distribution compétente et sont tracés.",
+       "pr": [
+        "Registres de clés",
+        "Bordereaux de réception",
+        "Procès-verbaux de destruction de clés"
+       ]
+      },
+      {
+       "id": "IM900-CHI-05",
+       "t": "Chiffrement des données au repos et des supports",
+       "src": "II 900 — Chiffrement",
+       "ctrl": "Vérifier que le stockage des informations classifiées repose sur les moyens prévus par le dossier de sécurité et que le chiffrement, lorsqu'il est employé comme mesure de protection, l'est avec un produit agréé au niveau requis.",
+       "pr": [
+        "Moyens de stockage et de chiffrement",
+        "Références d'agrément",
+        "Gestion des clés associées"
+       ]
+      },
+      {
+       "id": "IM900-CHI-06",
+       "t": "Continuité en cas d'incident cryptographique",
+       "src": "II 900 — Chiffrement",
+       "ctrl": "Vérifier qu'une conduite à tenir est prévue en cas de perte, de compromission ou de défaillance d'un moyen cryptographique, incluant le passage en mode dégradé et l'alerte des autorités compétentes.",
+       "pr": [
+        "Procédure de crise cryptographique",
+        "Stocks de secours",
+        "Exercices ou tests"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SPC",
+     "nom": "Signaux parasites compromettants et environnement",
+     "exigences": [
+      {
+       "id": "IM900-SPC-01",
+       "t": "Prise en compte du risque de signaux parasites compromettants",
+       "src": "II 900 — Signaux parasites compromettants",
+       "ctrl": "Vérifier que le risque de compromission par signaux parasites est pris en compte dans le dossier de sécurité du système et que les mesures retenues sont conformes aux prescriptions applicables au niveau considéré.",
+       "pr": [
+        "Volet correspondant du dossier de sécurité",
+        "Prescriptions appliquées",
+        "Avis technique éventuel"
+       ]
+      },
+      {
+       "id": "IM900-SPC-02",
+       "t": "Étude de zonage réalisée et à jour",
+       "src": "II 900 — Zonage",
+       "n": [
+        "TS",
+        "S"
+       ],
+       "ctrl": "Vérifier qu'une étude de zonage des locaux a été réalisée par un organisme compétent lorsqu'elle est requise, qu'elle est en cours de validité, et que ses conclusions sont respectées dans l'implantation réelle.",
+       "pr": [
+        "Rapport de zonage",
+        "Date et validité",
+        "Plan d'implantation rapproché des conclusions"
+       ]
+      },
+      {
+       "id": "IM900-SPC-03",
+       "t": "Respect des règles d'implantation et de distance",
+       "src": "II 900 — Zonage",
+       "ctrl": "Vérifier que les distances de séparation et les règles d'implantation entre équipements classifiés, équipements non classifiés et conducteurs sortants sont respectées, conformément aux prescriptions applicables.",
+       "pr": [
+        "Constat d'implantation",
+        "Mesures effectuées",
+        "Écarts relevés et traités"
+       ]
+      },
+      {
+       "id": "IM900-SPC-04",
+       "t": "Emploi d'équipements protégés lorsque requis",
+       "src": "II 900 — Signaux parasites compromettants",
+       "ctrl": "Vérifier que les équipements soumis à une exigence de protection contre les signaux parasites sont d'un modèle approuvé, installés conformément à leurs conditions d'emploi et maintenus par des intervenants autorisés.",
+       "pr": [
+        "Inventaire des équipements protégés",
+        "Documentation d'installation",
+        "Traçabilité de la maintenance"
+       ]
+      },
+      {
+       "id": "IM900-SPC-05",
+       "t": "Maîtrise des équipements non autorisés à proximité",
+       "src": "II 900 — Environnement",
+       "ctrl": "Vérifier que l'introduction d'équipements électroniques personnels ou non autorisés dans les locaux abritant le système classifié est interdite et contrôlée, et que des moyens de dépôt sont mis à disposition.",
+       "pr": [
+        "Consigne affichée",
+        "Moyens de consigne des terminaux",
+        "Constat de visite inopinée"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PHY",
+     "nom": "Sécurité physique du système classifié",
+     "exigences": [
+      {
+       "id": "IM900-PHY-01",
+       "t": "Implantation en zone protégée adaptée",
+       "src": "II 900 — Sécurité physique",
+       "ctrl": "Vérifier que tous les composants du système classifié, y compris les postes, serveurs, équipements réseau et chiffreurs, sont implantés dans des zones protégées correspondant au niveau du système.",
+       "pr": [
+        "Plan d'implantation",
+        "Décision de création des zones",
+        "Constat de visite"
+       ]
+      },
+      {
+       "id": "IM900-PHY-02",
+       "t": "Protection des locaux techniques du système classifié",
+       "src": "II 900 — Sécurité physique",
+       "ctrl": "Vérifier que les locaux hébergeant les serveurs, les baies et les chiffreurs sont à accès restreint et tracé, fermés, et que les baies elles-mêmes sont verrouillées.",
+       "pr": [
+        "Journal d'accès",
+        "Constat de fermeture des baies",
+        "Liste des personnes autorisées"
+       ]
+      },
+      {
+       "id": "IM900-PHY-03",
+       "t": "Protection des postes de travail classifiés",
+       "src": "II 900 — Sécurité physique",
+       "ctrl": "Vérifier que les postes du système classifié sont identifiés par un marquage, placés de façon à empêcher la vue non autorisée des écrans, et mis en sûreté hors des heures d'activité.",
+       "pr": [
+        "Constat sur site",
+        "Marquage des postes",
+        "Consigne de fin de journée"
+       ]
+      },
+      {
+       "id": "IM900-PHY-04",
+       "t": "Maîtrise du cheminement des câbles",
+       "src": "II 900 — Sécurité physique",
+       "ctrl": "Vérifier que les câbles du système classifié sont identifiés, protégés, séparés des câbles des systèmes de niveau inférieur et que leur cheminement est documenté et vérifiable.",
+       "pr": [
+        "Plan de câblage",
+        "Constat de visite des chemins de câbles",
+        "Marquage des câbles"
+       ]
+      },
+      {
+       "id": "IM900-PHY-05",
+       "t": "Conservation des supports hors exploitation",
+       "src": "II 900 — Sécurité physique",
+       "ctrl": "Vérifier que les supports amovibles et les équipements mobiles du système classifié sont conservés hors exploitation dans des meubles de sécurité conformes au niveau considéré.",
+       "pr": [
+        "Inventaire des meubles de sécurité",
+        "Constat de rangement",
+        "Registre de sortie des supports"
+       ]
+      },
+      {
+       "id": "IM900-PHY-06",
+       "t": "Encadrement des interventions techniques sur site",
+       "src": "II 900 — Sécurité physique",
+       "ctrl": "Vérifier que toute intervention technique sur le système classifié est réalisée par du personnel habilité ou, à défaut, sous surveillance permanente d'une personne habilitée et compétente, et qu'elle est tracée.",
+       "pr": [
+        "Registre des interventions",
+        "Habilitations des intervenants",
+        "Consignes d'accompagnement"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "SUP",
+     "nom": "Supports, sorties et échanges d'information",
+     "exigences": [
+      {
+       "id": "IM900-SUP-01",
+       "t": "Supports amovibles dédiés, marqués et inventoriés",
+       "src": "II 900 — Supports",
+       "ctrl": "Vérifier que les supports amovibles employés sur le système classifié sont dédiés à ce système, marqués au niveau correspondant, inventoriés et suivis nominativement.",
+       "pr": [
+        "Inventaire des supports",
+        "Constat de marquage",
+        "Registre des détenteurs"
+       ]
+      },
+      {
+       "id": "IM900-SUP-02",
+       "t": "Interdiction des supports non autorisés",
+       "src": "II 900 — Supports",
+       "ctrl": "Vérifier que le raccordement de supports non autorisés est techniquement empêché et que les tentatives sont journalisées et traitées.",
+       "pr": [
+        "Configuration de blocage des ports",
+        "Journaux de tentative de connexion",
+        "Tests de contrôle"
+       ]
+      },
+      {
+       "id": "IM900-SUP-03",
+       "t": "Procédure de sortie d'information du système classifié",
+       "src": "II 900 — Échanges",
+       "ctrl": "Vérifier que toute extraction d'information hors du système classifié suit une procédure formalisée incluant l'examen du contenu, la validation par une autorité désignée, le marquage du support et l'enregistrement.",
+       "pr": [
+        "Procédure de sortie",
+        "Registre des extractions",
+        "Autorisations écrites"
+       ]
+      },
+      {
+       "id": "IM900-SUP-04",
+       "t": "Maîtrise des impressions et des éditions",
+       "src": "II 900 — Supports",
+       "ctrl": "Vérifier que les imprimantes raccordées au système classifié lui sont dédiées, situées en zone protégée, que les éditions portent le marquage automatique du niveau et qu'aucune édition n'est abandonnée.",
+       "pr": [
+        "Inventaire des imprimantes",
+        "Paramétrage du marquage automatique",
+        "Constat de visite"
+       ]
+      },
+      {
+       "id": "IM900-SUP-05",
+       "t": "Traçabilité des supports en mouvement",
+       "src": "II 900 — Supports",
+       "ctrl": "Vérifier que les mouvements de supports classifiés entre zones ou entre sites sont enregistrés, autorisés et conformes aux règles de transport applicables.",
+       "pr": [
+        "Registre des mouvements",
+        "Autorisations de transport",
+        "Bordereaux"
+       ]
+      },
+      {
+       "id": "IM900-SUP-06",
+       "t": "Sauvegardes protégées au niveau du système",
+       "src": "II 900 — Sauvegarde",
+       "ctrl": "Vérifier que les sauvegardes du système classifié sont protégées, marquées et conservées au niveau de classification du système, et que leur restauration est testée périodiquement.",
+       "pr": [
+        "Procédure de sauvegarde",
+        "Lieu et conditions de conservation",
+        "Comptes rendus de test de restauration"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "EXP",
+     "nom": "Exploitation, maintenance et maintien en condition",
+     "exigences": [
+      {
+       "id": "IM900-EXP-01",
+       "t": "Procédures d'exploitation sécurisée formalisées",
+       "src": "II 900 — Exploitation",
+       "ctrl": "Vérifier que les procédures d'exploitation sécurisée du système classifié sont écrites, à jour, accessibles aux exploitants et effectivement suivies.",
+       "pr": [
+        "Procédures d'exploitation",
+        "Traces d'exécution",
+        "Entretiens avec les exploitants"
+       ]
+      },
+      {
+       "id": "IM900-EXP-02",
+       "t": "Maintien en condition de sécurité du système classifié",
+       "src": "II 900 — Maintien en condition",
+       "ctrl": "Vérifier que les correctifs de sécurité sont qualifiés puis appliqués au système classifié selon une procédure maîtrisée, et que l'isolement du système ne conduit pas à un retard de correctifs non maîtrisé.",
+       "pr": [
+        "Procédure d'apport des correctifs",
+        "État des versions déployées",
+        "Analyse des écarts et mesures compensatoires"
+       ]
+      },
+      {
+       "id": "IM900-EXP-03",
+       "t": "Maîtrise de l'apport de logiciels et de mises à jour",
+       "src": "II 900 — Maintien en condition",
+       "ctrl": "Vérifier que tout apport de logiciel ou de mise à jour dans le système classifié suit une procédure de contrôle d'origine, de vérification d'intégrité et de décontamination avant introduction.",
+       "pr": [
+        "Procédure d'introduction de logiciel",
+        "Journal des apports",
+        "Moyens de contrôle employés"
+       ]
+      },
+      {
+       "id": "IM900-EXP-04",
+       "t": "Maintenance par des intervenants autorisés",
+       "src": "II 900 — Maintenance",
+       "ctrl": "Vérifier que la maintenance matérielle et logicielle est assurée par des intervenants habilités ou accompagnés, qu'aucune télémaintenance non autorisée n'est possible, et que chaque intervention est tracée.",
+       "pr": [
+        "Contrats de maintenance et clauses de sécurité",
+        "Registre des interventions",
+        "Vérification de l'absence d'accès distant"
+       ]
+      },
+      {
+       "id": "IM900-EXP-05",
+       "t": "Sortie d'équipement pour maintenance",
+       "src": "II 900 — Maintenance",
+       "ctrl": "Vérifier que tout équipement sortant du périmètre pour maintenance fait l'objet du retrait ou de l'effacement préalable des supports d'information classifiée, tracé par un document.",
+       "pr": [
+        "Procédure de sortie pour maintenance",
+        "Procès-verbaux de retrait ou d'effacement",
+        "Registre des sorties"
+       ]
+      },
+      {
+       "id": "IM900-EXP-06",
+       "t": "Gestion des configurations et des changements",
+       "src": "II 900 — Exploitation",
+       "ctrl": "Vérifier que la configuration du système est gérée et versionnée, que tout changement est autorisé par la chaîne SSI après analyse d'impact et que le dossier de sécurité est mis à jour en conséquence.",
+       "pr": [
+        "Référentiel de configuration",
+        "Fiches de changement",
+        "Versions successives du dossier de sécurité"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "JOU",
+     "nom": "Journalisation, contrôle et audit",
+     "exigences": [
+      {
+       "id": "IM900-JOU-01",
+       "t": "Journalisation des événements de sécurité",
+       "src": "II 900 — Journalisation",
+       "ctrl": "Vérifier que le système classifié journalise les événements de sécurité requis : authentifications, actions d'administration, accès aux ressources sensibles, connexion de supports, transferts et échecs.",
+       "pr": [
+        "Politique de journalisation du système",
+        "Extraits de journaux",
+        "Couverture des composants"
+       ]
+      },
+      {
+       "id": "IM900-JOU-02",
+       "t": "Protection et conservation des journaux",
+       "src": "II 900 — Journalisation",
+       "ctrl": "Vérifier que les journaux sont protégés contre la modification et la suppression, conservés pendant la durée prévue par le dossier de sécurité, et protégés au niveau de classification approprié.",
+       "pr": [
+        "Droits d'accès aux journaux",
+        "Durée de conservation constatée",
+        "Marquage des supports de journaux"
+       ]
+      },
+      {
+       "id": "IM900-JOU-03",
+       "t": "Exploitation périodique des journaux",
+       "src": "II 900 — Contrôle",
+       "ctrl": "Vérifier que les journaux font l'objet d'une analyse périodique par une personne désignée, distincte des administrateurs contrôlés, et que cette analyse est consignée.",
+       "pr": [
+        "Comptes rendus d'analyse",
+        "Désignation de l'analyste",
+        "Anomalies relevées et suites"
+       ]
+      },
+      {
+       "id": "IM900-JOU-04",
+       "t": "Contrôles internes périodiques du système classifié",
+       "src": "II 900 — Contrôle",
+       "ctrl": "Vérifier qu'un programme de contrôle interne couvre le système classifié (configuration, comptes, supports, locaux) et qu'il est exécuté selon la périodicité prévue.",
+       "pr": [
+        "Programme et comptes rendus de contrôle",
+        "Périodicité respectée",
+        "Plan d'action issu des constats"
+       ]
+      },
+      {
+       "id": "IM900-JOU-05",
+       "t": "Audits techniques du système classifié",
+       "src": "II 900 — Audit",
+       "ctrl": "Vérifier que le système fait l'objet d'audits techniques périodiques réalisés par des auditeurs habilités, que les rapports sont protégés au niveau requis et que les recommandations sont suivies.",
+       "pr": [
+        "Rapports d'audit et leur marquage",
+        "Habilitations des auditeurs",
+        "Suivi des recommandations"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "INC",
+     "nom": "Incidents et compromission des systèmes classifiés",
+     "exigences": [
+      {
+       "id": "IM900-INC-01",
+       "t": "Procédure d'incident propre au système classifié",
+       "src": "II 900 — Incidents",
+       "ctrl": "Vérifier qu'une procédure spécifique décrit la détection, la qualification, le signalement et le traitement des incidents de sécurité affectant le système classifié, avec des fiches réflexes à disposition des exploitants.",
+       "pr": [
+        "Procédure et fiches réflexes",
+        "Coordonnées de la chaîne d'alerte",
+        "Connaissance par les exploitants"
+       ]
+      },
+      {
+       "id": "IM900-INC-02",
+       "t": "Signalement aux autorités compétentes",
+       "src": "II 900 — Incidents",
+       "ctrl": "Vérifier que les incidents et les compromissions sont signalés sans délai à la chaîne SSI, à l'autorité d'homologation et aux autorités nationales compétentes selon les modalités prévues, et que ces signalements sont tracés.",
+       "pr": [
+        "Registre des signalements",
+        "Comptes rendus transmis",
+        "Délais constatés"
+       ]
+      },
+      {
+       "id": "IM900-INC-03",
+       "t": "Mesures conservatoires et isolement",
+       "src": "II 900 — Incidents",
+       "ctrl": "Vérifier que la procédure prévoit l'isolement du système ou du composant concerné, la préservation des traces et la conservation des équipements en zone protégée dans l'attente des investigations.",
+       "pr": [
+        "Procédure",
+        "Moyens d'isolement disponibles",
+        "Exemples de mise en œuvre"
+       ]
+      },
+      {
+       "id": "IM900-INC-04",
+       "t": "Traitement des compromissions cryptographiques",
+       "src": "II 900 — Incidents",
+       "ctrl": "Vérifier qu'une conduite à tenir spécifique couvre la compromission d'éléments cryptographiques : retrait des clés, alerte de l'autorité de distribution, évaluation de la portée et renouvellement.",
+       "pr": [
+        "Procédure dédiée",
+        "Contacts de l'autorité de distribution",
+        "Exercices ou retours d'expérience"
+       ]
+      },
+      {
+       "id": "IM900-INC-05",
+       "t": "Retour d'expérience et mise à jour du dossier de sécurité",
+       "src": "II 900 — Incidents",
+       "ctrl": "Vérifier que les incidents significatifs donnent lieu à un retour d'expérience et, le cas échéant, à la mise à jour de l'analyse de risque et du dossier de sécurité.",
+       "pr": [
+        "Comptes rendus de retour d'expérience",
+        "Versions mises à jour du dossier"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "FIN",
+     "nom": "Fin de vie, déclassement et réforme",
+     "exigences": [
+      {
+       "id": "IM900-FIN-01",
+       "t": "Procédure de fin de vie du système",
+       "src": "II 900 — Fin de vie",
+       "ctrl": "Vérifier qu'une procédure encadre le retrait de service du système classifié : sort des informations, traitement des supports, restitution des articles contrôlés et information de l'autorité d'homologation.",
+       "pr": [
+        "Procédure de retrait de service",
+        "Décision de l'autorité",
+        "Traces d'exécution"
+       ]
+      },
+      {
+       "id": "IM900-FIN-02",
+       "t": "Effacement ou destruction des supports réformés",
+       "src": "II 900 — Fin de vie",
+       "ctrl": "Vérifier que les supports ayant contenu des informations classifiées sont effacés par un procédé reconnu au niveau considéré ou détruits physiquement, et que l'opération est constatée par procès-verbal.",
+       "pr": [
+        "Procédés employés",
+        "Procès-verbaux",
+        "Filière de destruction"
+       ]
+      },
+      {
+       "id": "IM900-FIN-03",
+       "t": "Déclassement d'équipement maîtrisé",
+       "src": "II 900 — Fin de vie",
+       "ctrl": "Vérifier qu'aucun équipement ayant traité des informations classifiées n'est réemployé à un niveau inférieur ou cédé sans avoir suivi la procédure de déclassement autorisée et tracée.",
+       "pr": [
+        "Procédure de déclassement",
+        "Registre des équipements déclassés",
+        "Autorisations correspondantes"
+       ]
+      },
+      {
+       "id": "IM900-FIN-04",
+       "t": "Restitution des articles contrôlés",
+       "src": "II 900 — Fin de vie",
+       "ctrl": "Vérifier que les chiffreurs, clés et autres articles contrôlés sont restitués à l'autorité de distribution ou détruits selon ses instructions, avec preuve écrite, à la fin de vie du système.",
+       "pr": [
+        "Bordereaux de restitution",
+        "Procès-verbaux de destruction",
+        "Mise à jour de l'inventaire"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

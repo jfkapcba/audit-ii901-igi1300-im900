@@ -1,0 +1,947 @@
+{
+"II901-GOU-01": [
+"art6",
+"R:ORG-ACT-SSI",
+"R:ORG-RESP"
+],
+"II901-GOU-02": [
+"art6",
+"R:ORG-RSSI"
+],
+"II901-GOU-03": [
+"R:ORG-SSI",
+"R:ORG-RESP"
+],
+"II901-GOU-04": [
+"art9",
+"R:GDB-INVENT",
+"R:GDB-CARTO"
+],
+"II901-GOU-05": [
+"art5",
+"R:GDB-QUALIF-SENSI",
+"R:GDB-PROT-IS"
+],
+"II901-GOU-06": [
+"art2",
+"art4"
+],
+"II901-GOU-07": [
+"R:INT-TDB",
+"R:INT-QUOT-SSI"
+],
+"II901-GOU-08": [
+"art4",
+"R:ORG-APP-INSTR",
+"R:ORG-APP-DOCS"
+],
+"II901-RSQ-01": [
+"art4",
+"R:ORG-PIL-PSSI"
+],
+"II901-RSQ-02": [
+"R:ORG-PIL-PSSI"
+],
+"II901-RSQ-03": [
+"art7",
+"R:INT-REX-AR"
+],
+"II901-RSQ-04": [
+"art7",
+"art8"
+],
+"II901-RSQ-05": [
+"art7"
+],
+"II901-RSQ-06": [
+"R:ORG-APP-DOCS",
+"R:RH-SSI"
+],
+"II901-HOM-01": [
+"art8",
+"art13"
+],
+"II901-HOM-02": [
+"art8"
+],
+"II901-HOM-03": [
+"art8"
+],
+"II901-HOM-04": [
+"art8"
+],
+"II901-HOM-05": [
+"art11",
+"R:EXP-CI-AUDIT"
+],
+"II901-HOM-06": [
+"art8",
+"art13"
+],
+"II901-HOM-07": [
+"art8",
+"art11"
+],
+"II901-HOM-08": [
+"art13",
+"R:RES-INTERCO"
+],
+"II901-RHU-01": [
+"R:RH-CONF",
+"R:RH-MOTIV"
+],
+"II901-RHU-02": [
+"R:RH-SSI"
+],
+"II901-RHU-03": [
+"R:RH-UTIL"
+],
+"II901-RHU-04": [
+"R:RH-MOTIV",
+"R:EXP-HABILIT-ADMIN"
+],
+"II901-RHU-05": [
+"R:RH-MOUV",
+"R:RH-NPERM"
+],
+"II901-RHU-06": [
+"R:RH-SSI",
+"R:RH-UTIL"
+],
+"II901-PHY-01": [
+"art15",
+"R:PHY-ZONES",
+"R:PHY-CI-CTRLACC"
+],
+"II901-PHY-02": [
+"R:PHY-TECH",
+"R:PHY-CI-ENERGIE",
+"R:PHY-CI-CLIM"
+],
+"II901-PHY-03": [
+"R:PHY-SENS",
+"R:PHY-PUBL"
+],
+"II901-PHY-04": [
+"R:PHY-TELECOM",
+"R:RES-MAITRISE"
+],
+"II901-PHY-05": [
+"R:PHY-CI-MOYENS",
+"R:PHY-CI-TRACE",
+"R:PHY-CTRL"
+],
+"II901-ARC-01": [
+"R:RES-CLOIS",
+"R:RES-RESS"
+],
+"II901-ARC-02": [
+"R:RES-ENTSOR",
+"R:RES-PROT"
+],
+"II901-ARC-03": [
+"R:ARCHI-PASS",
+"R:RES-INTERCO"
+],
+"II901-ARC-04": [
+"R:RES-INTERCO",
+"art13"
+],
+"II901-ARC-05": [
+"R:RES-MAITRISE",
+"R:PDT-NOMAD-CONNEX"
+],
+"II901-ARC-06": [
+"R:RES-SSFIL"
+],
+"II901-ARC-07": [
+"R:EXP-CI-DNS",
+"R:ARCHI-HEBERG"
+],
+"II901-ARC-08": [
+"R:EXP-POL-JOUR",
+"R:EXP-CI-TRAC"
+],
+"II901-ARC-09": [
+"R:ARCHI-HEBERG",
+"R:RES-RESS"
+],
+"II901-IAM-01": [
+"R:EXP-ID-AUTH",
+"R:EXP-DOM-POL"
+],
+"II901-IAM-02": [
+"R:EXP-PROC-AUTH",
+"R:EXP-DOM-OBSOLET"
+],
+"II901-IAM-03": [
+"R:EXP-POL-PASS",
+"R:EXP-GEST-PASS",
+"R:EXP-QUAL-PASS"
+],
+"II901-IAM-04": [
+"R:EXP-CERTIFS",
+"R:PDT-NOMAD-ACCESS"
+],
+"II901-IAM-05": [
+"R:EXP-DROITS",
+"R:EXP-PROFILS",
+"R:EXP-RESTR-DROITS"
+],
+"II901-IAM-06": [
+"R:EXP-REVUE-AUTH"
+],
+"II901-IAM-07": [
+"R:EXP-CONF-AUTH",
+"R:PASS"
+],
+"II901-IAM-08": [
+"R:PDT-VERROUIL-FIXE",
+"R:PDT-VERROUIL-PORT"
+],
+"II901-ADM-01": [
+"R:EXP-PROT-ADMIN",
+"R:EXP-CI-ADMIN"
+],
+"II901-ADM-02": [
+"R:EXP-POL-ADMIN",
+"R:PDT-ADM-LOCAL",
+"R:EXP-DOM-ADMINLOC"
+],
+"II901-ADM-03": [
+"R:EXP-HABILIT-ADMIN",
+"R:PDT-PRIV"
+],
+"II901-ADM-04": [
+"R:EXP-SECX-DIST",
+"R:EXP-CI-ADMIN"
+],
+"II901-ADM-05": [
+"R:EXP-GEST-ADMIN",
+"R:EXP-TRAC"
+],
+"II901-ADM-06": [
+"R:EXP-SEQ-ADMIN",
+"R:EXP-DEP-ADMIN"
+],
+"II901-SYS-01": [
+"R:EXP-CONFIG",
+"R:PDT-CONFIG",
+"R:EXP-DOC-CONFIG"
+],
+"II901-SYS-02": [
+"R:EXP-CI-OS",
+"R:RES-DURCI"
+],
+"II901-SYS-03": [
+"R:PDT-PRIVIL"
+],
+"II901-SYS-04": [
+"R:EXP-NAVIG",
+"R:EXP-CI-LTP"
+],
+"II901-SYS-05": [
+"R:EXP-PROT-MALV",
+"R:EXP-GES-ANTIVIR",
+"R:EXP-MAJ-ANTIVIR"
+],
+"II901-SYS-06": [
+"R:PDT-GEST",
+"R:PDT-CONFIG"
+],
+"II901-SYS-07": [
+"R:PDT-CONF-VERIF"
+],
+"II901-MOB-01": [
+"art17",
+"R:PDT-NOMAD-ACCESS"
+],
+"II901-MOB-02": [
+"art17",
+"R:PDT-CHIFF-SENS",
+"R:PDT-NOMAD-STOCK"
+],
+"II901-MOB-03": [
+"R:EXP-ACC-DIST",
+"R:PDT-NOMAD-ACCESS"
+],
+"II901-MOB-04": [
+"R:EXP-MAIT-MAT",
+"R:EXP-NOMAD-SENS"
+],
+"II901-MOB-05": [
+"R:PDT-NOMAD-CONNEX",
+"R:PDT-NOMAD-DESACTIV",
+"R:PDT-TEL-DECT"
+],
+"II901-MOB-06": [
+"art17",
+"R:EXP-PROT-VOL",
+"R:EXP-DECLAR-VOL"
+],
+"II901-CRY-01": [
+"art14",
+"R:RES-PROT"
+],
+"II901-CRY-02": [
+"art3",
+"R:INT-AQ-PSL"
+],
+"II901-CRY-03": [
+"R:EXP-CERTIFS"
+],
+"II901-CRY-04": [
+"R:PDT-CHIFF-SENS",
+"R:EXP-PROT-INF"
+],
+"II901-CRY-05": [
+"R:EXP-CI-MESSTECH",
+"R:RES-PROT"
+],
+"II901-SUP-01": [
+"R:PDT-AMOV",
+"R:EXP-CI-AMOY"
+],
+"II901-SUP-02": [
+"R:EXP-CI-PROTFIC"
+],
+"II901-SUP-03": [
+"art18",
+"R:PDT-AMOV"
+],
+"II901-SUP-04": [
+"R:EXP-IMP-SENS",
+"R:PDT-MUL-DURCISS",
+"R:PDT-MUL-SECNUM"
+],
+"II901-SUP-05": [
+"R:EXP-CI-EFFAC",
+"R:EXP-MIS-REB",
+"R:EXP-REAFFECT"
+],
+"II901-SUP-06": [
+"R:EXP-CI-DESTR"
+],
+"II901-JOU-01": [
+"R:EXP-POL-JOUR"
+],
+"II901-JOU-02": [
+"R:EXP-CONS-JOUR",
+"R:EXP-CI-TRAC"
+],
+"II901-JOU-03": [
+"R:EXP-GES-DYN",
+"R:EXP-CI-SUPERVIS"
+],
+"II901-JOU-04": [
+"R:EXP-CI-SUPERVIS",
+"R:EXP-GES-DYN"
+],
+"II901-JOU-05": [
+"R:EXP-POL-JOUR",
+"R:RH-SSI"
+],
+"II901-MCS-01": [
+"R:EXP-POL-COR"
+],
+"II901-MCS-02": [
+"R:EXP-COR-SEC",
+"R:EXP-POL-COR"
+],
+"II901-MCS-03": [
+"R:EXP-OBSOLET",
+"R:EXP-ISOL"
+],
+"II901-MCS-04": [
+"R:EXP-CONFIG",
+"art8"
+],
+"II901-MCS-05": [
+"art11",
+"R:CONTR-SSI"
+],
+"II901-SAU-01": [
+"R:ARCHI-STOCKCI",
+"R:PCA-PROC"
+],
+"II901-SAU-02": [
+"R:PCA-PROT",
+"R:PCA-SAUVE"
+],
+"II901-SAU-03": [
+"R:PCA-EXERC"
+],
+"II901-SAU-04": [
+"R:PCA-MINIS",
+"R:PCA-LOCAL",
+"R:PCA-MISAJOUR"
+],
+"II901-SAU-05": [
+"R:PCA-SAUVE",
+"R:ARCHI-STOCKCI"
+],
+"II901-INC-01": [
+"art10",
+"R:TI-QUAL-TRAIT"
+],
+"II901-INC-02": [
+"art10",
+"art12",
+"R:INC-REM"
+],
+"II901-INC-03": [
+"art10",
+"art12"
+],
+"II901-INC-04": [
+"R:TI-OPS-SSI",
+"R:TI-MOB"
+],
+"II901-INC-05": [
+"R:TI-QUAL-TRAIT"
+],
+"II901-EXT-01": [
+"art16",
+"R:INT-PRES-CS"
+],
+"II901-EXT-02": [
+"art16",
+"R:INT-PRES-CNTRL",
+"R:INT-AQ-PSL"
+],
+"II901-EXT-03": [
+"R:RH-NPERM",
+"R:INT-PRES-CNTRL"
+],
+"II901-EXT-04": [
+"art16",
+"R:INT-REX-HB",
+"R:INT-REX-HS"
+],
+"II901-EXT-05": [
+"art16",
+"R:ORG-TIERS"
+],
+"II901-CTL-01": [
+"R:CONTR-SSI"
+],
+"II901-CTL-02": [
+"art11",
+"R:EXP-CI-AUDIT"
+],
+"II901-CTL-03": [
+"art11",
+"R:CONTR-SSI"
+],
+"II901-CTL-04": [
+"R:ORG-APP-DOCS",
+"R:EXP-DOC-CONFIG"
+],
+"IGI1300-ORG-01": [
+"2.2.1",
+"2.2.3.1"
+],
+"IGI1300-ORG-02": [
+"2.2.2",
+"2.2.2.1"
+],
+"IGI1300-ORG-03": [
+"2.3.1.3",
+"2.3.1.1"
+],
+"IGI1300-ORG-04": [
+"2.3.2.2"
+],
+"IGI1300-ORG-05": [
+"2.3.2.1",
+"3.5.4"
+],
+"IGI1300-ORG-06": [
+"7.5.3"
+],
+"IGI1300-ORG-07": [
+"3.6"
+],
+"IGI1300-HAB-01": [
+"3.1.1",
+"1.2.1.1"
+],
+"IGI1300-HAB-02": [
+"3.1.2.2",
+"3.1.2.1"
+],
+"IGI1300-HAB-03": [
+"3.4.1.1",
+"3.5.1"
+],
+"IGI1300-HAB-04": [
+"3.3.1.1",
+"3.3.1.2",
+"3.3.1.3"
+],
+"IGI1300-HAB-05": [
+"3.4.2.1"
+],
+"IGI1300-HAB-06": [
+"3.5.6"
+],
+"IGI1300-HAB-07": [
+"3.5.8",
+"3.5.2"
+],
+"IGI1300-HAB-08": [
+"3.5.3",
+"3.4.3"
+],
+"IGI1300-HAB-09": [
+"5.3.2.4",
+"1.2.1.1"
+],
+"IGI1300-HAB-10": [
+"3.2.5",
+"3.2.5.1",
+"3.2.5.2"
+],
+"IGI1300-CLA-01": [
+"7.1.1.1",
+"1.4.1"
+],
+"IGI1300-CLA-02": [
+"7.1.1.2"
+],
+"IGI1300-CLA-03": [
+"7.1.2.3",
+"7.1.2.1"
+],
+"IGI1300-CLA-04": [
+"7.1.1.3"
+],
+"IGI1300-CLA-05": [
+"7.1.2.4",
+"7.1.2.5",
+"7.1.2.7"
+],
+"IGI1300-CLA-06": [
+"7.1.1.2"
+],
+"IGI1300-CLA-07": [
+"7.6.3.1",
+"7.6.3.2",
+"7.6.3.4"
+],
+"IGI1300-CLA-08": [
+"7.6.1",
+"7.6.2"
+],
+"IGI1300-GES-01": [
+"7.4.1"
+],
+"IGI1300-GES-02": [
+"7.4.2",
+"7.4.3"
+],
+"IGI1300-GES-03": [
+"7.2.1.2",
+"7.2.2.2",
+"7.4.3"
+],
+"IGI1300-GES-04": [
+"7.2.2"
+],
+"IGI1300-GES-05": [
+"7.3.1.2",
+"7.3.3"
+],
+"IGI1300-GES-06": [
+"1.2.3",
+"7.2.1.3"
+],
+"IGI1300-GES-07": [
+"7.2.3"
+],
+"IGI1300-GES-08": [
+"7.2.3"
+],
+"IGI1300-GES-09": [
+"7.5.4.1",
+"7.5.4.2"
+],
+"IGI1300-LOC-01": [
+"5.3.1.1",
+"5.2.2"
+],
+"IGI1300-LOC-02": [
+"5.3.1",
+"5.3.1.2"
+],
+"IGI1300-LOC-03": [
+"5.3.2.4",
+"5.3.2.5"
+],
+"IGI1300-LOC-04": [
+"5.2.2",
+"5.3.3.2"
+],
+"IGI1300-LOC-05": [
+"5.2.1",
+"5.1"
+],
+"IGI1300-LOC-06": [
+"5.4.3"
+],
+"IGI1300-LOC-07": [
+"5.4.3",
+"5.5"
+],
+"IGI1300-LOC-08": [
+"5.4.2",
+"5.4.1"
+],
+"IGI1300-TRA-01": [
+"7.3.2.1"
+],
+"IGI1300-TRA-02": [
+"7.3.1.2"
+],
+"IGI1300-TRA-03": [
+"7.3.2.1",
+"7.3.2.3"
+],
+"IGI1300-TRA-04": [
+"7.3.1.1",
+"6.2.1"
+],
+"IGI1300-TRA-05": [
+"7.3.1.1",
+"5.4.3"
+],
+"IGI1300-TRA-06": [
+"7.2.1.3",
+"3.2.5.1"
+],
+"IGI1300-REP-01": [
+"7.2.4",
+"7.2.4.1",
+"7.2.4.2"
+],
+"IGI1300-REP-02": [
+"7.2.4"
+],
+"IGI1300-REP-03": [
+"7.5.1"
+],
+"IGI1300-REP-04": [
+"7.5.1",
+"7.4.1.1"
+],
+"IGI1300-REP-05": [
+"7.5.2"
+],
+"IGI1300-REP-06": [
+"7.1.2.2"
+],
+"IGI1300-SIC-01": [
+"6.1.1",
+"6"
+],
+"IGI1300-SIC-02": [
+"6",
+"2.2.3"
+],
+"IGI1300-SIC-03": [
+"6.6.6",
+"6.2.2"
+],
+"IGI1300-SIC-04": [
+"7.1.2.6",
+"7.1.2.7"
+],
+"IGI1300-CTR-01": [
+"4.4.1.4",
+"4.4.2.1"
+],
+"IGI1300-CTR-02": [
+"4.4.1.1",
+"4.4.2.2"
+],
+"IGI1300-CTR-03": [
+"4.4.2.2"
+],
+"IGI1300-CTR-04": [
+"4.4.2.3",
+"5.3.3.1"
+],
+"IGI1300-CTR-05": [
+"4.4.3.1",
+"4.4.3.2"
+],
+"IGI1300-CTR-06": [
+"5.3.2.4",
+"3.2.5.2"
+],
+"IGI1300-COM-01": [
+"1.4.2.3"
+],
+"IGI1300-COM-02": [
+"1.4.2.3"
+],
+"IGI1300-COM-03": [
+"1.4.2.3",
+"1.4.2.1"
+],
+"IGI1300-COM-04": [
+"1.4.2.4"
+],
+"IGI1300-COM-05": [
+"1.4.2.2",
+"1.4.3"
+],
+"IGI1300-INS-01": [
+"2.3.3"
+],
+"IGI1300-INS-02": [
+"2.3.3"
+],
+"IGI1300-INS-03": [
+"2.3.4"
+],
+"IGI1300-INS-04": [
+"2.3.3"
+],
+"IM900-GOU-01": [
+"T2.0",
+"2.1"
+],
+"IM900-GOU-02": [
+"2.5",
+"2.6"
+],
+"IM900-GOU-03": [
+"6.2"
+],
+"IM900-GOU-04": [
+"2.8"
+],
+"IM900-GOU-05": [
+"6.1"
+],
+"IM900-GOU-06": [
+"6.6"
+],
+"IM900-HOM-01": [
+"6.2"
+],
+"IM900-HOM-02": [
+"6.2",
+"6.1"
+],
+"IM900-HOM-03": [
+"A23",
+"6.2"
+],
+"IM900-HOM-04": [
+"6.2",
+"A22"
+],
+"IM900-HOM-05": [
+"6.2"
+],
+"IM900-HOM-06": [
+"6.2"
+],
+"IM900-HOM-07": [
+"6.2"
+],
+"IM900-HOM-08": [
+"6.6"
+],
+"IM900-PER-01": [
+"3.1",
+"3.5"
+],
+"IM900-PER-02": [
+"6.6"
+],
+"IM900-PER-03": [
+"6.6",
+"2.6"
+],
+"IM900-PER-04": [
+"6.6"
+],
+"IM900-PER-05": [
+"6.6"
+],
+"IM900-PER-06": [
+"2.8"
+],
+"IM900-PER-07": [
+"3.6"
+],
+"IM900-ARC-01": [
+"6.6",
+"6.3"
+],
+"IM900-ARC-02": [
+"6.10"
+],
+"IM900-ARC-03": [
+"6.9",
+"6.6"
+],
+"IM900-ARC-04": [
+"6.7"
+],
+"IM900-ARC-05": [
+"5.6",
+"6.7"
+],
+"IM900-ARC-06": [
+"6.6"
+],
+"IM900-ARC-07": [
+"6.6"
+],
+"IM900-ARC-08": [
+"6.5"
+],
+"IM900-CHI-01": [
+"6.9"
+],
+"IM900-CHI-02": [
+"6.10",
+"6.9"
+],
+"IM900-CHI-03": [
+"6.9"
+],
+"IM900-CHI-04": [
+"6.9"
+],
+"IM900-CHI-05": [
+"7.10"
+],
+"IM900-CHI-06": [
+"8.2"
+],
+"IM900-SPC-01": [
+"5.6"
+],
+"IM900-SPC-02": [
+"5.6",
+"6.10"
+],
+"IM900-SPC-03": [
+"6.10"
+],
+"IM900-SPC-04": [
+"5.6"
+],
+"IM900-SPC-05": [
+"5.6"
+],
+"IM900-PHY-01": [
+"5.1"
+],
+"IM900-PHY-02": [
+"5.1",
+"5.2"
+],
+"IM900-PHY-03": [
+"5.3"
+],
+"IM900-PHY-04": [
+"6.10"
+],
+"IM900-PHY-05": [
+"7.10",
+"5.3"
+],
+"IM900-PHY-06": [
+"5.8"
+],
+"IM900-SUP-01": [
+"6.7"
+],
+"IM900-SUP-02": [
+"6.7"
+],
+"IM900-SUP-03": [
+"7.8"
+],
+"IM900-SUP-04": [
+"7.9",
+"5.5"
+],
+"IM900-SUP-05": [
+"7.8"
+],
+"IM900-SUP-06": [
+"7.10"
+],
+"IM900-EXP-01": [
+"6.6"
+],
+"IM900-EXP-02": [
+"6.6"
+],
+"IM900-EXP-03": [
+"6.6"
+],
+"IM900-EXP-04": [
+"6.5"
+],
+"IM900-EXP-05": [
+"6.5",
+"7.13"
+],
+"IM900-EXP-06": [
+"6.6"
+],
+"IM900-JOU-01": [
+"6.8"
+],
+"IM900-JOU-02": [
+"6.8"
+],
+"IM900-JOU-03": [
+"6.8"
+],
+"IM900-JOU-04": [
+"2.9"
+],
+"IM900-JOU-05": [
+"6.4"
+],
+"IM900-INC-01": [
+"8.1",
+"A19"
+],
+"IM900-INC-02": [
+"8.1",
+"8.2"
+],
+"IM900-INC-03": [
+"A19",
+"8.2"
+],
+"IM900-INC-04": [
+"8.2",
+"6.9"
+],
+"IM900-INC-05": [
+"8.1"
+],
+"IM900-FIN-01": [
+"6.6"
+],
+"IM900-FIN-02": [
+"7.13"
+],
+"IM900-FIN-03": [
+"7.12"
+],
+"IM900-FIN-04": [
+"6.9"
+]
+}

@@ -1,0 +1,218 @@
+<script>
+(function(){
+  window.confirm = () => true; window.alert = () => {};
+  const R = [];
+  const ok = (n, c, d) => R.push((c ? "OK  " : "ECHEC ") + n + (d !== undefined ? "  [" + d + "]" : ""));
+  const erreurs = [];
+  window.addEventListener("error", e => erreurs.push(String(e.message)));
+  const rgb = el => getComputedStyle(el).color;
+  try{
+    // ---------- Corpus officiel ----------
+    const stats = Corpus.statistiques();
+    ok("3 corpus chargés", stats.length === 3, stats.map(s=>s.code).join("/"));
+    ok("volume de texte officiel > 1 Mo",
+       stats.reduce((n,s)=>n+s.caracteres,0) > 1000000,
+       stats.map(s=>s.code+":"+s.sections+" sect./"+Math.round(s.caracteres/1000)+"k").join(" "));
+    ok("II 901 : articles présents", !!Corpus.section("II901","art9"), Corpus.section("II901","art9").t);
+    ok("II 901 : règles codées présentes", !!Corpus.section("II901","R:ORG-RSSI"));
+    ok("IGI 1300 : section marquage présente", !!Corpus.section("IGI1300","7.1.2.3"));
+    ok("IM 900 : section ACSSI présente", !!Corpus.section("IM900","6.9"));
+    ok("texte officiel non vide sur un échantillon",
+       Corpus.section("IGI1300","7.1.2.3").x.includes("encre de couleur rouge"));
+    ok("aucune section au texte tronqué anormalement",
+       Corpus.tous().every(c => Object.values(c.sections).every(s => typeof s.x === "string")));
+
+    // ---------- Rattachement catalogue <-> corpus ----------
+    const plat = Catalogue.aplati();
+    ok("254 points de contrôle", plat.length === 254, plat.length);
+    const sansSec = plat.filter(x => !x.ex.sec || !x.ex.sec.length);
+    ok("tout point de contrôle est rattaché à un texte", sansSec.length === 0,
+       sansSec.length + " sans rattachement");
+    let cibleInconnue = [], cibleVide = [];
+    for(const x of plat) for(const s of (x.ex.sec||[])){
+      const sec = Corpus.section(x.ref.id, s);
+      if(!sec) cibleInconnue.push(x.ex.id + "->" + s);
+      else if(!sec.x) cibleVide.push(x.ex.id + "->" + s);
+    }
+    ok("toutes les cibles existent dans le corpus", cibleInconnue.length === 0, cibleInconnue.slice(0,4).join(" "));
+    ok("toutes les cibles ont un texte", cibleVide.length === 0, cibleVide.slice(0,4).join(" "));
+    ok("référentiel ministériel correctement identifié",
+       Catalogue.referentiel("IM900") && Catalogue.referentiel("IM900").code === "IM 900",
+       Catalogue.referentiel("IM900").ref.slice(0,60));
+
+    // ---------- Marquage : conformité ----------
+    const timbreHaut = document.getElementById("timbre-haut");
+    const bandeauBas = document.getElementById("bandeau-bas");
+    const special = document.getElementById("special-haut");
+    Audit.etat = Audit.vierge();
+
+    Audit.etat.meta.marquage = "DR"; Audit.etat.meta.specialFrance = false; appliquerMarquage();
+    ok("DR : timbre en toutes lettres", timbreHaut.textContent === "Diffusion Restreinte", timbreHaut.textContent);
+    ok("DR : encre rouge", rgb(timbreHaut) === "rgb(201, 25, 30)", rgb(timbreHaut));
+    ok("DR : capitales imposées par le style",
+       getComputedStyle(timbreHaut).textTransform === "uppercase");
+    ok("DR : pas de timbre au bas de page (IM 900 § 7.2.3)", bandeauBas.hidden);
+    ok("DR : timbre centré", getComputedStyle(timbreHaut.parentNode).justifyContent === "center");
+    ok("DR : taille du timbre supérieure au texte courant",
+       parseFloat(getComputedStyle(timbreHaut).fontSize) > parseFloat(getComputedStyle(document.body).fontSize),
+       getComputedStyle(timbreHaut).fontSize + " vs " + getComputedStyle(document.body).fontSize);
+    ok("DR : graisse appuyée", parseInt(getComputedStyle(timbreHaut).fontWeight) >= 700,
+       getComputedStyle(timbreHaut).fontWeight);
+
+    Audit.etat.meta.marquage = "S"; appliquerMarquage();
+    ok("Secret : timbre en toutes lettres", timbreHaut.textContent === "Secret");
+    ok("Secret : encre rouge", rgb(timbreHaut) === "rgb(201, 25, 30)");
+    ok("Secret : timbre aussi au bas de page (IGI 1300 § 7.1.2.3 a)", !bandeauBas.hidden);
+    ok("Secret : bandeau bas fixé en pied de page",
+       getComputedStyle(bandeauBas).position === "fixed" && getComputedStyle(bandeauBas).bottom === "0px");
+
+    Audit.etat.meta.marquage = "TS"; appliquerMarquage();
+    ok("Très Secret : timbre en toutes lettres", timbreHaut.textContent === "Très Secret");
+    ok("Très Secret : encre rouge (et non une autre couleur)", rgb(timbreHaut) === "rgb(201, 25, 30)");
+    ok("Très Secret : timbre haut et bas", !bandeauBas.hidden);
+
+    Audit.etat.meta.specialFrance = true; appliquerMarquage();
+    ok("Spécial France : visible quand activée", !special.hidden);
+    ok("Spécial France : encre bleue (IM 900 § 7.3.2)", rgb(special) === "rgb(0, 80, 200)", rgb(special));
+    ok("Spécial France : placée à droite du timbre principal",
+       special.compareDocumentPosition(timbreHaut) & Node.DOCUMENT_POSITION_PRECEDING);
+
+    Audit.etat.meta.marquage = "NP"; Audit.etat.meta.specialFrance = false; appliquerMarquage();
+    ok("Non protégé : aucun timbre rouge", rgb(timbreHaut) !== "rgb(201, 25, 30)", rgb(timbreHaut));
+    ok("Non protégé : pas de bandeau bas", bandeauBas.hidden);
+    ok("titre de l'onglet sans timbre si non protégé", !/SECRET|RESTREINTE/i.test(document.title), document.title);
+
+    // ---------- Parcours complet ----------
+    Audit.etat = null;
+    document.getElementById("btn-nouvel-audit").click();
+    ok("écran d'initialisation", !document.getElementById("vue-init").hidden);
+    ok("4 choix de marquage proposés", document.querySelectorAll('input[name=marq]').length === 4);
+    document.getElementById("champ-client").value = "Direction d'essai";
+    document.getElementById("champ-perimetre").value = "SI ATLAS";
+    document.getElementById("champ-enregistrement").value = "2026/DR/0142";
+    document.getElementById("champ-exemplaire").value = "1";
+    document.getElementById("champ-exemplaires-total").value = "3";
+    const c1300 = document.querySelector('input[name=ref][value="IGI1300"]');
+    c1300.checked = true; c1300.dispatchEvent(new Event("change",{bubbles:true}));
+    ok("cocher IGI 1300 présélectionne S et TS",
+       document.querySelector('input[name=niv][value="S"]').checked);
+    const cim = document.querySelector('input[name=ref][value="IM900"]');
+    cim.checked = true; cim.dispatchEvent(new Event("change",{bubbles:true}));
+    const c901 = document.querySelector('input[name=ref][value="II901"]');
+    c901.checked = true; c901.dispatchEvent(new Event("change",{bubbles:true}));
+    document.querySelector('input[name=marq][value="S"]').checked = true;
+    document.getElementById("champ-special-france").checked = true;
+    document.getElementById("form-init").dispatchEvent(new Event("submit",{bubbles:true,cancelable:true}));
+
+    ok("audit créé", !!Audit.etat && Audit.etat.meta.client === "Direction d'essai");
+    ok("numéro d'enregistrement conservé", Audit.etat.meta.enregistrement === "2026/DR/0142");
+    ok("plan de contrôle constitué", Audit.planDeControle().length > 200, Audit.planDeControle().length);
+    ok("arbre rendu", document.querySelectorAll(".arbre-ex").length > 0,
+       document.querySelectorAll(".arbre-ex").length);
+    const panneau = document.getElementById("panneau-exigence").textContent;
+    ok("panneau : texte officiel affiché", panneau.indexOf("Texte officiel") > 0);
+    ok("panneau : point de contrôle affiché", panneau.indexOf("Point de contrôle") > 0);
+    ok("panneau : contenu officiel réellement présent",
+       document.querySelector(".texte-officiel").textContent.length > 200,
+       document.querySelector(".texte-officiel").textContent.length + " car.");
+    ok("aucun message « texte à saisir »", !panneau.includes("n'a pas encore été saisi"));
+
+    // Exigence de l'II 901 : avertissement de provenance
+    const exII901 = Audit.planDeControle().find(x => x.ref.id === "II901");
+    EcranAudit.rendreExigence(exII901.ex.id);
+    ok("II 901 : provenance numérisée signalée",
+       document.querySelector(".provenance") && document.querySelector(".provenance").textContent.includes("numérisé"));
+
+    // Statuts et navigation
+    const idSel = EcranAudit.selection;
+    document.dispatchEvent(new KeyboardEvent("keydown",{key:"1",bubbles:true}));
+    ok("raccourci 1 = non conforme", Audit.etat.reponses[idSel].s === "nc");
+    document.getElementById("champ-constat").value = "Constat de test";
+    document.getElementById("champ-constat").dispatchEvent(new Event("input",{bubbles:true}));
+    ok("constat enregistré", Audit.etat.reponses[idSel].constat === "Constat de test");
+    EcranAudit.naviguer(1);
+    ok("navigation à l'exigence suivante", EcranAudit.selection !== idSel);
+
+    // Recherche portant sur le texte officiel
+    document.getElementById("filtre-recherche").value = "encre de couleur rouge";
+    EcranAudit.rendreArbre();
+    ok("recherche dans le texte officiel", document.querySelectorAll(".arbre-ex").length > 0,
+       document.querySelectorAll(".arbre-ex").length + " résultat(s)");
+    document.getElementById("filtre-recherche").value = "";
+    EcranAudit.rendreArbre();
+
+    // ---------- Écran des textes ----------
+    montrerEcran("textes");
+    ok("sommaire du corpus rendu", document.querySelectorAll("#corpus-sommaire button").length > 50,
+       document.querySelectorAll("#corpus-sommaire button").length);
+    EcranTextes.corpusCourant = "IGI1300"; EcranTextes.sectionCourante = "7.1.2.3"; EcranTextes.rendre();
+    ok("lecture d'une section précise",
+       document.getElementById("corpus-texte").textContent.includes("encre de couleur rouge"));
+    document.getElementById("recherche-corpus").value = "habilitation";
+    EcranTextes.rendreSommaire();
+    ok("recherche dans le sommaire", document.querySelectorAll("#corpus-sommaire button").length > 0,
+       document.querySelectorAll("#corpus-sommaire button").length);
+    document.getElementById("recherche-corpus").value = ""; EcranTextes.rendreSommaire();
+
+    // ---------- Synthèse ----------
+    montrerEcran("synthese");
+    const syn = document.getElementById("synthese-contenu").textContent;
+    ok("synthèse : taux de conformité", syn.includes("Taux de conformité"));
+    ok("synthèse : marquage repris", syn.includes("SECRET"), syn.match(/Marquage du rapport[^A-Z]*([A-ZÉ –—]+)/) ? RegExp.$1 : "");
+    ok("synthèse : anneau SVG", document.querySelectorAll("#synthese-contenu svg circle").length > 0);
+
+    // ---------- Exports ----------
+    const capt = {};
+    const vrai = window.telecharger;
+    telecharger = (n,c) => { capt[n.split("_")[0]] = c; };
+    Exports.matriceCSV(); Exports.planActionCSV(); Exports.rapportHTML(); Exports.auditJSON();
+    telecharger = vrai;
+    ok("CSV produit", (capt["matrice-conformite"]||"").split("\r\n").length > 200,
+       (capt["matrice-conformite"]||"").split("\r\n").length + " lignes");
+    ok("CSV : colonne des sources officielles", (capt["matrice-conformite"]||"").includes("Sections officielles"));
+    const rap = capt["rapport-audit"] || "";
+    ok("rapport HTML produit", rap.length > 20000, rap.length + " octets");
+    ok("rapport : aucune ressource externe", !/src=["']http|href=["']http|@import/.test(rap));
+    ok("rapport : timbre en encre rouge", rap.includes("#c9191e"));
+    ok("rapport : Spécial France en bleu", rap.includes("#0050c8") && rap.includes("SPÉCIAL FRANCE"));
+    ok("rapport : timbre haut et bas pour Secret",
+       (rap.match(/class="timbre haut"/g)||[]).length === 1 && (rap.match(/class="timbre bas"/g)||[]).length === 1);
+    ok("rapport : timbre de dimension supérieure en couverture", rap.includes("timbre-couverture"));
+    ok("rapport : mentions d'identification (IGI 1300 § 7.1.2.3 b)",
+       ["Autorité émettrice","Date d&#39;émission","Numéro d&#39;enregistrement",
+        "Échéance de la classification","Exemplaire"].every(m => rap.includes(m)),
+       ["Autorité émettrice","Date d&#39;émission","Numéro d&#39;enregistrement",
+        "Échéance de la classification","Exemplaire"].filter(m => !rap.includes(m)).join(", ") || "toutes présentes");
+    ok("rapport : exemplaire « 1 sur 3 »", rap.includes("1 sur 3"));
+    const paquet = JSON.parse(capt["audit-ssi"]);
+    ok("export JSON : format 2", paquet.format === 2);
+    ok("export JSON : le corpus n'est pas dupliqué", !JSON.stringify(paquet).includes("encre de couleur rouge"));
+
+    // ---------- Import ----------
+    Audit.etat = null;
+    Fichiers.appliquer(JSON.parse(capt["audit-ssi"]));
+    ok("import restaure l'audit", Audit.etat.meta.client === "Direction d'essai");
+    ok("import restaure les évaluations", Audit.etat.reponses[idSel].constat === "Constat de test");
+    ok("import restaure le marquage", Audit.etat.meta.marquage === "S" && Audit.etat.meta.specialFrance === true);
+
+    // ---------- Persistance ----------
+    ok("stockage local opérationnel", Stockage.disponible, Stockage.disponible ? "oui" : Stockage.motifIndisponibilite);
+    ok("audit relu du stockage",
+       (Stockage.lireJSON("auditssi.audit."+Audit.etat.id,null)||{}).meta.client === "Direction d'essai");
+    montrerEcran("dossier");
+    ok("dossier rendu", document.getElementById("form-parametres").children.length > 8);
+    montrerEcran("accueil");
+    ok("accueil liste l'audit", document.querySelectorAll("#liste-audits li").length >= 1);
+  } catch(e){
+    R.push("EXCEPTION  " + (e && e.stack ? e.stack.split("\n").slice(0,3).join(" | ") : e));
+  }
+  const ressources = performance.getEntriesByType("resource").map(r => r.name)
+      .filter(n => !n.startsWith("file:") && !n.startsWith("data:") && !n.startsWith("blob:"));
+  ok("aucune ressource chargée hors du fichier", ressources.length === 0, ressources.join(" ") || "aucune");
+  ok("aucune requête réseau émise au démarrage",
+     performance.getEntriesByType("resource").every(r => /^(file|data|blob):/.test(r.name)));
+  R.push("ERREURS JS NON CAPTUREES : " + (erreurs.length ? erreurs.join(" ; ") : "aucune"));
+  const pre = document.createElement("pre"); pre.id = "RESULTATS"; pre.textContent = R.join("\n");
+  document.body.appendChild(pre);
+})();
+</script>
