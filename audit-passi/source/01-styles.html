@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Audit PASSI — RGS et LPM</title>
+
+<!--
+  ===========================================================================
+  OUTIL D'AUDIT DE CONFORMITÉ — RGS ET LPM (prestations PASSI)
+  ---------------------------------------------------------------------------
+  Fichier HTML autonome. Aucune requête réseau, aucune dépendance externe :
+  tout (styles, code, textes officiels) est contenu dans ce seul fichier.
+
+  ORGANISATION DU FICHIER
+    1. Feuille de styles            .... ci-dessous, découpée en sections
+    2. Structure de la page         .... <body>, une <section> par écran
+    3. Données                      .... bloc <script type="application/json">
+                                         - référentiels, secteurs, exigences
+                                         (les énoncés officiels sont saisis par
+                                          l'auditeur, pas embarqués)
+    4. Code de l'application        .... <script> final, découpé en modules
+
+  CONVENTIONS
+    - Le code, les commentaires et l'interface sont en français.
+    - Les identifiants du DOM sont en français et préfixés par leur rôle
+      (vue-, btn-, champ-, dlg-).
+    - Aucune donnée ne sort du navigateur : pas de fetch, pas de XHR.
+  ===========================================================================
+-->
+
+<style>
+/* =========================================================================
+   1. JETONS DE STYLE
+   ========================================================================= */
+:root{
+  /* Palette neutre */
+  --fond:#ffffff; --fond-2:#f6f6f6; --fond-3:#ececec;
+  --texte:#161616; --texte-2:#3a3a3a; --texte-3:#5f5f5f;
+  --bordure:#d8d8d8; --bordure-forte:#8c8c8c;
+
+  /* Bleu institutionnel, utilisé pour l'interface (jamais pour un timbre) */
+  --bleu:#000091; --bleu-2:#1212ff; --bleu-pale:#e3e3fd; --bleu-survol:#f5f5fe;
+
+  /* Encres réglementaires — cf. IGI 1300 § 7.1.2.3 et IM 900 § 7.2, § 7.3 */
+  --encre-rouge:#c9191e;      /* timbre de classification et mention DR */
+  --encre-bleue:#0050c8;      /* mention complémentaire Spécial France   */
+
+  /* Couleurs de statut d'audit (interface seulement) */
+  --vert:#18753c; --vert-pale:#e3fbe8;
+  --orange:#b34000; --orange-pale:#fff4e6;
+  --rouge:#ce0500; --rouge-pale:#ffe9e9;
+
+  --ombre:0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.08);
+  --ombre-f:0 4px 16px rgba(0,0,0,.14);
+  --r:4px;
+  --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --police:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+html[data-theme="sombre"]{
+  --fond:#1b1b1b; --fond-2:#242424; --fond-3:#2e2e2e;
+  --texte:#f2f2f2; --texte-2:#d4d4d4; --texte-3:#a5a5a5;
+  --bordure:#3d3d3d; --bordure-forte:#6a6a6a;
+  --bleu:#8585f6; --bleu-2:#a1a1f8; --bleu-pale:#21213f; --bleu-survol:#1b1b33;
+  --encre-rouge:#ff5b5b; --encre-bleue:#6aa8ff;
+  --vert:#5fd98a; --vert-pale:#16301f;
+  --orange:#ffb766; --orange-pale:#33220f;
+  --rouge:#ff5655; --rouge-pale:#3a1c1c;
+  --ombre:0 1px 3px rgba(0,0,0,.5); --ombre-f:0 4px 16px rgba(0,0,0,.6);
+}
+
+/* =========================================================================
+   2. BASE
+   ========================================================================= */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--police);font-size:15px;line-height:1.5;
+     color:var(--texte);background:var(--fond);-webkit-text-size-adjust:100%}
+img{max-width:100%}
+[hidden]{display:none !important}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--bleu)}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em}
+h1{font-size:1.5rem} h2{font-size:1.2rem} h3{font-size:1.05rem} h4{font-size:.95rem}
+code,kbd{font-family:var(--mono);font-size:.9em}
+kbd{background:var(--fond-3);border:1px solid var(--bordure);border-bottom-width:2px;
+    border-radius:3px;padding:1px 5px}
+:focus-visible{outline:2px solid var(--bleu-2);outline-offset:1px}
+
+/* =========================================================================
+   3. TIMBRES DE PROTECTION
+   -------------------------------------------------------------------------
+   Modèles fixés par l'annexe 37 de l'IGI 1300 :
+     « Les timbres sont apposés avec une encre indélébile de couleur rouge,
+       sauf le timbre Spécial France qui est de couleur bleue. »
+     Pages du document — « Le timbre est apposé au milieu du haut et du bas de
+       la page (à l'exception du marquage Spécial France qui est apposé
+       uniquement en haut de la page) […] Niveau de classification / Spécial
+       France : centré, police Arial, gras, taille 18 ; épaisseur du cadre :
+       2,5 points. »
+     Couverture et page de garde des documents reliés — timbre au milieu du bas
+       de la couverture, niveau en Arial gras 18 suivi de l'avertissement pénal
+       en taille 6, épaisseur du cadre : 3 points.
+   Mention Diffusion Restreinte : annexe 1 de l'IGI 1300 (timbre encadré,
+   « apposé au milieu du haut de la page ») et IM 900 § 7.2.3 (encre rouge).
+   L'annexe 1 ne prescrivant ni police ni épaisseur de cadre, on reprend celles
+   de l'annexe 37.
+   ========================================================================= */
+.bandeau-timbre{
+  display:flex;justify-content:center;align-items:flex-start;gap:12px;flex-wrap:wrap;
+  padding:6px 12px;background:var(--fond);
+}
+.bandeau-timbre.haut{position:sticky;top:0;z-index:60;
+  padding-top:calc(6px + env(safe-area-inset-top,0px))}
+.bandeau-timbre.bas{position:fixed;top:auto;bottom:0;left:0;right:0;z-index:60;
+  padding-bottom:calc(6px + env(safe-area-inset-bottom,0px))}
+
+/* Timbre de classification ou de protection : Arial gras 18, cadre 2,5 pt. */
+.timbre{
+  font-family:Arial,Helvetica,"Liberation Sans",sans-serif;
+  font-weight:700;font-size:18pt;line-height:1.1;
+  color:var(--encre-rouge);border:2.5pt solid var(--encre-rouge);
+  padding:1px 12px;text-align:center;text-transform:uppercase;
+}
+/* Mention complémentaire Spécial France : mêmes règles, encre bleue. */
+.timbre-special{
+  font-family:Arial,Helvetica,"Liberation Sans",sans-serif;
+  font-weight:700;font-size:18pt;line-height:1.1;
+  color:var(--encre-bleue);border:2.5pt solid var(--encre-bleue);
+  padding:1px 12px;text-align:center;text-transform:uppercase;
+}
+/* Document non protégé : il n'y a pas de timbre, seulement un repère discret. */
+.bandeau-timbre[data-niveau="NP"] .timbre{
+  color:var(--texte-3);border:1px solid var(--bordure);
+  font-size:.76rem;font-weight:600;letter-spacing:.08em;padding:2px 10px}
+
+/* =========================================================================
+   4. BARRE D'APPLICATION
+   ========================================================================= */
+.barre{position:sticky;top:44px;z-index:50;display:flex;gap:12px;align-items:center;
+       flex-wrap:wrap;padding:10px 16px;background:var(--fond);
+       border-bottom:1px solid var(--bordure)}
+.barre .marque{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--bleu);
+               white-space:nowrap;cursor:pointer;background:none;border:0;padding:0}
+.barre .contexte{display:flex;flex-direction:column;min-width:0;flex:1}
+.barre .contexte strong{font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.barre .contexte span{font-size:.78rem;color:var(--texte-3);white-space:nowrap;
+                      overflow:hidden;text-overflow:ellipsis}
+.barre .actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.onglets{display:flex;gap:2px;background:var(--fond-3);padding:3px;border-radius:var(--r)}
+.onglets button{border:0;background:transparent;padding:6px 14px;border-radius:3px;
+                cursor:pointer;font-size:.88rem;font-weight:500;color:var(--texte-2)}
+.onglets button[aria-selected="true"]{background:var(--fond);color:var(--bleu);
+                                      font-weight:600;box-shadow:var(--ombre)}
+
+/* =========================================================================
+   5. COMMANDES
+   ========================================================================= */
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--bleu);
+     background:var(--bleu);color:#fff;padding:7px 14px;border-radius:var(--r);
+     cursor:pointer;font-size:.88rem;font-weight:500;text-decoration:none;white-space:nowrap}
+html[data-theme="sombre"] .btn{color:#1b1b1b}
+.btn:hover{filter:brightness(1.15)}
+.btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+.btn.secondaire{background:transparent;color:var(--bleu)}
+.btn.secondaire:hover{background:var(--bleu-survol)}
+.btn.discret{background:transparent;color:var(--texte-2);border-color:var(--bordure)}
+.btn.discret:hover{background:var(--fond-2)}
+.btn.petit{padding:4px 9px;font-size:.8rem}
+.btn-icone{border:1px solid var(--bordure);background:transparent;border-radius:var(--r);
+           cursor:pointer;padding:6px 8px;color:var(--texte-2);line-height:1}
+.btn-icone:hover{background:var(--fond-2)}
+
+label{display:block;font-size:.85rem;font-weight:600;margin-bottom:4px;color:var(--texte-2)}
+.aide{font-size:.8rem;color:var(--texte-3);font-weight:400;margin:2px 0 6px}
+input[type=text],input[type=date],input[type=search],select,textarea{
+  width:100%;padding:8px 10px;border:1px solid var(--bordure-forte);
+  border-radius:var(--r);background:var(--fond);color:var(--texte)}
+textarea{resize:vertical;min-height:80px;font-family:inherit}
+fieldset{border:1px solid var(--bordure);border-radius:var(--r);padding:14px 16px;margin:0 0 18px}
+legend{font-weight:700;padding:0 6px;font-size:.95rem}
+.grille{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.case{display:flex;gap:9px;align-items:flex-start;padding:10px 12px;border:1px solid var(--bordure);
+      border-radius:var(--r);cursor:pointer;background:var(--fond);margin-bottom:8px}
+.case:hover{background:var(--bleu-survol)}
+.case input{margin:3px 0 0;flex:none;width:16px;height:16px;accent-color:var(--bleu)}
+.case.coche{border-color:var(--bleu);background:var(--bleu-survol);box-shadow:inset 3px 0 0 var(--bleu)}
+.case b{display:block;font-size:.92rem;font-weight:700}
+.case small{color:var(--texte-3);font-size:.8rem;display:block;margin-top:2px;font-weight:400}
+
+/* =========================================================================
+   6. MISE EN PAGE GÉNÉRALE
+   ========================================================================= */
+.vue{padding:20px 16px 64px;max-width:1500px;margin:0 auto}
+.vue.pleine{max-width:none;padding:0}
+.carte{background:var(--fond);border:1px solid var(--bordure);border-radius:var(--r);padding:18px}
+.encart{border-left:4px solid var(--bleu);background:var(--bleu-survol);padding:12px 14px;
+        border-radius:0 var(--r) var(--r) 0;margin:0 0 18px;font-size:.9rem}
+.encart.alerte{border-left-color:var(--orange);background:var(--orange-pale)}
+.encart.danger{border-left-color:var(--rouge);background:var(--rouge-pale)}
+.encart p{margin:.4em 0} .encart p:first-child{margin-top:0} .encart p:last-child{margin-bottom:0}
+.sep{height:1px;background:var(--bordure);margin:22px 0}
+.ligne-boutons{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.vide-msg{text-align:center;padding:60px 20px;color:var(--texte-3)}
+
+/* =========================================================================
+   7. ÉCRAN D'AUDIT : plan de contrôle à gauche, exigence à droite
+   ========================================================================= */
+.travail{display:grid;grid-template-columns:minmax(300px,380px) minmax(0,1fr);
+         min-height:calc(100vh - 190px)}
+.panneau-gauche{border-right:1px solid var(--bordure);display:flex;flex-direction:column;
+                min-width:0;max-height:calc(100vh - 146px);position:sticky;top:104px;
+                background:var(--fond-2)}
+.filtres{padding:12px;border-bottom:1px solid var(--bordure);display:flex;
+         flex-direction:column;gap:8px;background:var(--fond)}
+.filtres .ligne{display:flex;gap:8px}
+.filtres select{padding:5px 8px;font-size:.82rem;flex:1;min-width:0}
+.arbre{overflow-y:auto;flex:1;padding:6px 0 30px}
+.arbre-ref{padding:10px 12px 4px;font-size:.72rem;font-weight:700;letter-spacing:.06em;
+           text-transform:uppercase;color:var(--texte-3)}
+.arbre-dom{width:100%;text-align:left;border:0;background:transparent;cursor:pointer;
+           padding:7px 12px;display:flex;gap:8px;align-items:center;font-weight:600;
+           font-size:.86rem;color:var(--texte);min-width:0}
+.arbre-dom:hover{background:var(--fond-3)}
+.arbre-dom .nom-dom{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1}
+.arbre-dom .chevron{transition:transform .15s;flex:none;color:var(--texte-3)}
+.arbre-dom[aria-expanded="true"] .chevron{transform:rotate(90deg)}
+.arbre-dom .compte{font-size:.72rem;color:var(--texte-3);font-weight:500;
+                   font-variant-numeric:tabular-nums;flex:none}
+.arbre-ex{width:100%;text-align:left;border:0;background:transparent;cursor:pointer;
+          padding:6px 12px 6px 30px;display:flex;gap:8px;align-items:center;
+          font-size:.83rem;color:var(--texte-2);border-left:3px solid transparent}
+.arbre-ex:hover{background:var(--fond-3)}
+.arbre-ex[aria-current="true"]{background:var(--bleu-pale);color:var(--texte);
+                               font-weight:600;border-left-color:var(--bleu)}
+.arbre-ex .ident{font-family:var(--mono);font-size:.72rem;color:var(--texte-3);flex:none}
+.arbre-ex .lib{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+.pastille{width:9px;height:9px;border-radius:50%;flex:none;background:#cfcfcf;
+          border:1px solid var(--bordure-forte)}
+.pastille[data-s="c"]{background:var(--vert);border-color:var(--vert)}
+.pastille[data-s="pc"]{background:var(--orange);border-color:var(--orange)}
+.pastille[data-s="nc"]{background:var(--rouge);border-color:var(--rouge)}
+.pastille[data-s="na"]{background:#8c8c8c;border-color:#8c8c8c}
+
+.panneau-droit{padding:22px 26px 90px;min-width:0;overflow-x:hidden}
+.chemin{font-size:.78rem;color:var(--texte-3);margin-bottom:10px}
+.exigence-entete{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.ident-gros{font-family:var(--mono);font-size:.82rem;background:var(--fond-3);
+            border:1px solid var(--bordure);padding:2px 8px;border-radius:var(--r);white-space:nowrap}
+.etiq{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;
+      letter-spacing:.04em;padding:2px 8px;border-radius:20px;background:var(--fond-3);
+      color:var(--texte-2);border:1px solid var(--bordure);white-space:normal;max-width:100%}
+.etiq[data-n]{white-space:nowrap}
+.etiq[data-n="DR"],.etiq[data-n="S"],.etiq[data-n="TS"]{
+  color:var(--encre-rouge);border-color:var(--encre-rouge);background:transparent}
+.bloc{margin:20px 0}
+.bloc > h3{display:flex;align-items:center;gap:8px;font-size:.8rem;text-transform:uppercase;
+           letter-spacing:.06em;color:var(--texte-3);margin-bottom:8px;font-weight:700}
+.texte-officiel{background:var(--fond-2);border:1px solid var(--bordure);border-radius:var(--r);
+                padding:14px 16px;white-space:pre-wrap;font-size:.92rem;line-height:1.65;
+                max-height:min(50vh,520px);overflow:auto;margin-bottom:10px}
+.texte-officiel.vide{color:var(--texte-3);font-style:italic;white-space:normal}
+/* Énoncé officiel de l'exigence : mis en avant par rapport au texte de contexte. */
+.texte-officiel.enonce{background:var(--fond);border-left:4px solid var(--encre-rouge);
+  border-radius:0 var(--r) var(--r) 0;font-size:.95rem;max-height:none}
+.texte-officiel-titre{font-size:.78rem;font-weight:700;color:var(--texte-2);
+                      margin:0 0 6px;font-family:var(--mono)}
+.controle{background:var(--bleu-survol);border-left:4px solid var(--bleu);padding:12px 16px;
+          border-radius:0 var(--r) var(--r) 0}
+.preuves{margin:0;padding-left:20px}
+.preuves li{margin:3px 0;font-size:.9rem;color:var(--texte-2)}
+.provenance{font-size:.78rem;color:var(--orange);background:var(--orange-pale);
+            border:1px solid var(--orange);border-radius:var(--r);padding:6px 10px;margin-bottom:10px}
+
+/* =========================================================================
+   8. CHOIX DU STATUT
+   ========================================================================= */
+.statuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.statut{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;
+        padding:11px 8px;border:2px solid var(--bordure);border-radius:var(--r);
+        cursor:pointer;background:var(--fond);text-align:center}
+.statut input{position:absolute;opacity:0;width:0;height:0}
+.statut b{font-size:.85rem} .statut small{font-size:.7rem;color:var(--texte-3)}
+.statut:hover{border-color:var(--bordure-forte)}
+.statut.actif[data-s="c"]{border-color:var(--vert);background:var(--vert-pale);color:var(--vert)}
+.statut.actif[data-s="pc"]{border-color:var(--orange);background:var(--orange-pale);color:var(--orange)}
+.statut.actif[data-s="nc"]{border-color:var(--rouge);background:var(--rouge-pale);color:var(--rouge)}
+.statut.actif[data-s="na"],.statut.actif[data-s="ne"]{border-color:var(--bordure-forte);
+                                                      background:var(--fond-3);color:var(--texte-2)}
+.statut.actif b{font-weight:700}
+.statut.actif small{color:inherit;opacity:.85}
+
+/* =========================================================================
+   9. SYNTHÈSE
+   ========================================================================= */
+.kpis{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:22px}
+.kpi{border:1px solid var(--bordure);border-radius:var(--r);padding:14px 16px;background:var(--fond)}
+.kpi .v{font-size:2rem;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi .l{font-size:.78rem;color:var(--texte-3);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.kpi .d{font-size:.8rem;color:var(--texte-3);margin-top:4px}
+.kpi[data-t="nc"] .v{color:var(--rouge)} .kpi[data-t="pc"] .v{color:var(--orange)}
+.kpi[data-t="c"] .v{color:var(--vert)}   .kpi[data-t="b"] .v{color:var(--bleu)}
+.jauge{display:flex;height:22px;border-radius:3px;overflow:hidden;border:1px solid var(--bordure);
+       background:var(--fond-3)}
+.jauge span{display:block;height:100%}
+.jauge .s-c{background:var(--vert)}  .jauge .s-pc{background:var(--orange)}
+.jauge .s-nc{background:var(--rouge)} .jauge .s-na{background:#8c8c8c}
+.jauge .s-ne{background:#d6d6d6}
+html[data-theme="sombre"] .jauge .s-ne{background:#4a4a4a}
+.legende{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--texte-2);margin:10px 0 0}
+.legende span{display:inline-flex;align-items:center;gap:6px}
+.legende i{width:12px;height:12px;border-radius:2px;display:inline-block}
+.barre-dom{display:grid;grid-template-columns:minmax(150px,1fr) 2.2fr 74px;gap:12px;
+           align-items:center;padding:7px 0;font-size:.85rem}
+.barre-dom .nom{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.barre-dom .pct{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--bordure);vertical-align:top}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texte-3);
+   background:var(--fond-2);position:sticky;top:0}
+tbody tr:hover{background:var(--fond-2)}
+.tableau-enveloppe{overflow-x:auto;border:1px solid var(--bordure);border-radius:var(--r);
+                   max-height:70vh;overflow-y:auto}
+.badge-s{font-size:.72rem;font-weight:700;padding:2px 7px;border-radius:3px;
+         white-space:nowrap;display:inline-block}
+.badge-s[data-s="c"]{background:var(--vert-pale);color:var(--vert)}
+.badge-s[data-s="pc"]{background:var(--orange-pale);color:var(--orange)}
+.badge-s[data-s="nc"]{background:var(--rouge-pale);color:var(--rouge)}
+.badge-s[data-s="na"],.badge-s[data-s="ne"]{background:var(--fond-3);color:var(--texte-3)}
+
+/* =========================================================================
+   10. TEXTES OFFICIELS (écran de consultation)
+   ========================================================================= */
+.lecture{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:0;
+         border:1px solid var(--bordure);border-radius:var(--r);overflow:hidden}
+.lecture-sommaire{border-right:1px solid var(--bordure);background:var(--fond-2);
+                  max-height:70vh;overflow-y:auto;padding:6px 0}
+.lecture-sommaire button{width:100%;text-align:left;border:0;background:transparent;cursor:pointer;
+                         padding:5px 12px;font-size:.82rem;color:var(--texte-2);
+                         display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lecture-sommaire button:hover{background:var(--fond-3)}
+.lecture-sommaire button[aria-current="true"]{background:var(--bleu-pale);color:var(--texte);font-weight:600}
+.lecture-sommaire .niv2{padding-left:26px} .lecture-sommaire .niv3{padding-left:40px}
+.lecture-texte{padding:20px 24px;max-height:70vh;overflow-y:auto;white-space:pre-wrap;
+               font-size:.93rem;line-height:1.7}
+
+/* =========================================================================
+   11. DIVERS
+   ========================================================================= */
+.etat-sauvegarde{font-size:.76rem;color:var(--texte-3);display:inline-flex;align-items:center;
+                 gap:5px;white-space:nowrap}
+.etat-sauvegarde b{color:var(--vert);font-weight:600}
+.etat-sauvegarde.alerte b{color:var(--orange)}
+.etat-sauvegarde.ko b{color:var(--rouge)}
+dialog{border:1px solid var(--bordure);border-radius:6px;padding:0;max-width:min(680px,94vw);
+       width:100%;background:var(--fond);color:var(--texte);box-shadow:var(--ombre-f)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.dlg-entete{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;
+            border-bottom:1px solid var(--bordure)}
+.dlg-entete h2{margin:0}
+.dlg-corps{padding:18px;max-height:min(66vh,620px);overflow:auto}
+.dlg-pied{padding:14px 18px;border-top:1px solid var(--bordure);display:flex;gap:8px;
+          justify-content:flex-end;flex-wrap:wrap}
+.notif{position:fixed;left:50%;transform:translateX(-50%);bottom:56px;z-index:90;
+       background:#161616;color:#fff;padding:10px 18px;border-radius:var(--r);
+       box-shadow:var(--ombre-f);font-size:.88rem;max-width:90vw}
+html[data-theme="sombre"] .notif{background:#f2f2f2;color:#161616}
+.liste-audits{list-style:none;margin:0;padding:0}
+.liste-audits li{display:flex;gap:12px;align-items:center;padding:11px 12px;
+                 border:1px solid var(--bordure);border-radius:var(--r);margin-bottom:8px;flex-wrap:wrap}
+.liste-audits .info{flex:1;min-width:150px}
+.liste-audits .info b{display:block}
+.liste-audits .info small{color:var(--texte-3);font-size:.78rem}
+.raccourcis{font-size:.8rem;color:var(--texte-3);display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.pied-navigation{display:flex;justify-content:space-between;gap:10px;margin-top:26px;
+                 border-top:1px solid var(--bordure);padding-top:14px;flex-wrap:wrap}
+
+/* =========================================================================
+   12. ADAPTATION AUX PETITS ÉCRANS
+   ========================================================================= */
+@media (max-width:900px){
+  .travail{grid-template-columns:minmax(0,1fr)}
+  .panneau-gauche{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--bordure)}
+  .arbre{max-height:44vh}
+  .panneau-droit{padding:18px 14px 80px}
+  .lecture{grid-template-columns:minmax(0,1fr)}
+  .lecture-sommaire{max-height:32vh;border-right:0;border-bottom:1px solid var(--bordure)}
+  .barre-dom{grid-template-columns:minmax(90px,1fr) 1.4fr 56px;gap:8px;font-size:.8rem}
+  .kpis{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+  /* La taille 18 prescrite par l'annexe 37 est conservée : c'est elle qui
+     fait que le timbre « attire immédiatement l'attention ». Seuls les
+     rembourrages sont resserrés pour tenir sur un écran étroit. */
+  .timbre,.timbre-special{padding:1px 8px}
+}
+
+/* =========================================================================
+   13. IMPRESSION
+   -------------------------------------------------------------------------
+   Le timbre est répété en haut et en bas de chaque page imprimée, en rouge.
+   ========================================================================= */
+@media print{
+  .bandeau-timbre.haut{position:fixed;top:0;left:0;right:0;background:#fff;padding:4px 0}
+  .bandeau-timbre.bas{position:fixed;bottom:0;background:#fff;padding:4px 0}
+  .timbre{color:#c9191e !important}
+  .timbre-special{color:#0050c8 !important;border-color:#0050c8 !important}
+  .barre,.panneau-gauche,.onglets,.actions,.no-print,.pied-navigation{display:none !important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .vue{padding:26px 0 26px;max-width:none}
+  .carte,.kpi,.tableau-enveloppe{break-inside:avoid;border-color:#999}
+  .tableau-enveloppe{max-height:none;overflow:visible}
+  table{font-size:9.5pt}
+  h2{break-after:avoid}
+  .saut-page{break-before:page}
+  @page{margin:20mm 12mm}
+}
+</style>
+</head>
+<body>

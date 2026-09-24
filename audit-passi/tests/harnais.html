@@ -1,0 +1,202 @@
+<script>
+(function(){
+  window.confirm = () => true; window.alert = () => {};
+  const R = [];
+  const ok = (n, c, d) => R.push((c ? "OK  " : "ECHEC ") + n + (d !== undefined ? "  [" + d + "]" : ""));
+  const erreurs = [];
+  window.addEventListener("error", e => erreurs.push(String(e.message)));
+  const rgb = el => getComputedStyle(el).color;
+  try{
+    // ---------- Catalogue ----------
+    const refs = Catalogue.tous();
+    ok("deux référentiels : RGS et LPM",
+       refs.length === 2 && refs.map(r => r.id).sort().join(",") === "LPM,RGS",
+       refs.map(r => r.code).join(" / "));
+    const plat = Catalogue.aplati();
+    ok("42 exigences", plat.length === 42, plat.length);
+    ok("LPM : 20 règles numérotées", plat.filter(x => x.ref.id === "LPM").length === 20);
+    ok("LPM : identifiants officiels R01 à R20",
+       ["LPM-R01","LPM-R02","LPM-R20"].every(i => plat.some(x => x.ex.id === i)));
+    ok("LPM : intitulés officiels signalés",
+       plat.filter(x => x.ref.id === "LPM").every(x => x.ex.officielTitre));
+    ok("RGS : points de contrôle tous signalés comme rédigés",
+       plat.filter(x => x.ref.id === "RGS").every(x => x.ex.redige && !x.ex.officielTitre));
+    ok("chaque exigence porte un point de contrôle et des preuves",
+       plat.every(x => (x.ex.ctrl || "").length > 40 && (x.ex.pr || []).length >= 2));
+
+    // ---------- Secteurs ----------
+    const secteurs = Catalogue.secteurs();
+    ok("vingt-deux secteurs et sous-secteurs", secteurs.length === 22, secteurs.length);
+    ok("dix-huit secteurs ont leur annexe I publiée et intégrée",
+       secteurs.filter(s => s.reglesPubliees).length === 18,
+       secteurs.filter(s => s.reglesPubliees).length);
+    ok("les secteurs sans annexe publiée sont signalés",
+       secteurs.filter(s => !s.reglesPubliees).map(s => s.nom).sort().join(" | "),
+       secteurs.filter(s => !s.reglesPubliees).map(s => s.nom).join(", "));
+    ok("secteurs attendus présents",
+       ["Finances","Activités militaires de l'État","Nucléaire","Transport aérien",
+        "Recherche publique"].every(n => secteurs.some(s => s.nom === n)));
+    ok("sous-secteurs distingués : la santé en compte trois",
+       secteurs.filter(s => /sant|sanitaire/i.test(s.nom)).length === 3,
+       secteurs.filter(s => /sant|sanitaire/i.test(s.nom)).map(s => s.nom).join(", "));
+    ok("chaque secteur porte la date de son arrêté et sa référence JORF",
+       secteurs.every(s => (s.arrete || "").length > 5 && (s.jorf || "").startsWith("JORFTEXT")));
+    ok("le référentiel LPM demande un secteur, pas le RGS",
+       Catalogue.referentiel("LPM").secteurs === true && Catalogue.referentiel("RGS").secteurs === false);
+
+    // ---------- Écran d'initialisation ----------
+    document.getElementById("btn-nouvel-audit").click();
+    ok("écran d'initialisation affiché", !document.getElementById("vue-init").hidden);
+    ok("cinq choix de marquage dont le libre",
+       document.querySelectorAll('input[name=marq]').length === 5 &&
+       !!document.querySelector('input[name=marq][value="LIBRE"]'));
+    ok("bloc secteur masqué tant que la LPM n'est pas choisie",
+       document.getElementById("bloc-secteur").hidden);
+    const cRGS = document.querySelector('input[name=ref][value="RGS"]');
+    cRGS.checked = true; cRGS.dispatchEvent(new Event("change",{bubbles:true}));
+    ok("RGS seul : toujours pas de secteur demandé", document.getElementById("bloc-secteur").hidden);
+    const cLPM = document.querySelector('input[name=ref][value="LPM"]');
+    cLPM.checked = true; cLPM.dispatchEvent(new Event("change",{bubbles:true}));
+    ok("LPM choisie : le secteur est demandé", !document.getElementById("bloc-secteur").hidden);
+    ok("liste déroulante de tous les secteurs",
+       document.querySelectorAll("#champ-secteur option").length === 23, "dont l'option vide");
+
+    // Marquage libre
+    ok("champ de marquage libre masqué par défaut",
+       document.getElementById("bloc-marquage-libre").hidden);
+    const mLibre = document.querySelector('input[name=marq][value="LIBRE"]');
+    mLibre.checked = true; mLibre.dispatchEvent(new Event("change",{bubbles:true}));
+    ok("choix du marquage libre : le champ apparaît",
+       !document.getElementById("bloc-marquage-libre").hidden);
+
+    document.getElementById("champ-client").value = "Opérateur d'essai";
+    document.getElementById("champ-perimetre").value = "SIIV « ORION »";
+    document.getElementById("champ-secteur").value = "finances";
+    document.getElementById("champ-marquage-libre").value = "Confidentiel — client";
+    document.getElementById("form-init").dispatchEvent(new Event("submit",{bubbles:true,cancelable:true}));
+    ok("audit créé", !!Audit.etat && Audit.etat.meta.client === "Opérateur d'essai");
+    ok("secteur conservé", Audit.etat.meta.secteur === "finances");
+    ok("plan de contrôle des deux référentiels", Audit.planDeControle().length === 42,
+       Audit.planDeControle().length);
+
+    // ---------- Marquage libre : rendu ----------
+    const timbre = document.getElementById("timbre-haut");
+    const st = getComputedStyle(timbre);
+    ok("marquage libre : libellé saisi affiché",
+       timbre.textContent === "Confidentiel — client", timbre.textContent);
+    ok("marquage libre : capitales", st.textTransform === "uppercase");
+    ok("marquage libre : gras", parseInt(st.fontWeight) >= 700, st.fontWeight);
+    ok("marquage libre : texte rouge", rgb(timbre) === "rgb(201, 25, 30)", rgb(timbre));
+    ok("marquage libre : cadre rouge",
+       st.borderTopColor === "rgb(201, 25, 30)" && parseFloat(st.borderTopWidth) >= 2,
+       st.borderTopWidth + " " + st.borderTopColor);
+    ok("marquage libre : pas de bandeau en bas de page",
+       document.getElementById("bandeau-bas").hidden);
+    ok("marquage libre repris dans le titre de l'onglet",
+       document.title.indexOf("Confidentiel — client") === 0, document.title);
+
+    // Les mentions réglementaires restent disponibles
+    Audit.etat.meta.marquage = "S"; appliquerMarquage();
+    ok("mention Secret : toujours opérante",
+       timbre.textContent === "Secret" && !document.getElementById("bandeau-bas").hidden);
+    Audit.etat.meta.marquage = "LIBRE"; appliquerMarquage();
+
+    // ---------- Saisie de l'énoncé officiel ----------
+    const premier = Audit.planDeControle()[0].ex.id;
+    EcranAudit.rendreExigence(premier);
+    ok("énoncé officiel signalé comme non renseigné",
+       document.querySelector(".texte-officiel.vide") !== null);
+    Textes.definir(premier, "Énoncé officiel recopié par l'auditeur.", "Annexe I, règle 1");
+    EcranAudit.rendreExigence(premier);
+    ok("énoncé officiel affiché après saisie",
+       document.querySelector(".texte-officiel").textContent.includes("recopié"));
+    ok("référence de l'énoncé saisi affichée",
+       document.querySelector(".texte-officiel-titre").textContent.startsWith("Annexe I, règle 1"),
+       document.querySelector(".texte-officiel-titre").textContent);
+
+    // ---------- Le secteur détermine le texte des règles LPM ----------
+    const secteursIntegres = Object.keys(Catalogue.reglesLPM());
+    ok("dix-huit annexes I intégrées", secteursIntegres.length === 18, secteursIntegres.length);
+    Audit.etat.meta.secteur = "finances";
+    const r2fin = Textes.de("LPM-R02");
+    ok("règle LPM : énoncé officiel résolu depuis le secteur",
+       !!r2fin && r2fin.officiel === true && r2fin.texte.length > 500,
+       r2fin ? r2fin.texte.length + " caractères" : "absent");
+    ok("règle LPM : la source cite le secteur et le numéro",
+       r2fin.source.includes("Finances") && r2fin.source.includes("règle 2"), r2fin.source);
+    Audit.etat.meta.secteur = "activites-civiles-de-l-etat";
+    const r2civ = Textes.de("LPM-R02");
+    ok("changer de secteur change le texte applicable",
+       r2civ.texte !== r2fin.texte,
+       Math.abs(r2civ.texte.length - r2fin.texte.length) + " caractères d'écart");
+    ok("différence de fond entre secteurs : tests d'intrusion",
+       r2fin.texte.includes("tests de vulnérabilité et d'intrusion") &&
+       !r2civ.texte.includes("tests de vulnérabilité et d'intrusion"),
+       "exigés en Finances, absents en Activités civiles");
+    const ecarts = [...Array(20).keys()].map(i => "LPM-R" + String(i+1).padStart(2,"0"))
+      .filter(id => { Audit.etat.meta.secteur = "finances"; const a = (Textes.de(id)||{}).texte || "";
+                      Audit.etat.meta.secteur = "activites-civiles-de-l-etat";  const b = (Textes.de(id)||{}).texte || "";
+                      return a !== b; });
+    ok("la majorité des règles diffèrent entre les deux secteurs",
+       ecarts.length >= 15, ecarts.length + " règles sur 20");
+    Audit.etat.meta.secteur = "espace";
+    ok("secteur sans annexe publiée : aucun énoncé n'est inventé", Textes.de("LPM-R02") === null);
+    EcranAudit.rendreExigence("LPM-R02");
+    ok("secteur sans annexe publiée : l'outil en explique la raison",
+       document.querySelector(".texte-officiel.vide").textContent.includes("n'est pas publiée"));
+    Audit.etat.meta.secteur = "finances";
+    EcranAudit.rendreExigence("LPM-R02");
+    ok("énoncé officiel non modifiable à la main",
+       document.getElementById("btn-editer-texte") === null);
+    ok("compteur des énoncés disponibles", Textes.nombreRenseignes() >= 20,
+       Textes.nombreRenseignes());
+    ok("avertissement du référentiel affiché avec l'énoncé officiel",
+       ((document.querySelector(".provenance") || {}).textContent || "").length > 40,
+       ((document.querySelector(".provenance") || {}).textContent || "aucun").slice(0, 60));
+
+    // ---------- Évaluation, synthèse, exports ----------
+    const selectionnee = EcranAudit.selection;
+    document.dispatchEvent(new KeyboardEvent("keydown",{key:"1",bubbles:true}));
+    ok("raccourci clavier opérant",
+       Audit.etat.reponses[selectionnee].s === "nc", selectionnee);
+    montrerEcran("synthese");
+    ok("synthèse rendue", document.getElementById("synthese-contenu").textContent.includes("Taux de conformité"));
+    ok("synthèse : secteur repris",
+       document.getElementById("synthese-contenu").textContent.includes("Finances"));
+
+    const capt = {};
+    const vrai = window.telecharger;
+    telecharger = (n,c) => { capt[n.split("_")[0]] = c; };
+    Exports.matriceCSV(); Exports.rapportHTML(); Exports.auditJSON();
+    telecharger = vrai;
+    ok("CSV : énoncé saisi exporté", (capt["matrice-conformite"]||"").includes("recopié"));
+    ok("CSV : marquage libre en tête", (capt["matrice-conformite"]||"").includes("CONFIDENTIEL — CLIENT"));
+    const rap = capt["rapport-audit"] || "";
+    ok("rapport : marquage libre en capitales rouges encadrées",
+       rap.includes("CONFIDENTIEL — CLIENT") && rap.includes("#c9191e") && rap.includes("2.5pt solid"));
+    ok("rapport : aucune ressource externe", !/src=["']http|href=["']http|@import/.test(rap));
+    ok("rapport : secteur mentionné", rap.includes("Finances"));
+    const paquet = JSON.parse(capt["audit-passi"]);
+    ok("export JSON : énoncés saisis inclus",
+       Object.keys(paquet.audit.textes || {}).length === 1);
+
+    // ---------- Import ----------
+    Audit.etat = null;
+    Fichiers.appliquer(JSON.parse(capt["audit-passi"]));
+    ok("import restaure l'audit", Audit.etat.meta.client === "Opérateur d'essai");
+    ok("import restaure le secteur et le marquage libre",
+       Audit.etat.meta.secteur === "finances" && Audit.etat.meta.marquageLibre === "Confidentiel — client");
+    ok("import restaure les énoncés saisis", !!Textes.de(premier));
+
+    // ---------- Hors ligne ----------
+    ok("aucune requête réseau émise",
+       performance.getEntriesByType("resource").every(r => /^(file|data|blob):/.test(r.name)));
+    ok("stockage local opérationnel", Stockage.disponible, Stockage.disponible ? "oui" : Stockage.motifIndisponibilite);
+  } catch(e){
+    R.push("EXCEPTION  " + (e && e.stack ? e.stack.split("\n").slice(0,3).join(" | ") : e));
+  }
+  R.push("ERREURS JS NON CAPTUREES : " + (erreurs.length ? erreurs.join(" ; ") : "aucune"));
+  const pre = document.createElement("pre"); pre.id = "RESULTATS"; pre.textContent = R.join("\n");
+  document.body.appendChild(pre);
+})();
+</script>

@@ -12,6 +12,8 @@ L'outil incorpore le texte de trois instructions publiques de l'État français.
 | IGI 1300 | Instruction générale interministérielle n° 1300/SGDSN/PSE/PSD, annexée à l'arrêté du 9 août 2021 | PDF publié par le ministère des Armées |
 | IM 900 | Instruction ministérielle n° 900/ARM/CAB du 27 août 2025, annexée à l'arrêté du 27 août 2025 | *Journal officiel* du 1er octobre 2025, texte 17 |
 | Listing des exigences SSI de l'IGI 1300 | Document de travail publié par l'ANSSI, portant la mention NP (non protégé) | `ANSSI-NP-IGI1300-listing_des_exigences-v0.4.xlsx`, cyber.gouv.fr |
+| Arrêtés sectoriels LPM | 23 arrêtés fixant les règles de sécurité des systèmes d'information d'importance vitale, pris en application des articles R. 1332-41-1 et suivants du code de la défense | Données ouvertes de la DILA, archive `Freemium_jorf_global` de <https://echanges.dila.gouv.fr/OPENDATA/JORF/> |
+| RGS v2.0 | Arrêté du 13 juin 2014 portant approbation du référentiel général de sécurité | **Non reproduit** : aucune source accessible à un client non interactif |
 
 Ces documents sont des actes officiels, publiés et librement consultables. Leur reproduction
 n'emporte aucune appropriation : ils demeurent l'œuvre et la responsabilité des autorités qui les
@@ -40,6 +42,22 @@ Deux réserves particulières :
 
 Aucun passage n'a été reformulé, complété ni reconstitué : ce qui n'est pas publié est signalé
 comme manquant.
+
+## Ce qui n'est pas reproduit, et pourquoi
+
+* **RGS v2.0** — ni Légifrance ni l'ANSSI n'exposent de fichier accessible à un outil automatisé.
+  Les 22 points de contrôle RGS de l'outil PASSI sont donc **rédigés pour ce projet**, sans citer
+  de numérotation de chapitre, et signalés comme tels. L'énoncé officiel se saisit dans l'outil.
+* **Annexe I de quatre arrêtés sectoriels** — « Activités militaires de l'État », « Activités
+  judiciaires », « Activités industrielles de l'armement » et « Espace » ne publient au *Journal
+  officiel* que les quatre chapitres de leur arrêté. Leur article 1er renvoie pourtant à
+  « l'annexe I du présent arrêté ». Vérifié sur le XML du JO, où tous les autres articles de ces
+  textes sont présents.
+* **Annexes II, III et IV des arrêtés sectoriels** — délais d'application, types de systèmes et
+  types d'incidents. Les arrêtés précisent qu'elles sont notifiées par le directeur général de
+  l'ANSSI aux personnes ayant besoin d'en connaître.
+* **Référentiel PASSI pour les besoins de la sécurité nationale** — document Diffusion Restreinte,
+  obtenu auprès de l'ANSSI.
 
 ## Mise à jour
 

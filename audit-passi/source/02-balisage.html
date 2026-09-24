@@ -1,0 +1,322 @@
+<!-- ===================================================================
+     TIMBRE HAUT — apposé au milieu du haut de chaque page (IGI 1300
+     § 7.1.2.3 a, IM 900 § 7.2.3). La mention Spécial France, en bleu,
+     est placée immédiatement à droite (IM 900 § 7.3.2).
+     =================================================================== -->
+<div class="bandeau-timbre haut" id="bandeau-haut" data-niveau="NP">
+  <span class="timbre" id="timbre-haut">Non protégé</span>
+  <span class="timbre-special" id="special-haut" hidden>Spécial France</span>
+</div>
+
+<header class="barre no-print">
+  <button class="marque" id="btn-accueil" title="Revenir à la liste des audits">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="1.8" aria-hidden="true">
+      <path d="M12 2.5 4 6v6c0 4.6 3.2 8.4 8 9.5 4.8-1.1 8-4.9 8-9.5V6z"/><path d="m9 12 2 2 4-4"/>
+    </svg>
+    <span>Audit PASSI</span>
+  </button>
+  <div class="contexte" id="contexte-barre" hidden>
+    <strong id="ctx-client">—</strong>
+    <span id="ctx-detail">—</span>
+  </div>
+  <div class="onglets" id="onglets" role="tablist" hidden>
+    <button role="tab" data-vue="audit" aria-selected="true">Audit</button>
+    <button role="tab" data-vue="synthese" aria-selected="false">Synthèse</button>
+    <button role="tab" data-vue="dossier" aria-selected="false">Dossier</button>
+  </div>
+  <div class="actions">
+    <span class="etat-sauvegarde" id="etat-sauvegarde" hidden><b>•</b><span id="etat-txt">Enregistré</span></span>
+    <button class="btn-icone" id="btn-theme" title="Basculer clair / sombre" aria-label="Basculer le thème">◐</button>
+    <button class="btn secondaire petit" id="btn-aide">Aide</button>
+  </div>
+</header>
+
+<!-- =================================================================== -->
+<!-- ÉCRAN 1 — ACCUEIL                                                   -->
+<!-- =================================================================== -->
+<section class="vue" id="vue-accueil">
+  <h1>Audit PASSI — RGS et LPM</h1>
+  <p class="aide" style="font-size:.95rem;max-width:74ch">
+    Outil d'audit de conformité hors ligne. Toutes les données restent dans ce navigateur&nbsp;:
+    aucun serveur, aucun réseau, aucune dépendance externe.
+  </p>
+
+  <div class="encart" id="encart-textes">
+    <p><b>Les énoncés officiels se saisissent dans l'outil.</b> Ni le RGS ni les arrêtés sectoriels
+    ne sont téléchargeables par un outil automatisé : chaque exigence dispose d'un champ où vous
+    recopiez son énoncé depuis votre exemplaire du référentiel. Il est conservé avec l'audit.</p>
+    <p id="encart-textes-detail"></p>
+  </div>
+
+  <div class="carte" style="margin-bottom:20px">
+    <h2>Reprendre un audit</h2>
+    <ul class="liste-audits" id="liste-audits"></ul>
+    <p class="vide-msg" id="aucun-audit" hidden>Aucun audit enregistré dans ce navigateur.</p>
+    <div class="ligne-boutons" style="margin-top:14px">
+      <button class="btn" id="btn-nouvel-audit">+ Nouvel audit</button>
+      <button class="btn secondaire" id="btn-importer-accueil">Importer une sauvegarde (.json)</button>
+    </div>
+  </div>
+
+  <div class="carte">
+    <h2>Stockage et sauvegarde</h2>
+    <p id="diag-stockage" class="aide" style="font-size:.88rem"></p>
+    <div class="ligne-boutons">
+      <button class="btn secondaire petit" id="btn-lier-fichier">Lier l'audit à un fichier local</button>
+      <button class="btn discret petit" id="btn-purger">Effacer toutes les données locales</button>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================== -->
+<!-- ÉCRAN 2 — INITIALISATION                                            -->
+<!-- =================================================================== -->
+<section class="vue" id="vue-init" hidden>
+  <h1>Initialisation de l'audit</h1>
+
+  <form id="form-init" autocomplete="off">
+    <fieldset>
+      <legend>1. Identification de la mission</legend>
+      <div class="grille">
+        <div><label for="champ-client">Client / entité auditée *</label>
+          <input type="text" id="champ-client" required placeholder="Ex. : Direction générale ..."></div>
+        <div><label for="champ-perimetre">Périmètre audité *</label>
+          <input type="text" id="champ-perimetre" required placeholder="Ex. : SI « ATLAS » — site de ..."></div>
+        <div><label for="champ-site">Site / lieu</label>
+          <input type="text" id="champ-site" placeholder="Ex. : site principal, bâtiment C"></div>
+        <div><label for="champ-reference">Référence de la mission</label>
+          <input type="text" id="champ-reference" placeholder="Ex. : AUD-2026-014"></div>
+        <div><label for="champ-auditeurs">Auditeur(s) — auteur du rapport</label>
+          <input type="text" id="champ-auditeurs" placeholder="Nom, organisme"></div>
+        <div><label for="champ-commanditaire">Commanditaire / autorité qualifiée</label>
+          <input type="text" id="champ-commanditaire" placeholder="Autorité qualifiée, autorité d'homologation"></div>
+        <div><label for="champ-date-debut">Date de début</label>
+          <input type="date" id="champ-date-debut"></div>
+        <div><label for="champ-date-fin">Date de fin prévue</label>
+          <input type="date" id="champ-date-fin"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>2. Référentiels applicables *</legend>
+      <p class="aide">Plusieurs référentiels peuvent être combinés&nbsp;: les exigences sont alors fusionnées
+      dans un plan de contrôle unique, chacune restant rattachée à sa source.</p>
+      <div id="choix-referentiels"></div>
+    </fieldset>
+
+    <fieldset id="bloc-secteur" hidden>
+      <legend>3. Secteur d'activités d'importance vitale</legend>
+      <p class="aide">Les douze secteurs de l'annexe à l'arrêté du 2 juin 2006. Le secteur identifie
+      la mission et figure sur les éditions&nbsp;: il ne modifie pas le plan de contrôle, les vingt
+      règles de l'annexe I des arrêtés sectoriels étant communes à tous les secteurs. Les
+      différences sectorielles figurent aux annexes II, III et IV, qui ne sont pas publiées.</p>
+      <div id="choix-secteur"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>4. Marquage du présent rapport</legend>
+      <p class="aide">Protection du rapport d'audit lui-même. Le timbre est apposé en rouge au milieu du haut
+      de chaque écran et de chaque page éditée, et au bas de chaque page pour les niveaux Secret et Très
+      Secret (IGI&nbsp;1300 § 7.1.2.3, IM&nbsp;900 § 7.2.3). Un rapport citant des non-conformités porte en
+      pratique au moins la mention Diffusion Restreinte.</p>
+      <div id="choix-marquage"></div>
+      <div id="bloc-marquage-libre" hidden style="margin-top:12px">
+        <label for="champ-marquage-libre">Libellé du marquage libre *</label>
+        <p class="aide">Rendu en capitales grasses rouges dans un cadre rouge, au milieu du haut de
+        chaque page et sur les éditions.</p>
+        <input type="text" id="champ-marquage-libre" placeholder="Ex. : CONFIDENTIEL — CLIENT">
+      </div>
+      <label class="case" style="margin:12px 0 0">
+        <input type="checkbox" id="champ-special-france">
+        <span><b>Mention complémentaire Spécial France</b>
+        <small>Timbre bleu apposé immédiatement à droite du timbre principal (IM 900 § 7.3.2).</small></span>
+      </label>
+      <div class="grille" style="margin-top:12px">
+        <div><label for="champ-emetteur">Autorité émettrice</label>
+          <input type="text" id="champ-emetteur" placeholder="Entité sous la responsabilité de laquelle le rapport est émis"></div>
+        <div><label for="champ-enregistrement">Numéro d'enregistrement</label>
+          <input type="text" id="champ-enregistrement" placeholder="Ex. : 2026/DR/0142"></div>
+        <div><label for="champ-exemplaire">Numéro d'exemplaire</label>
+          <input type="text" id="champ-exemplaire" placeholder="Ex. : 1"></div>
+        <div><label for="champ-exemplaires-total">Nombre total d'exemplaires</label>
+          <input type="text" id="champ-exemplaires-total" placeholder="Ex. : 3"></div>
+        <div><label for="champ-echeance">Échéance de la classification</label>
+          <input type="text" id="champ-echeance" placeholder="Date, délai ou date de réexamen"></div>
+      </div>
+      <p class="aide" style="margin-top:10px">Ces quatre dernières informations figurent sur la première page
+      des éditions&nbsp;: elles sont exigées par l'IGI&nbsp;1300 § 7.1.2.3 b) pour l'identification d'un document
+      classifié (numéro d'exemplaire et nombre total d'exemplaires au niveau Très Secret).</p>
+    </fieldset>
+
+    <div class="ligne-boutons">
+      <button type="submit" class="btn">Créer l'audit</button>
+      <button type="button" class="btn discret" id="btn-annuler-init">Annuler</button>
+      <span class="aide" id="apercu-plan" style="margin:0"></span>
+    </div>
+  </form>
+</section>
+
+<!-- =================================================================== -->
+<!-- ÉCRAN 3 — AUDIT                                                     -->
+<!-- =================================================================== -->
+<section class="vue pleine" id="vue-audit" hidden>
+  <div class="travail">
+    <aside class="panneau-gauche no-print">
+      <div class="filtres">
+        <input type="search" id="filtre-recherche" placeholder="Rechercher (identifiant, intitulé, texte…)"
+               aria-label="Rechercher une exigence">
+        <div class="ligne">
+          <select id="filtre-statut" aria-label="Filtrer par statut">
+            <option value="">Tous statuts</option>
+            <option value="ne">Non évaluées</option>
+            <option value="nc">Non conformes</option>
+            <option value="pc">Partiellement conformes</option>
+            <option value="c">Conformes</option>
+            <option value="na">Non applicables</option>
+            <option value="ecarts">Écarts (NC + PC)</option>
+          </select>
+          <select id="filtre-referentiel" aria-label="Filtrer par référentiel">
+            <option value="">Tous référentiels</option>
+          </select>
+        </div>
+        <div class="ligne" style="align-items:center">
+          <div class="jauge" style="flex:1;height:8px" id="jauge-mini"></div>
+          <span class="aide" id="compteur-mini"
+                style="margin:0;white-space:nowrap;font-variant-numeric:tabular-nums"></span>
+        </div>
+      </div>
+      <nav class="arbre" id="arbre" aria-label="Plan de contrôle"></nav>
+    </aside>
+
+    <div class="panneau-droit" id="panneau-exigence">
+      <div class="vide-msg">Sélectionnez une exigence dans le plan de contrôle.</div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================== -->
+<!-- ÉCRAN 4 — SYNTHÈSE                                                  -->
+<!-- =================================================================== -->
+<section class="vue" id="vue-synthese" hidden>
+  <div id="synthese-contenu"></div>
+</section>
+
+<!-- =================================================================== -->
+<!-- ÉCRAN 6 — DOSSIER                                                   -->
+<!-- =================================================================== -->
+<section class="vue" id="vue-dossier" hidden>
+  <h1>Dossier d'audit</h1>
+  <div class="grille" style="align-items:start">
+    <div class="carte">
+      <h2>Sauvegarde et restitution</h2>
+      <p class="aide">Le format <code>.json</code> contient l'intégralité de l'audit&nbsp;: métadonnées,
+      évaluations, constats et preuves. C'est le format de reprise.</p>
+      <div class="ligne-boutons">
+        <button class="btn" id="btn-exp-json">Exporter l'audit (.json)</button>
+        <button class="btn secondaire" id="btn-imp-json">Importer un audit (.json)</button>
+      </div>
+      <div class="sep"></div>
+      <h3>Fichier lié (enregistrement continu)</h3>
+      <p class="aide" id="etat-fichier-lie">Non lié.</p>
+      <div class="ligne-boutons">
+        <button class="btn secondaire petit" id="btn-lier-fichier-2">Lier à un fichier .json</button>
+        <button class="btn discret petit" id="btn-delier-fichier">Délier</button>
+      </div>
+    </div>
+
+    <div class="carte">
+      <h2>Éditions</h2>
+      <p class="aide">Documents produits hors ligne&nbsp;; le timbre et les mentions d'identification y sont
+      reportés automatiquement.</p>
+      <div class="ligne-boutons">
+        <button class="btn" id="btn-exp-rapport">Rapport HTML autonome</button>
+        <button class="btn secondaire" id="btn-exp-csv">Matrice de conformité (.csv)</button>
+        <button class="btn secondaire" id="btn-exp-pa">Plan d'action (.csv)</button>
+        <button class="btn discret" id="btn-imprimer">Imprimer / PDF</button>
+      </div>
+      <p class="aide" style="margin-top:10px">La numérotation « page X sur Y » exigée par l'IGI 1300
+      § 7.1.2.3 c) n'est pas réalisable en HTML&nbsp;: activez l'option d'en-tête et pied de page de la boîte
+      d'impression du navigateur, qui l'ajoute.</p>
+    </div>
+
+    <div class="carte">
+      <h2>Exigences complémentaires</h2>
+      <p class="aide">Pour couvrir une clause contractuelle, une PSSI interne ou une annexe de sécurité non
+      prévue par les référentiels livrés.</p>
+      <div id="liste-exigences-perso"></div>
+      <button class="btn secondaire petit" id="btn-ajouter-exigence" style="margin-top:10px">+ Ajouter une exigence</button>
+    </div>
+
+    <div class="carte">
+      <h2>Paramètres de la mission</h2>
+      <div id="form-parametres"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     TIMBRE BAS — apposé au milieu du bas de chaque page pour les
+     informations classifiées (IGI 1300 § 7.1.2.3 a). La mention
+     Diffusion Restreinte ne l'exige pas : le bandeau reste masqué.
+     =================================================================== -->
+<div class="bandeau-timbre bas" id="bandeau-bas" data-niveau="NP" hidden>
+  <span class="timbre" id="timbre-bas">Non protégé</span>
+</div>
+
+<!-- =================================================================== -->
+<!-- BOÎTES DE DIALOGUE                                                  -->
+<!-- =================================================================== -->
+<dialog id="dlg-texte">
+  <form method="dialog">
+    <div class="dlg-entete"><h2>Énoncé officiel de l'exigence</h2>
+      <button class="btn-icone" value="annuler" aria-label="Fermer">✕</button></div>
+    <div class="dlg-corps">
+      <p class="aide" id="dlg-texte-ident"></p>
+      <label for="dlg-texte-source">Référence précise dans le texte</label>
+      <input type="text" id="dlg-texte-source" placeholder="Ex. : arrêté sectoriel, annexe I, règle 2">
+      <label for="dlg-texte-zone" style="margin-top:12px">Énoncé officiel</label>
+      <p class="aide">Recopiez ici l'énoncé depuis votre exemplaire du référentiel. Il est conservé
+      avec l'audit et repris dans les exports.</p>
+      <textarea id="dlg-texte-zone" rows="14" style="min-height:240px"></textarea>
+    </div>
+    <div class="dlg-pied">
+      <button class="btn discret" value="annuler">Annuler</button>
+      <button class="btn" value="ok">Enregistrer</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-exigence">
+  <form method="dialog">
+    <div class="dlg-entete"><h2>Exigence complémentaire</h2>
+      <button class="btn-icone" value="annuler" aria-label="Fermer">✕</button></div>
+    <div class="dlg-corps">
+      <label for="dlg-ex-id">Identifiant *</label>
+      <input type="text" id="dlg-ex-id" placeholder="Ex. : PSSI-INT-01">
+      <label for="dlg-ex-titre" style="margin-top:10px">Intitulé *</label>
+      <input type="text" id="dlg-ex-titre">
+      <label for="dlg-ex-dom" style="margin-top:10px">Domaine</label>
+      <input type="text" id="dlg-ex-dom" placeholder="Ex. : Clauses contractuelles">
+      <label for="dlg-ex-ctrl" style="margin-top:10px">Énoncé du contrôle</label>
+      <textarea id="dlg-ex-ctrl" rows="4"></textarea>
+      <label for="dlg-ex-src" style="margin-top:10px">Source</label>
+      <input type="text" id="dlg-ex-src">
+      <label for="dlg-ex-txt" style="margin-top:10px">Texte de référence</label>
+      <textarea id="dlg-ex-txt" rows="6"></textarea>
+    </div>
+    <div class="dlg-pied">
+      <button class="btn discret" value="annuler">Annuler</button>
+      <button class="btn" value="ok">Ajouter</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-aide">
+  <div class="dlg-entete"><h2>Aide</h2>
+    <button class="btn-icone" id="dlg-aide-fermer" aria-label="Fermer">✕</button></div>
+  <div class="dlg-corps" id="dlg-aide-corps"></div>
+  <div class="dlg-pied"><button class="btn" id="dlg-aide-fermer-2">Fermer</button></div>
+</dialog>
+
+<input type="file" id="fichier-import" accept="application/json,.json" hidden>

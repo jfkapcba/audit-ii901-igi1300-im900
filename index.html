@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Audit SSI — II 901 / IGI 1300 / IM 900</title>
+<title>Outils d'audit de conformité</title>
 <meta name="description" content="Outil d'audit de conformité aux référentiels français II 901, IGI 1300 et IM 900. Fichier HTML unique, hors ligne, textes officiels intégrés.">
 <style>
   :root{
@@ -60,30 +60,45 @@
          stroke-width="1.8" aria-hidden="true">
       <path d="M12 2.5 4 6v6c0 4.6 3.2 8.4 8 9.5 4.8-1.1 8-4.9 8-9.5V6z"/><path d="m9 12 2 2 4-4"/>
     </svg>
-    <span>Audit SSI</span>
+    <span>Outils d'audit</span>
   </div>
 
-  <h1>Audit de conformité II&nbsp;901 / IGI&nbsp;1300 / IM&nbsp;900</h1>
-  <p class="chapeau">Un seul fichier HTML, entièrement hors ligne, avec le texte officiel
-  des trois instructions intégré et consultable.</p>
+  <h1>Outils d'audit de conformité</h1>
+  <p class="chapeau">Deux outils d'audit, chacun en un seul fichier HTML entièrement hors ligne,
+  avec le texte officiel des référentiels intégré.</p>
 
+  <h2 style="margin-top:32px">II&nbsp;901 / IGI&nbsp;1300 / IM&nbsp;900</h2>
+  <p>Protection des systèmes d'information sensibles et classifiés. 537 exigences, dont 401
+  reprises des sources officielles avec leur identifiant d'origine. Corps et annexes des trois
+  instructions consultables dans l'outil.</p>
   <div class="actions">
-    <a class="btn" href="audit-ssi.html">Ouvrir l'outil</a>
-    <a class="btn secondaire" href="https://github.com/jfkapcba/audit-ii901-igi1300-im900/raw/main/audit-ssi.html"
-       download="audit-ssi.html">Télécharger le fichier (1,5&nbsp;Mo)</a>
+    <a class="btn" href="audit-ssi/audit-ssi.html">Ouvrir</a>
+    <a class="btn secondaire" href="https://github.com/jfkapcba/audit-ii901-igi1300-im900/raw/main/audit-ssi/audit-ssi.html"
+       download="audit-ssi.html">Télécharger (1,8&nbsp;Mo)</a>
+  </div>
+
+  <h2 style="margin-top:32px">PASSI — RGS et LPM</h2>
+  <p>Conduite d'audit selon le référentiel général de sécurité ou les règles de sécurité des
+  systèmes d'information d'importance vitale. 42 exigences, 22 secteurs et sous-secteurs&nbsp;:
+  le secteur choisi détermine le texte des règles applicables, les arrêtés n'étant pas rédigés
+  à l'identique.</p>
+  <div class="actions">
+    <a class="btn" href="audit-passi/audit-passi.html">Ouvrir</a>
+    <a class="btn secondaire" href="https://github.com/jfkapcba/audit-ii901-igi1300-im900/raw/main/audit-passi/audit-passi.html"
+       download="audit-passi.html">Télécharger (809&nbsp;Ko)</a>
     <a class="btn secondaire" href="https://github.com/jfkapcba/audit-ii901-igi1300-im900">Code source</a>
   </div>
 
   <div class="encart">
     <p><b>Pour un audit réel, téléchargez le fichier et ouvrez-le localement.</b></p>
-    <p>L'outil n'émet aucune requête réseau, où qu'il soit ouvert&nbsp;: vos saisies ne quittent
-    jamais votre navigateur. Mais la version consultée ici est servie depuis Internet et enregistre
-    la progression dans le stockage du domaine <code>jfkapcba.github.io</code>, partagé avec les
-    autres pages de ce domaine. Le fichier téléchargé, lui, s'ouvre depuis votre disque ou une clé
-    amovible, sur un poste isolé si nécessaire, et c'est l'usage pour lequel il est conçu.</p>
+    <p>Ces outils n'émettent aucune requête réseau, où qu'ils soient ouverts : vos saisies ne
+    quittent jamais votre navigateur. Mais la version consultée ici est servie depuis Internet et
+    enregistre la progression dans le stockage du domaine <code>jfkapcba.github.io</code>, partagé
+    avec les autres pages de ce domaine. Le fichier téléchargé, lui, s'ouvre depuis votre disque ou
+    une clé amovible, sur un poste isolé si nécessaire, et c'est l'usage pour lequel il est conçu.</p>
   </div>
 
-  <h2>Ce que fait l'outil</h2>
+  <h2>Ce que font ces outils</h2>
   <ul>
     <li><b>537 exigences</b> réparties en 47 domaines, combinables entre référentiels et filtrées
       selon les niveaux de protection traités par le système audité. <b>401 proviennent
@@ -106,19 +121,22 @@
   <h2>Textes intégrés</h2>
   <div class="enveloppe">
   <table>
-    <tr><th>Référentiel</th><th>Version</th><th>Sections</th></tr>
-    <tr><td><b>II 901</b></td>
-        <td>Instruction interministérielle n° 901/SGDSN/ANSSI du 28 janvier 2015</td><td>201</td></tr>
-    <tr><td><b>IGI 1300</b></td>
-        <td>Instruction générale interministérielle n° 1300, arrêté du 9 août 2021</td><td>253</td></tr>
-    <tr><td><b>IM 900</b></td>
-        <td>Instruction ministérielle n° 900/ARM/CAB du 27 août 2025</td><td>121</td></tr>
+    <tr><th>Outil</th><th>Référentiel</th><th>Version intégrée</th></tr>
+    <tr><td rowspan="3"><b>SSI</b></td><td>II 901</td>
+        <td>Instruction interministérielle n° 901/SGDSN/ANSSI du 28 janvier 2015</td></tr>
+    <tr><td>IGI 1300</td>
+        <td>Arrêté du 9 août 2021 — corps et 46 annexes, dont l'annexe 37 qui fixe les modèles de timbres</td></tr>
+    <tr><td>IM 900</td>
+        <td>Instruction ministérielle n° 900/ARM/CAB du 27 août 2025</td></tr>
+    <tr><td rowspan="2"><b>PASSI</b></td><td>RGS</td>
+        <td>Arrêté du 13 juin 2014 — points de contrôle rédigés, énoncés à saisir</td></tr>
+    <tr><td>LPM</td>
+        <td>Annexe I des arrêtés sectoriels, texte authentique pour 18 secteurs sur 22</td></tr>
   </table>
   </div>
-  <p style="font-size:.9rem;color:var(--texte-3)">Corps des instructions et annexes, dont
-  l'annexe 37 de l'IGI 1300 qui fixe les modèles de timbres appliqués par l'outil. Le seul
-  exemplaire publié de l'II 901 étant un document numérisé, sa provenance est indiquée sur chaque
-  exigence concernée. Voir
+  <p style="font-size:.9rem;color:var(--texte-3)">Ce qui n'est pas publié est signalé comme
+  manquant plutôt que reconstitué : quatre sous-secteurs LPM dont l'annexe I ne figure pas au
+  <i>Journal officiel</i>, et le corps du RGS, qu'aucune source accessible n'expose. Voir
   <a href="https://github.com/jfkapcba/audit-ii901-igi1300-im900/blob/main/NOTICE.md">NOTICE.md</a>.</p>
 
   <h2>Conserver la progression</h2>

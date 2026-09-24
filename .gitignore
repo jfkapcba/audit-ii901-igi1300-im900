@@ -1,10 +1,15 @@
-# Textes officiels et intermédiaires de fabrication : à reconstruire localement
-# (voir outils/README.md). Seul le fichier assemblé est versionné.
-outils/refs/*.pdf
-outils/refs/*.xlsx
-outils/refs/*.txt
-outils/refs/*.json
-outils/build/
+# Textes sources et intermédiaires de fabrication : à reconstruire localement
+# (voir le README de chaque outil). Seuls les fichiers assemblés sont versionnés.
+audit-ssi/outils/refs/*.pdf
+audit-ssi/outils/refs/*.txt
+audit-ssi/outils/refs/*.json
+audit-ssi/outils/refs/*.xlsx
+audit-ssi/outils/build/
+
+# Pour l'outil PASSI, le texte extrait des arrêtés est versionné : il tient dans
+# quelques centaines de kilo-octets et évite de retélécharger 1,6 Go d'archive.
+audit-passi/outils/refs/*.txt
+audit-passi/outils/build/
 
 # Divers
 __pycache__/
